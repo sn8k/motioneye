@@ -4,25 +4,26 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 # netuddki6 <lehelbek2013@gmail.com>, 2024.
 # Csaba Fero <csaba.fero@gmail.com>, 2024.
+# PaulReeps <paul@paulreeps.de>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-04-28 19:42+0000\n"
-"PO-Revision-Date: 2024-09-04 10:09+0000\n"
-"Last-Translator: Csaba Fero <csaba.fero@gmail.com>\n"
+"PO-Revision-Date: 2025-05-25 02:01+0000\n"
+"Last-Translator: PaulReeps <paul@paulreeps.de>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2-rc\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: motioneye/server.py:232
 msgid "interrompa signalo ricevita, fermanta …"
-msgstr ""
+msgstr "megszakítási jel vétele, zárás …"
 
 #: motioneye/server.py:276
 msgid "smb-akcioj postulas radikajn privilegiojn"
