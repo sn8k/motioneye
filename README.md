@@ -57,3 +57,12 @@ sudo systemctl stop motioneye
 sudo python3 -m pip install --upgrade --pre motioneye
 sudo systemctl start motioneye
 ```
+# Accessing the user interface
+
+After having successfully followed the installation instructions, the motionEye server should be running on your system and listening on port 8765. Fire up your favorite web browser and visit the following URL (replacing [your_ip] with... well, your system's IP address):
+
+```
+http://[your_ip]:8765/
+```
+
+Use usernamme _admin_ with empty password when prompted for credentials. For security, __please do set up a proper password for the admin user__, at least if you plan to make your motionEye installation accessible from the Internet.
