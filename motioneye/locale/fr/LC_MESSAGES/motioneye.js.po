@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-25 02:02+0000\n"
+"POT-Creation-Date: 2025-06-29 18:11+0000\n"
 "PO-Revision-Date: 2022-06-12 14:56+0000\n"
 "Last-Translator: jmichault <jmt.2000@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/fr/>\n"
@@ -194,9 +194,13 @@ msgstr "Échec de l'accès au service de téléchargement : "
 msgid "Aliri la alŝutan servon sukcesis!"
 msgstr "L'accès au service de téléchargement a réussi !"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3117
 msgid "Sciiga retpoŝto fiaskis:"
 msgstr "L'e-mail de notification a échoué :"
+
+#: motioneye/static/js/main.js:3120
+msgid "Notification email succeeded!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"

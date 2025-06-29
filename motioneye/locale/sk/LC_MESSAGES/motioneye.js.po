@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-25 02:02+0000\n"
+"POT-Creation-Date: 2025-06-29 18:11+0000\n"
 "PO-Revision-Date: 2023-10-07 08:11+0000\n"
 "Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/sk/>\n"
@@ -195,9 +195,13 @@ msgstr "Pokus o prístup k nahrávacej službe skončil s chybou: "
 msgid "Aliri la alŝutan servon sukcesis!"
 msgstr "Komunikácia s nahrávacou službou bola úspešne nadviazaná!"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3117
 msgid "Sciiga retpoŝto fiaskis:"
 msgstr "E-mail s upozornením zlyhal:"
+
+#: motioneye/static/js/main.js:3120
+msgid "Notification email succeeded!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"

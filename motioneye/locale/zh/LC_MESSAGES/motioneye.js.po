@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-25 02:02+0000\n"
+"POT-Creation-Date: 2025-06-29 18:11+0000\n"
 "PO-Revision-Date: 2023-03-24 05:34+0000\n"
 "Last-Translator: Ziteng <765484893@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/zh_Hans/>\n"
@@ -194,9 +194,13 @@ msgstr "连接上传服务失败： "
 msgid "Aliri la alŝutan servon sukcesis!"
 msgstr "连接上传服务成功！"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3117
 msgid "Sciiga retpoŝto fiaskis:"
 msgstr "通知邮件失败："
+
+#: motioneye/static/js/main.js:3120
+msgid "Notification email succeeded!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
