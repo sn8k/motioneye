@@ -3,24 +3,25 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Onur TORAMAN <onur@toraman.net>, 2024.
 # deneme <batekservis@gmail.com>, 2025.
+# aguvener <90110302+aguvener@users.noreply.github.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-25 02:02+0000\n"
-"PO-Revision-Date: 2025-03-25 11:42+0000\n"
-"Last-Translator: deneme <batekservis@gmail.com>\n"
+"PO-Revision-Date: 2025-06-29 19:01+0000\n"
+"Last-Translator: aguvener <90110302+aguvener@users.noreply.github.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
-msgstr "şifrede özel karakterlere izin verilmez"
+msgstr "parola özel karakterler içermemelidir"
 
 #: motioneye/static/js/main.js:615 motioneye/static/js/main.js:626
 #: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
@@ -30,7 +31,7 @@ msgstr "Bu alan zorunludur"
 
 #: motioneye/static/js/main.js:619
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
-msgstr "kamera adı için özel karakterlere izin verilmez"
+msgstr "kamera isminde özel karakterlere izin verilmez"
 
 #: motioneye/static/js/main.js:631
 msgid "valoro devas esti multoblo de 8"
@@ -38,7 +39,7 @@ msgstr "değer 8'in katı olmalıdır"
 
 #: motioneye/static/js/main.js:638
 msgid "specialaj signoj ne rajtas en radika voja nomo"
-msgstr "kök yol adına özel işaretlere izin verilmez"
+msgstr "root dizin ismi özel karakter içermemelidir"
 
 #: motioneye/static/js/main.js:641
 msgid "dosieroj ne povas esti kreitaj rekte en la radiko de via sistemo"
@@ -110,18 +111,16 @@ msgid "Ĉi tio rekomencos la sistemon. Daŭrigi?"
 msgstr "Bu, sistemi yeniden başlatır. Devam mı?"
 
 #: motioneye/static/js/main.js:2792
-#, fuzzy
 msgid "Vere fermiti sistemon?"
-msgstr "Gerçekten sistemi kapansın mı?"
+msgstr "Gerçekten kapatmak istiyor musun?"
 
 #: motioneye/static/js/main.js:2804
 msgid "Malŝaltita"
 msgstr "Engelli"
 
 #: motioneye/static/js/main.js:2819
-#, fuzzy
 msgid "Ĉu vere restartigi ?"
-msgstr "Gerçekten bir yeniden başlatılsın mı?"
+msgstr "Yeniden başlatmayı onaylıyor musunuz?"
 
 #: motioneye/static/js/main.js:2833
 msgid "La sistemo rekomencis!"
@@ -189,9 +188,8 @@ msgid "Malsukcesis restaŭri la agordon!"
 msgstr "Yapılandırma geri yüklenemedi!"
 
 #: motioneye/static/js/main.js:3077
-#, fuzzy
 msgid "Aliri la alŝutan servon malsukcesis: "
-msgstr "Yükleme hizmetine erişim başarısız oldu: "
+msgstr "Yükleme servisine erişilemedi: "
 
 #: motioneye/static/js/main.js:3080
 msgid "Aliri la alŝutan servon sukcesis!"
@@ -206,14 +204,12 @@ msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
 msgstr "Tüm yapılandırma seçeneklerinin, geçerli olduğundan emin olun!"
 
 #: motioneye/static/js/main.js:3152
-#, fuzzy
 msgid "Sciiga Telegramo fiaskis:"
-msgstr "Telegram Bildirimi başarısız oldu:"
+msgstr "Telegram bildirimi başarısız oldu:"
 
 #: motioneye/static/js/main.js:3155
-#, fuzzy
 msgid "Sciiga Telegramo sukcesis!"
-msgstr "Telegram Bildirimi başarılı oldu!"
+msgstr "Telegram bildirimi başarılı oldu!"
 
 #: motioneye/static/js/main.js:3191
 msgid "Aliro al retdividado fiaskis: "
