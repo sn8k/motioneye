@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-25 02:02+0000\n"
+"POT-Creation-Date: 2025-06-29 18:11+0000\n"
 "PO-Revision-Date: 2023-07-29 08:02+0000\n"
 "Last-Translator: Gurjant Singh <sandalgurjant@gmail.com>\n"
 "Language-Team: Punjabi <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/pa/>\n"
@@ -221,10 +221,14 @@ msgstr "ਅਪਲੋਡ ਸੇਵਾ ਤੱਕ ਪਹੁੰਚ ਅਸਫਲ:"
 msgid "Aliri la alŝutan servon sukcesis!"
 msgstr "ਅਪਲੋਡ ਸੇਵਾ ਤੱਕ ਪਹੁੰਚ ਸਫਲ ਰਹੀ!"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3117
 #, fuzzy
 msgid "Sciiga retpoŝto fiaskis:"
 msgstr "ਨਿ News ਜ਼ ਈਮੇਲ ਅਸਫਲ:"
+
+#: motioneye/static/js/main.js:3120
+msgid "Notification email succeeded!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 #, fuzzy

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-25 02:02+0000\n"
+"POT-Creation-Date: 2025-06-29 18:11+0000\n"
 "PO-Revision-Date: 2020-03-28 18:26+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -235,10 +235,14 @@ msgstr "Gagal mengakses perkhidmatan muat naik:"
 msgid "Aliri la alŝutan servon sukcesis!"
 msgstr "Mengakses perkhidmatan muat naik berjaya!"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3117
 #, fuzzy
 msgid "Sciiga retpoŝto fiaskis:"
 msgstr "E-mel berita gagal:"
+
+#: motioneye/static/js/main.js:3120
+msgid "Notification email succeeded!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 #, fuzzy
