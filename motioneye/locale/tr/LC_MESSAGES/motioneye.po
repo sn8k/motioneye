@@ -4,33 +4,34 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 # Languages add-on <noreply-addon-languages@weblate.org>, 2024.
 # Onur TORAMAN <onur@toraman.net>, 2024.
+# aguvener <90110302+aguvener@users.noreply.github.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-05-25 02:02+0000\n"
-"PO-Revision-Date: 2024-04-17 23:03+0000\n"
-"Last-Translator: Onur TORAMAN <onur@toraman.net>\n"
+"PO-Revision-Date: 2025-06-29 19:01+0000\n"
+"Last-Translator: aguvener <90110302+aguvener@users.noreply.github.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.14.0\n"
 
 #: motioneye/server.py:232
 msgid "interrompa signalo ricevita, fermanta …"
-msgstr "kesme sinyali alındı, kapanıyor…"
+msgstr "Kesme sinyali alındı, kapanıyor…"
 
 #: motioneye/server.py:276
 msgid "smb-akcioj postulas radikajn privilegiojn"
-msgstr "smb paylaşımları root ayrıcalıkları gerektirir"
+msgstr "SMB paylaşımları için root yetkileri gereklidir"
 
 #: motioneye/server.py:283
 msgid "bonvolu instali tornado version 3.1 aŭ pli"
-msgstr "lütfen tornado 3.1 veya üstünü yükleyin"
+msgstr "lütfen Tornado’nun 3.1 veya daha yeni bir sürümünü yükleyin"
 
 #: motioneye/server.py:290
 msgid "bonvolu instali jinja2"
@@ -38,11 +39,11 @@ msgstr "lütfen jinja2'yi yükleyin"
 
 #: motioneye/server.py:297
 msgid "bonvolu instali pillow aŭ PIL"
-msgstr "lütfen yastık veya PIL takın"
+msgstr "lütfen Pillow veya PIL kütüphanesini yükleyin"
 
 #: motioneye/server.py:304
 msgid "bonvolu instali pycurl"
-msgstr "lütfen pycurl'u yükleyin"
+msgstr "lütfen pycurl'ü yükleyin"
 
 #: motioneye/server.py:422
 msgid "saluton! ĉi tio estas motionEye-servilo "
