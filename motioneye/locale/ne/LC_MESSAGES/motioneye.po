@@ -34,67 +34,67 @@ msgstr "कृपया टोर्नाडो संस्करण ३.१ �
 
 #: motioneye/server.py:290
 msgid "bonvolu instali jinja2"
-msgstr "कृपया jinja2 स्थापना गर्नुहोस्।"
+msgstr "कृपया jinja2 स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:297
 msgid "bonvolu instali pillow aŭ PIL"
-msgstr ""
+msgstr "कृपया तकिया वा PIL जडान गर्नुहोस्"
 
 #: motioneye/server.py:304
 msgid "bonvolu instali pycurl"
-msgstr ""
+msgstr "कृपया pycurl स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:422
 msgid "saluton! ĉi tio estas motionEye-servilo "
-msgstr ""
+msgstr "नमस्ते! यो मोशनआइ सर्भर हो। "
 
 #: motioneye/server.py:437
 msgid "purigado komenciĝis"
-msgstr ""
+msgstr "सरसफाई सुरु भएको छ"
 
 #: motioneye/server.py:439
 msgid "wsswitch komenciĝis"
-msgstr ""
+msgstr "wsswitch सुरु भयो"
 
 #: motioneye/server.py:442
 msgid "taskoj komenciĝis"
-msgstr ""
+msgstr "कार्यहरू सुरु भयो"
 
 #: motioneye/server.py:446
 msgid "mjpg klienta rubo-kolektanto komenciĝis"
-msgstr ""
+msgstr "mjpg क्लाइन्ट फोहोर सङ्कलन सुरु भयो"
 
 #: motioneye/server.py:464
 msgid "servilo komenciĝis"
-msgstr ""
+msgstr "सर्भर सुरु भयो"
 
 #: motioneye/server.py:470
 msgid "servilo haltis"
-msgstr ""
+msgstr "सर्भर रोकियो"
 
 #: motioneye/server.py:472
 msgid "taskoj haltis"
-msgstr ""
+msgstr "कामहरु रोकिएका छन्"
 
 #: motioneye/server.py:480
 msgid "motion haltis"
-msgstr ""
+msgstr "गति रोकियो"
 
 #: motioneye/server.py:485
 msgid "adiaŭ!"
-msgstr ""
+msgstr "अलविदा!"
 
 #: motioneye/templates/main.html:104
 msgid "agordojn"
-msgstr ""
+msgstr "सेटिङहरू"
 
 #: motioneye/templates/main.html:105
 msgid "ŝanĝi uzanton"
-msgstr ""
+msgstr "प्रयोगकर्ता परिवर्तन गर्नुहोस्"
 
 #: motioneye/templates/main.html:107
 msgid "forigi kameraon"
-msgstr ""
+msgstr "क्यामेरा हटाउनुहोस्"
 
 #: motioneye/templates/main.html:108
 msgid "Apliki"
@@ -102,11 +102,11 @@ msgstr "लागू गर्नुहोस्"
 
 #: motioneye/templates/main.html:127
 msgid "preferoj de uzanto"
-msgstr ""
+msgstr "प्रयोगकर्ता प्राथमिकताहरू"
 
 #: motioneye/templates/main.html:128
 msgid "Preferoj"
-msgstr ""
+msgstr "प्राथमिकताहरू"
 
 #: motioneye/templates/main.html:133
 msgid "Aranĝo Kolumnoj"
