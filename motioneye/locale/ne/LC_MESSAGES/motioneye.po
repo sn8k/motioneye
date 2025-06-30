@@ -26,7 +26,7 @@ msgstr "अवरोध संकेत प्राप्त भयो, बन�
 
 #: motioneye/server.py:276
 msgid "smb-akcioj postulas radikajn privilegiojn"
-msgstr "smb-akcioj postulas radikajn privilegiojn"
+msgstr "smb शेयरहरूलाई रूट विशेषाधिकार चाहिन्छ।"
 
 #: motioneye/server.py:283
 msgid "bonvolu instali tornado version 3.1 aŭ pli"
