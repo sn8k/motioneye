@@ -25,96 +25,96 @@ msgstr "पासवर्डमा विशेष वर्णहरू प्
 #: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
 #: motioneye/static/js/ui.js:419 motioneye/static/js/ui.js:687
 msgid "Ĉi tiu kampo estas deviga"
-msgstr "यो क्षेत्र आवश्यक छ।"
+msgstr "यो क्षेत्र आवश्यक छ"
 
 #: motioneye/static/js/main.js:619
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
-msgstr ""
+msgstr "क्यामेराको नाममा विशेष वर्णहरू प्रयोग गर्न अनुमति छैन"
 
 #: motioneye/static/js/main.js:631
 msgid "valoro devas esti multoblo de 8"
-msgstr ""
+msgstr "मान ८ को गुणन हुनुपर्छ"
 
 #: motioneye/static/js/main.js:638
 msgid "specialaj signoj ne rajtas en radika voja nomo"
-msgstr ""
+msgstr "रूट मार्ग नाममा विशेष वर्णहरूलाई अनुमति छैन"
 
 #: motioneye/static/js/main.js:641
 msgid "dosieroj ne povas esti kreitaj rekte en la radiko de via sistemo"
-msgstr ""
+msgstr "फाइलहरू तपाईंको प्रणालीको रूटमा सिधै सिर्जना गर्न सकिँदैन"
 
 #: motioneye/static/js/main.js:648
 msgid "enigu validan retpoŝtadreson"
-msgstr ""
+msgstr "मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:655
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
-msgstr ""
+msgstr "मान्य इमेल ठेगानाहरूको अल्पविराम विभाजित सूची प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:662
 msgid "specialaj signoj ne rajtas en dosiernomo"
-msgstr ""
+msgstr "फाइलनाममा विशेष वर्णहरू अनुमति छैन"
 
 #: motioneye/static/js/main.js:689
 msgid "enigu validan valoron"
-msgstr ""
+msgstr "मान्य मान प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:843
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr ""
+msgstr "यसले क्लाउड फोल्डरमा रहेका सबै फाइलहरू पुनरावर्ती रूपमा मेटाउनेछ \""
 
 #: motioneye/static/js/main.js:844
 msgid "\", ne nur tiuj alŝutitaj de motionEye!"
-msgstr ""
+msgstr "\", केवल motionEye द्वारा अपलोड गरिएकाहरू मात्र होइन!"
 
 #: motioneye/static/js/main.js:925
 msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr ""
+msgstr "यसले फोल्डरमा रहेका सबै पुराना मिडिया फाइलहरू पुनरावर्ती रूपमा मेटाउनेछ \""
 
 #: motioneye/static/js/main.js:926
 msgid "\", ne nur tiuj kreitaj de motionEye!"
-msgstr ""
+msgstr "\", केवल motionEye द्वारा सिर्जना गरिएकाहरू मात्र होइन!"
 
 #: motioneye/static/js/main.js:992
 msgid "Ne eblas redakti la maskon sen valida kameraa bildo!"
-msgstr ""
+msgstr "मान्य क्यामेरा छवि बिना मास्क सम्पादन गर्न सम्भव छैन!"
 
 #: motioneye/static/js/main.js:2237
 msgid "Propra"
-msgstr ""
+msgstr "आफ्नै"
 
 #: motioneye/static/js/main.js:2275
 msgid "Propra dosierindiko"
-msgstr ""
+msgstr "अनुकूलन फाइल अनुक्रमणिका"
 
 #: motioneye/static/js/main.js:2277
 msgid "Retan kunlokon"
-msgstr ""
+msgstr "अनलाइन सह-स्थान"
 
 #: motioneye/static/js/main.js:2637
 msgid "Via retumilo ne efektivigas ĉi tiun funkcion!"
-msgstr ""
+msgstr "तपाईंको ब्राउजरले यो सुविधा कार्यान्वयन गर्दैन!"
 
 #: motioneye/static/js/main.js:2653
 msgid "Apliki"
-msgstr ""
+msgstr "लागू गर्नुहोस्"
 
 #: motioneye/static/js/main.js:2680 motioneye/static/js/main.js:3041
 #: motioneye/static/js/main.js:3096 motioneye/static/js/main.js:3171
 msgid "Certigu, ke ĉiuj agordaj opcioj validas!"
-msgstr ""
+msgstr "सबै कन्फिगरेसन विकल्पहरू मान्य छन् भनी सुनिश्चित गर्नुहोस्!"
 
 #: motioneye/static/js/main.js:2782
 msgid "Ĉi tio rekomencos la sistemon. Daŭrigi?"
-msgstr ""
+msgstr "यसले प्रणाली पुन: सुरु गर्नेछ। जारी राख्ने हो?"
 
 #: motioneye/static/js/main.js:2792
 msgid "Vere fermiti sistemon?"
-msgstr ""
+msgstr "साँच्चै प्रणाली बन्द गर्ने?"
 
 #: motioneye/static/js/main.js:2804
 msgid "Malŝaltita"
-msgstr ""
+msgstr "बन्द"
 
 #: motioneye/static/js/main.js:2819
 msgid "Ĉu vere restartigi ?"
