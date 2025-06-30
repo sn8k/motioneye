@@ -25,7 +25,7 @@ msgstr "पासवर्डमा विशेष वर्णहरू प्
 #: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
 #: motioneye/static/js/ui.js:419 motioneye/static/js/ui.js:687
 msgid "Ĉi tiu kampo estas deviga"
-msgstr "यो क्षेत्र आवश्यक छ"
+msgstr "यो क्षेत्र आवश्यक छ।"
 
 #: motioneye/static/js/main.js:619
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
