@@ -26,15 +26,15 @@ msgstr "अवरोध संकेत प्राप्त भयो, बन�
 
 #: motioneye/server.py:276
 msgid "smb-akcioj postulas radikajn privilegiojn"
-msgstr "smb शेयरहरूलाई रूट विशेषाधिकार चाहिन्छ।"
+msgstr "smb शेयरहरूलाई रूट विशेषाधिकार चाहिन्छ"
 
 #: motioneye/server.py:283
 msgid "bonvolu instali tornado version 3.1 aŭ pli"
-msgstr ""
+msgstr "कृपया टोर्नाडो संस्करण ३.१ वा सोभन्दा माथिको स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:290
 msgid "bonvolu instali jinja2"
-msgstr ""
+msgstr "कृपया jinja2 स्थापना गर्नुहोस्।"
 
 #: motioneye/server.py:297
 msgid "bonvolu instali pillow aŭ PIL"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: motioneye/templates/main.html:108
 msgid "Apliki"
-msgstr ""
+msgstr "लागू गर्नुहोस्"
 
 #: motioneye/templates/main.html:127
 msgid "preferoj de uzanto"
@@ -1038,7 +1038,7 @@ msgstr ""
 
 #: motioneye/templates/main.html:787 motioneye/templates/main.html:900
 msgid "Propra"
-msgstr ""
+msgstr "आफ्नै"
 
 #: motioneye/templates/main.html:790
 msgid ""
