@@ -7,24 +7,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-29 19:07+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-06-30 07:41+0000\n"
+"Last-Translator: sangam paudel <sangampaudel530@gmail.com>\n"
+"Language-Team: Nepali <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ne/>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
-msgstr ""
+msgstr "पासवर्डमा विशेष वर्णहरू प्रयोग गर्न अनुमति छैन।"
 
 #: motioneye/static/js/main.js:615 motioneye/static/js/main.js:626
 #: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
 #: motioneye/static/js/ui.js:419 motioneye/static/js/ui.js:687
 msgid "Ĉi tiu kampo estas deviga"
-msgstr ""
+msgstr "यो क्षेत्र आवश्यक छ।"
 
 #: motioneye/static/js/main.js:619
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
