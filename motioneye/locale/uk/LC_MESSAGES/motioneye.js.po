@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-29 19:07+0000\n"
-"PO-Revision-Date: 2025-07-02 05:01+0000\n"
+"PO-Revision-Date: 2025-07-17 18:03+0000\n"
 "Last-Translator: Максим Горпиніч <gorpinicmaksim5@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/uk/>\n"
 "Language: uk\n"
@@ -98,7 +98,7 @@ msgstr "Ваш браузер не виконує цю функцію!"
 
 #: motioneye/static/js/main.js:2653
 msgid "Apliki"
-msgstr "застосувати"
+msgstr "Застосувати"
 
 #: motioneye/static/js/main.js:2680 motioneye/static/js/main.js:3041
 #: motioneye/static/js/main.js:3096 motioneye/static/js/main.js:3171
