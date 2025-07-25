@@ -5,13 +5,14 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2024.
 # Onur TORAMAN <onur@toraman.net>, 2024.
 # aguvener <90110302+aguvener@users.noreply.github.com>, 2025.
+# Burak <admin@homelab.gen.tr>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-06-29 19:07+0000\n"
-"PO-Revision-Date: 2025-06-29 19:01+0000\n"
-"Last-Translator: aguvener <90110302+aguvener@users.noreply.github.com>\n"
+"PO-Revision-Date: 2025-07-26 10:03+0000\n"
+"Last-Translator: Burak <admin@homelab.gen.tr>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -425,7 +426,7 @@ msgstr "şifre"
 
 #: motioneye/templates/main.html:416
 msgid "la pasvorto bezonata de la reto dosierujo (lasi malplena se neniu pasvorto estas bezonata)"
-msgstr "ağ dizininin gerektirdiği şifre ( şifre gerekmiyorsa boş bırakın )"
+msgstr "ağ dizininin gerektirdiği şifre ( gerekmiyorsa boş bırakın )"
 
 #: motioneye/templates/main.html:419
 msgid "Radika dosierujo"
