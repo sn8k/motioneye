@@ -4,13 +4,14 @@
 # Onur TORAMAN <onur@toraman.net>, 2024.
 # deneme <batekservis@gmail.com>, 2025.
 # aguvener <90110302+aguvener@users.noreply.github.com>, 2025.
+# Burak <admin@homelab.gen.tr>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-29 19:07+0000\n"
-"PO-Revision-Date: 2025-06-29 19:01+0000\n"
-"Last-Translator: aguvener <90110302+aguvener@users.noreply.github.com>\n"
+"PO-Revision-Date: 2025-07-26 10:03+0000\n"
+"Last-Translator: Burak <admin@homelab.gen.tr>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +202,7 @@ msgstr "Bildirim e-postası başarısız oldu:"
 
 #: motioneye/static/js/main.js:3120
 msgid "Notification email succeeded!"
-msgstr ""
+msgstr "Bildirim epostası başarılı!"
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"

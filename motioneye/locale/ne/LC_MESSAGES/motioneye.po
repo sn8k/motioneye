@@ -2,108 +2,111 @@
 # Copyright (C) 2025 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
-#
-#, fuzzy
+# Languages add-on <noreply-addon-languages@weblate.org>, 2025.
+# sangam paudel <sangampaudel530@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-26 10:07+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2025-06-29 19:07+0000\n"
+"PO-Revision-Date: 2025-06-30 07:41+0000\n"
+"Last-Translator: sangam paudel <sangampaudel530@gmail.com>\n"
+"Language-Team: Nepali <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/ne/>\n"
+"Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: motioneye/server.py:232
 msgid "interrompa signalo ricevita, fermanta …"
-msgstr ""
+msgstr "अवरोध संकेत प्राप्त भयो, बन्द हुँदैछ …"
 
 #: motioneye/server.py:276
 msgid "smb-akcioj postulas radikajn privilegiojn"
-msgstr ""
+msgstr "smb शेयरहरूलाई रूट विशेषाधिकार चाहिन्छ"
 
 #: motioneye/server.py:283
 msgid "bonvolu instali tornado version 3.1 aŭ pli"
-msgstr ""
+msgstr "कृपया टोर्नाडो संस्करण ३.१ वा सोभन्दा माथिको स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:290
 msgid "bonvolu instali jinja2"
-msgstr ""
+msgstr "कृपया jinja2 स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:297
 msgid "bonvolu instali pillow aŭ PIL"
-msgstr ""
+msgstr "कृपया तकिया वा PIL जडान गर्नुहोस्"
 
 #: motioneye/server.py:304
 msgid "bonvolu instali pycurl"
-msgstr ""
+msgstr "कृपया pycurl स्थापना गर्नुहोस्"
 
 #: motioneye/server.py:422
 msgid "saluton! ĉi tio estas motionEye-servilo "
-msgstr ""
+msgstr "नमस्ते! यो मोशनआइ सर्भर हो। "
 
 #: motioneye/server.py:437
 msgid "purigado komenciĝis"
-msgstr ""
+msgstr "सरसफाई सुरु भएको छ"
 
 #: motioneye/server.py:439
 msgid "wsswitch komenciĝis"
-msgstr ""
+msgstr "wsswitch सुरु भयो"
 
 #: motioneye/server.py:442
 msgid "taskoj komenciĝis"
-msgstr ""
+msgstr "कार्यहरू सुरु भयो"
 
 #: motioneye/server.py:446
 msgid "mjpg klienta rubo-kolektanto komenciĝis"
-msgstr ""
+msgstr "mjpg क्लाइन्ट फोहोर सङ्कलन सुरु भयो"
 
 #: motioneye/server.py:464
 msgid "servilo komenciĝis"
-msgstr ""
+msgstr "सर्भर सुरु भयो"
 
 #: motioneye/server.py:470
 msgid "servilo haltis"
-msgstr ""
+msgstr "सर्भर रोकियो"
 
 #: motioneye/server.py:472
 msgid "taskoj haltis"
-msgstr ""
+msgstr "कामहरु रोकिएका छन्"
 
 #: motioneye/server.py:480
 msgid "motion haltis"
-msgstr ""
+msgstr "गति रोकियो"
 
 #: motioneye/server.py:485
 msgid "adiaŭ!"
-msgstr ""
+msgstr "अलविदा!"
 
 #: motioneye/templates/main.html:104
 msgid "agordojn"
-msgstr ""
+msgstr "सेटिङहरू"
 
 #: motioneye/templates/main.html:105
 msgid "ŝanĝi uzanton"
-msgstr ""
+msgstr "प्रयोगकर्ता परिवर्तन गर्नुहोस्"
 
 #: motioneye/templates/main.html:107
 msgid "forigi kameraon"
-msgstr ""
+msgstr "क्यामेरा हटाउनुहोस्"
 
 #: motioneye/templates/main.html:108
 msgid "Apliki"
-msgstr ""
+msgstr "लागू गर्नुहोस्"
 
 #: motioneye/templates/main.html:127
 msgid "preferoj de uzanto"
-msgstr ""
+msgstr "प्रयोगकर्ता प्राथमिकताहरू"
 
 #: motioneye/templates/main.html:128
 msgid "Preferoj"
-msgstr ""
+msgstr "प्राथमिकताहरू"
 
 #: motioneye/templates/main.html:133
 msgid "Aranĝo Kolumnoj"
@@ -1035,7 +1038,7 @@ msgstr ""
 
 #: motioneye/templates/main.html:787 motioneye/templates/main.html:900
 msgid "Propra"
-msgstr ""
+msgstr "आफ्नै"
 
 #: motioneye/templates/main.html:790
 msgid ""

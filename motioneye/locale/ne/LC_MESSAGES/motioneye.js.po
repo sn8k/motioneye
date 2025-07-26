@@ -1,679 +1,675 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Сергій <sergiy.goncharuk.1@gmail.com>, 2024.
-# Максим Горпиніч <gorpinicmaksim5@gmail.com>, 2025.
+# sangam paudel <sangampaudel530@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-29 19:07+0000\n"
-"PO-Revision-Date: 2025-07-17 18:03+0000\n"
-"Last-Translator: Максим Горпиніч <gorpinicmaksim5@gmail.com>\n"
-"Language-Team: Ukrainian <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/uk/>\n"
-"Language: uk\n"
+"PO-Revision-Date: 2025-06-30 07:41+0000\n"
+"Last-Translator: sangam paudel <sangampaudel530@gmail.com>\n"
+"Language-Team: Nepali <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ne/>\n"
+"Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.13-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
-msgstr "Спеціальні символи заборонені у паролі"
+msgstr "पासवर्डमा विशेष वर्णहरू प्रयोग गर्न अनुमति छैन"
 
 #: motioneye/static/js/main.js:615 motioneye/static/js/main.js:626
 #: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
 #: motioneye/static/js/ui.js:419 motioneye/static/js/ui.js:687
 msgid "Ĉi tiu kampo estas deviga"
-msgstr "Це поле є обов'язковим"
+msgstr "यो क्षेत्र आवश्यक छ"
 
 #: motioneye/static/js/main.js:619
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
-msgstr "Спеціальні символи заборонені від імені камери"
+msgstr "क्यामेराको नाममा विशेष वर्णहरू प्रयोग गर्न अनुमति छैन"
 
 #: motioneye/static/js/main.js:631
 msgid "valoro devas esti multoblo de 8"
-msgstr "Значення повинно бути кратним 8"
+msgstr "मान ८ को गुणन हुनुपर्छ"
 
 #: motioneye/static/js/main.js:638
 msgid "specialaj signoj ne rajtas en radika voja nomo"
-msgstr "Спеціальні символи заборонені в назві Root Road"
+msgstr "रूट मार्ग नाममा विशेष वर्णहरूलाई अनुमति छैन"
 
 #: motioneye/static/js/main.js:641
 msgid "dosieroj ne povas esti kreitaj rekte en la radiko de via sistemo"
-msgstr "Файли не можуть бути створені безпосередньо в корені вашої системи"
+msgstr "फाइलहरू तपाईंको प्रणालीको रूटमा सिधै सिर्जना गर्न सकिँदैन"
 
 #: motioneye/static/js/main.js:648
 msgid "enigu validan retpoŝtadreson"
-msgstr "Введіть дійсну електронну адресу"
+msgstr "मान्य इमेल ठेगाना प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:655
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
-msgstr "Введіть список окремих дійсних адрес електронної пошти"
+msgstr "मान्य इमेल ठेगानाहरूको अल्पविराम विभाजित सूची प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:662
 msgid "specialaj signoj ne rajtas en dosiernomo"
-msgstr "Спеціальні персонажі заборонені в імені файлу"
+msgstr "फाइलनाममा विशेष वर्णहरू अनुमति छैन"
 
 #: motioneye/static/js/main.js:689
 msgid "enigu validan valoron"
-msgstr "Введіть дійсне значення"
+msgstr "मान्य मान प्रविष्ट गर्नुहोस्"
 
 #: motioneye/static/js/main.js:843
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr "Це буде рекурсивно видалити всі файли, присутні у хмарній папці »"
+msgstr "यसले क्लाउड फोल्डरमा रहेका सबै फाइलहरू पुनरावर्ती रूपमा मेटाउनेछ \""
 
 #: motioneye/static/js/main.js:844
 msgid "\", ne nur tiuj alŝutitaj de motionEye!"
-msgstr "\", не лише тих, хто завантажив Motioneye!"
+msgstr "\", केवल motionEye द्वारा अपलोड गरिएकाहरू मात्र होइन!"
 
 #: motioneye/static/js/main.js:925
 msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr "Ця рекурсія видаляє всі старі медіа -файли в каталозі \""
+msgstr "यसले फोल्डरमा रहेका सबै पुराना मिडिया फाइलहरू पुनरावर्ती रूपमा मेटाउनेछ \""
 
 #: motioneye/static/js/main.js:926
 msgid "\", ne nur tiuj kreitaj de motionEye!"
-msgstr "\", не тільки ті, створені Motioneye!"
+msgstr "\", केवल motionEye द्वारा सिर्जना गरिएकाहरू मात्र होइन!"
 
 #: motioneye/static/js/main.js:992
 msgid "Ne eblas redakti la maskon sen valida kameraa bildo!"
-msgstr "Не в змозі редагувати маску без дійсного зображення камери!"
+msgstr "मान्य क्यामेरा छवि बिना मास्क सम्पादन गर्न सम्भव छैन!"
 
 #: motioneye/static/js/main.js:2237
 msgid "Propra"
-msgstr "Власний"
+msgstr "आफ्नै"
 
 #: motioneye/static/js/main.js:2275
 msgid "Propra dosierindiko"
-msgstr "Власна індикація файлів"
+msgstr "अनुकूलन फाइल अनुक्रमणिका"
 
 #: motioneye/static/js/main.js:2277
 msgid "Retan kunlokon"
-msgstr "Онлайн -розташування"
+msgstr "अनलाइन सह-स्थान"
 
 #: motioneye/static/js/main.js:2637
 msgid "Via retumilo ne efektivigas ĉi tiun funkcion!"
-msgstr "Ваш браузер не виконує цю функцію!"
+msgstr "तपाईंको ब्राउजरले यो सुविधा कार्यान्वयन गर्दैन!"
 
 #: motioneye/static/js/main.js:2653
 msgid "Apliki"
-msgstr "Застосувати"
+msgstr "लागू गर्नुहोस्"
 
 #: motioneye/static/js/main.js:2680 motioneye/static/js/main.js:3041
 #: motioneye/static/js/main.js:3096 motioneye/static/js/main.js:3171
 msgid "Certigu, ke ĉiuj agordaj opcioj validas!"
-msgstr "Переконайтесь, що всі параметри конфігурації дійсні!"
+msgstr "सबै कन्फिगरेसन विकल्पहरू मान्य छन् भनी सुनिश्चित गर्नुहोस्!"
 
 #: motioneye/static/js/main.js:2782
 msgid "Ĉi tio rekomencos la sistemon. Daŭrigi?"
-msgstr "Це відновить систему. Продовжувати?"
+msgstr "यसले प्रणाली पुन: सुरु गर्नेछ। जारी राख्ने हो?"
 
 #: motioneye/static/js/main.js:2792
 msgid "Vere fermiti sistemon?"
-msgstr "Справді закрили систему?"
+msgstr "साँच्चै प्रणाली बन्द गर्ने?"
 
 #: motioneye/static/js/main.js:2804
 msgid "Malŝaltita"
-msgstr "Вимкнений"
+msgstr "बन्द"
 
 #: motioneye/static/js/main.js:2819
 msgid "Ĉu vere restartigi ?"
-msgstr "Дійсно перезапустити?"
+msgstr ""
 
 #: motioneye/static/js/main.js:2833
 msgid "La sistemo rekomencis!"
-msgstr "Система відновилася!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2853 motioneye/static/js/main.js:2886
 #: motioneye/static/js/main.js:3869
 msgid "Bonvolu apliki unue la modifitajn agordojn!"
-msgstr "Будь ласка, спочатку застосуйте модифіковані налаштування!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2858
 msgid "Neniu fotilo por forigi!"
-msgstr "Ніякої камери для видалення!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2864
 msgid "Ĉu forigi kameraon "
-msgstr "Чи зняти камеру "
+msgstr ""
 
 #: motioneye/static/js/main.js:2892
 msgid "motionEye estas ĝisdatigita (aktuala versio: "
-msgstr "Motioneye оновлюється (Поточна версія: "
+msgstr ""
 
 #: motioneye/static/js/main.js:2895
 msgid "Nova versio havebla: "
-msgstr "Доступна нова версія: "
+msgstr ""
 
 #: motioneye/static/js/main.js:2895
 msgid ". Ĝisdatigi?"
-msgstr ". Оновлення?"
+msgstr ""
 
 #: motioneye/static/js/main.js:2903
 msgid "motionEye estis sukcese ĝisdatigita!"
-msgstr "Motioneye успішно оновлюється!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2913
 msgid "Ĝisdatigo malsukcesis!"
-msgstr "Оновлення не вдалося!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2924
 msgid "La ĝisdatiga procezo malsukcesis!"
-msgstr "Процес оновлення не вдалося!"
+msgstr ""
 
 #: motioneye/static/js/main.js:2943
 msgid "Rezerva dosiero"
-msgstr "Файл резервного копіювання"
+msgstr ""
 
 #: motioneye/static/js/main.js:2945
 msgid "La rezervan dosieron, kiun vi antaŭe elŝutis."
-msgstr "Файл резервного копіювання, який ви раніше завантажували."
+msgstr ""
 
 #: motioneye/static/js/main.js:2974
 msgid "Restaŭrigi Agordon"
-msgstr "Відновити конфігурацію"
+msgstr ""
 
 #: motioneye/static/js/main.js:2986
 msgid "Restaŭriganta agordon ..."
-msgstr "Налаштування відновлення ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:2993
 msgid "La agordo restaŭrigis!"
-msgstr "Конфігурація була відновлена!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3003 motioneye/static/js/main.js:3022
 msgid "Malsukcesis restaŭri la agordon!"
-msgstr "Не вдалося відновити конфігурацію!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3077
 msgid "Aliri la alŝutan servon malsukcesis: "
-msgstr "Для доступу до служби завантаження не вдалося: "
+msgstr ""
 
 #: motioneye/static/js/main.js:3080
 msgid "Aliri la alŝutan servon sukcesis!"
-msgstr "Доступ до послуги завантаження був успішним!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3117
 msgid "Sciiga retpoŝto fiaskis:"
-msgstr "Не вдалося повідомити електронну пошту:"
+msgstr ""
 
 #: motioneye/static/js/main.js:3120
 msgid "Notification email succeeded!"
-msgstr "Повідомлення електронної пошти вдалося!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
-msgstr "Переконайтесь, що всі параметри конфігурації дійсні!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3152
 msgid "Sciiga Telegramo fiaskis:"
-msgstr "Новини Telegram не вдалося:"
+msgstr ""
 
 #: motioneye/static/js/main.js:3155
 msgid "Sciiga Telegramo sukcesis!"
-msgstr "Новини Телеграма була успішною!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3191
 msgid "Aliro al retdividado fiaskis: "
-msgstr "Доступ до веб -підрозділу не вдався: "
+msgstr ""
 
 #: motioneye/static/js/main.js:3194
 msgid "Aliro al retdividado sukcesis!"
-msgstr "Доступ до веб -підрозділу був успішним!"
+msgstr ""
 
 #: motioneye/static/js/main.js:3218
 msgid "Ĉu vere forigi ĉi tiun dosieron?"
-msgstr "Дійсно видалити цей файл?"
+msgstr ""
 
 #: motioneye/static/js/main.js:3242
 msgid "Ĉu vere forigi ĉiujn bildojn de \"%(group)s\"?"
-msgstr "Дійсно видалить усі зображення з \"%(групи) S\"?"
+msgstr ""
 
 #: motioneye/static/js/main.js:3245
 msgid "Ĉu vere forigi ĉiujn filmojn de \"%(group)s\"?"
-msgstr "Дійсно видалити всі фільми з \"%(групи) S\"?"
+msgstr ""
 
 #: motioneye/static/js/main.js:3250
 msgid "Ĉu vere forigi ĉiujn ne grupigitajn bildojn?"
-msgstr "Дійсно видалити всі не згруповані зображення?"
+msgstr ""
 
 #: motioneye/static/js/main.js:3253
 msgid "Ĉu vere forigi ĉiujn ne grupigitajn filmojn?"
-msgstr "Дійсно видалити всі не згруповані фільми?"
+msgstr ""
 
 #: motioneye/static/js/main.js:3367
 msgid "aldonadi kameraon..."
-msgstr "Додайте камеру ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:3592 motioneye/static/js/main.js:3891
 msgid "Uzantnomo"
-msgstr "Ім'я користувача"
+msgstr ""
 
 #: motioneye/static/js/main.js:3597 motioneye/static/js/main.js:3896
 msgid "Pasvorto"
-msgstr "Пароль"
+msgstr ""
 
 #: motioneye/static/js/main.js:3603
 msgid "Memoru min"
-msgstr "Пам'ятай мене"
+msgstr ""
 
 #: motioneye/static/js/main.js:3621 motioneye/static/js/main.js:3627
 msgid "Ensaluti"
-msgstr "Увійти"
+msgstr ""
 
 #: motioneye/static/js/main.js:3624 motioneye/static/js/ui.js:1023
 #: motioneye/static/js/ui.js:1030
 msgid "Nuligi"
-msgstr "Скасувати"
+msgstr ""
 
 #: motioneye/static/js/main.js:3666
 msgid "Vi abortis la filmeton."
-msgstr "Ви перервали відео."
+msgstr ""
 
 #: motioneye/static/js/main.js:3669
 msgid "Reto eraro okazis."
-msgstr "Сталася помилка мережі."
+msgstr ""
 
 #: motioneye/static/js/main.js:3672
 msgid "Malkodado-eraro aŭ neprogresinta funkcio."
-msgstr "Помилка декодування або непрогресивна функція."
+msgstr ""
 
 #: motioneye/static/js/main.js:3675
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
-msgstr "Формат, не підтримується або недоступний/невідповідний для гри."
+msgstr ""
 
 #: motioneye/static/js/main.js:3678
 msgid "Nekonata eraro okazis."
-msgstr "Сталася невідома помилка."
+msgstr ""
 
 #: motioneye/static/js/main.js:3681
 msgid "Eraro : "
-msgstr "Помилка: "
+msgstr ""
 
 #: motioneye/static/js/main.js:3686
 msgid "antaŭa bildo"
-msgstr "Попереднє зображення"
+msgstr ""
 
 #: motioneye/static/js/main.js:3691
 msgid "ludi"
-msgstr "грати"
+msgstr ""
 
 #: motioneye/static/js/main.js:3694
 msgid "ludi * 5 kaj enĉenigi"
-msgstr "грати * 5 і потрапити"
+msgstr ""
 
 #: motioneye/static/js/main.js:3699
 msgid "sekva bildo"
-msgstr "Наступна картина"
+msgstr ""
 
 #: motioneye/static/js/main.js:3822
 msgid "Fermi"
-msgstr "Закрити"
+msgstr ""
 
 #: motioneye/static/js/main.js:3823 motioneye/static/js/main.js:4384
 msgid "Elŝuti"
-msgstr "Завантажувати"
+msgstr ""
 
 #: motioneye/static/js/main.js:3831 motioneye/static/js/main.js:4387
 msgid "Forigi"
-msgstr "Видалити"
+msgstr ""
 
 #: motioneye/static/js/main.js:3875
 msgid "Kamerao tipo"
-msgstr "Тип камери"
+msgstr ""
 
 #: motioneye/static/js/main.js:3877
 msgid "Loka V4L2-kamerao"
-msgstr "Місцева камера V4L2"
+msgstr ""
 
 #: motioneye/static/js/main.js:3878
 msgid "Loka MMAL-kamerao"
-msgstr "Місцева камера ммаль"
+msgstr ""
 
 #: motioneye/static/js/main.js:3879
 msgid "Reta kamerao"
-msgstr "Інтернет -камера"
+msgstr ""
 
 #: motioneye/static/js/main.js:3880
 msgid "Fora motionEye kamerao"
-msgstr "Камера далекого руху"
+msgstr ""
 
 #: motioneye/static/js/main.js:3881
 msgid "Simpla MJPEG-kamerao"
-msgstr "Проста камера MJPEG"
+msgstr ""
 
 #: motioneye/static/js/main.js:3883
 msgid "la speco de kamerao, kiun vi volas aldoni"
-msgstr "Тип камери, який ви хочете додати"
+msgstr ""
 
 #: motioneye/static/js/main.js:3886
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 #: motioneye/static/js/main.js:3887
 msgid "http://ekzemplo.com:8765/cams/..."
-msgstr "http: //ekzemplo.com: 8765/cams/..."
+msgstr ""
 
 #: motioneye/static/js/main.js:3888
 msgid "la kameraa URL (ekz. http://ekzemplo.com:8080/cam/)"
-msgstr "URL -адреса камери (наприклад, http://ekzemplo.com:8080/cam/)"
+msgstr ""
 
 #: motioneye/static/js/main.js:3892
 msgid "uzantnomo..."
-msgstr "Ім'я користувача ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:3893
 msgid "la uzantnomo por la URL, se bezonata (ekz. administranto)"
-msgstr "Ім'я користувача для URL -адреси, якщо потрібно (наприклад, адміністратор)"
+msgstr ""
 
 #: motioneye/static/js/main.js:3897
 msgid "pasvorto..."
-msgstr "Пароль ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:3898
 msgid "la pasvorto por la URL, se bezonata"
-msgstr "Пароль для URL -адреси, якщо потрібно"
+msgstr ""
 
 #: motioneye/static/js/main.js:3901
 msgid "Kamerao"
-msgstr "Камера"
+msgstr ""
 
 #: motioneye/static/js/main.js:3903
 msgid "la kameraon, kiun vi volas aldoni"
-msgstr "камера, яку ви хочете додати"
+msgstr ""
 
 #: motioneye/static/js/main.js:3939
 msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "Камера Fora Motioney - це камери, встановлені за іншим сервером Motioneye. Додавання їх тут дозволить вам шукати та керувати ними здалеку."
+msgstr ""
 
 #: motioneye/static/js/main.js:3954
 msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "Веб -камери (або IP -камери) - це пристрої, які означають відео RTSP/RTMP або MJPEG або прості зображення JPEG. Зверніться до посібника свого пристрою, щоб дізнатися правильну URL -адресу RTSP, RTMP, MJPEG або JPEG."
+msgstr ""
 
 #: motioneye/static/js/main.js:3959
 msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "Місцеві камери MMAL - це пристрої, підключені безпосередньо до вашої системи Motioneye. Зазвичай це камери, що стосуються карт."
+msgstr ""
 
 #: motioneye/static/js/main.js:3974
 msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "Додавання вашого пристрою як просту камеру MJPEG замість того, як онлайн -камера покращить фотографію, але для неї не буде доступне виявлення руху, зйомки зображень чи запису фільмів. Камера повинна бути доступною для вашого сервера та вашого браузера. Цей тип камери не відповідає Internet Explorer."
+msgstr ""
 
 #: motioneye/static/js/main.js:3979
 msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "Місцеві камери V4L2 - це пристрої камери, підключені безпосередньо до вашої системи Motioneye, як правило, через USB."
+msgstr ""
 
 #: motioneye/static/js/main.js:4130
 msgid "Aldonadi kameraon..."
-msgstr "Додайте камеру ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:4202
 msgid "Grupo"
-msgstr "Група"
+msgstr ""
 
 #: motioneye/static/js/main.js:4206
 msgid "Inkluzivi foton prenitan ĉiun"
-msgstr "Включіть фотографію, зроблене кожним"
+msgstr ""
 
 #: motioneye/static/js/main.js:4209
 msgid "sekundo"
-msgstr "секунда"
+msgstr ""
 
 #: motioneye/static/js/main.js:4210
 msgid "5 sekundoj"
-msgstr "5 секунд"
+msgstr ""
 
 #: motioneye/static/js/main.js:4211
 msgid "10 sekundoj"
-msgstr "10 секунд"
+msgstr ""
 
 #: motioneye/static/js/main.js:4212
 msgid "30 sekundoj"
-msgstr "30 секунд"
+msgstr ""
 
 #: motioneye/static/js/main.js:4213
 msgid "minuto"
-msgstr "хвилина"
+msgstr ""
 
 #: motioneye/static/js/main.js:4214
 msgid "5 minutoj"
-msgstr "5 хвилин"
+msgstr ""
 
 #: motioneye/static/js/main.js:4215
 msgid "10 minutoj"
-msgstr "10 хвилин"
+msgstr ""
 
 #: motioneye/static/js/main.js:4216
 msgid "30 minutoj"
-msgstr "30 хвилин"
+msgstr ""
 
 #: motioneye/static/js/main.js:4217
 msgid "horo"
-msgstr "година"
+msgstr ""
 
 #: motioneye/static/js/main.js:4220
 msgid "Elektu la intervalon de tempo inter du elektitaj bildoj."
-msgstr "Виберіть діапазон часу між двома вибраними зображеннями."
+msgstr ""
 
 #: motioneye/static/js/main.js:4223
 msgid "Filmo framfrekvenco"
-msgstr "Швидкість кадру фільму"
+msgstr ""
 
 #: motioneye/static/js/main.js:4225
 msgid "Elektu kiom rapide vi volas ke la akselita video estu."
-msgstr "Виберіть, наскільки швидко ви хочете, щоб озброєне відео було."
+msgstr ""
 
 #: motioneye/static/js/main.js:4234
 msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "Враховуючи велику кількість фотографій, створення вашого відео може зайняти деякий час!"
+msgstr ""
 
 #: motioneye/static/js/main.js:4251
 msgid "Krei akselita video"
-msgstr "Створіть озброєне відео"
+msgstr ""
 
 #: motioneye/static/js/main.js:4260
 msgid "Filmo kreanta en progreso..."
-msgstr "Фільми, що створює в процесі ..."
+msgstr ""
 
 #: motioneye/static/js/main.js:4511
 msgid "Zipitaj"
-msgstr "Застеблений"
+msgstr ""
 
 #: motioneye/static/js/main.js:4520
 msgid "Akselita video"
-msgstr "Закріплене відео"
+msgstr ""
 
 #: motioneye/static/js/main.js:4531
 msgid "Forigi ĉiujn"
-msgstr "Видалити все"
+msgstr ""
 
 #: motioneye/static/js/main.js:4673
 msgid "Bildoj prenitaj de "
-msgstr "Зображення, зроблені "
+msgstr ""
 
 #: motioneye/static/js/main.js:4676
 msgid "Filmoj registritaj de "
-msgstr "Фільми, записані "
+msgstr ""
 
 #: motioneye/static/js/main.js:4744
 msgid "montru ĉi tiun fotilon plenekranan"
-msgstr "Покажіть цю камеру на повний екран"
+msgstr ""
 
 #: motioneye/static/js/main.js:4745
 msgid "montri ĉiujn fotilojn"
-msgstr "Показати всі камери"
+msgstr ""
 
 #: motioneye/static/js/main.js:4746
 msgid "montru nur ĉi tiun fotilon"
-msgstr "Покажіть лише цю камеру"
+msgstr ""
 
 #: motioneye/static/js/main.js:4747
 msgid "malfermaj bildoj retumilo"
-msgstr "Відкриті картинки браузер"
+msgstr ""
 
 #: motioneye/static/js/main.js:4748
 msgid "malferma videoj retumilo"
-msgstr "Відкрийте веб -переглядач"
+msgstr ""
 
 #: motioneye/static/js/main.js:4749
 msgid "agordi ĉi tiun kameraon"
-msgstr "Встановіть цю камеру"
+msgstr ""
 
 #: motioneye/static/js/main.js:4765
 msgid "preni instantaron"
-msgstr "прийняти миттєво"
+msgstr ""
 
 #: motioneye/static/js/main.js:5158
 msgid "Vi ankoraŭ ne agordis iun kameraon. Alklaku ĉi tie por aldoni unu ..."
-msgstr "Ви ще не встановили жодної камери. Клацніть тут, щоб додати один ..."
+msgstr ""
 
 #: motioneye/static/js/ui.js:503
 msgid "enigu pozitivan nombron"
-msgstr "Введіть додатковий номер"
+msgstr ""
 
 #: motioneye/static/js/ui.js:505
 msgid "enigu pozitivan entjeran nombron"
-msgstr "Введіть позитивне ціле число"
+msgstr ""
 
 #: motioneye/static/js/ui.js:507
 msgid "enigu nombron"
-msgstr "Введіть номер"
+msgstr ""
 
 #: motioneye/static/js/ui.js:509
 msgid "enigu entjeran nombron"
-msgstr "Введіть цілий номер"
+msgstr ""
 
 #: motioneye/static/js/ui.js:512
 msgid " inter "
-msgstr " між "
+msgstr ""
 
 #: motioneye/static/js/ui.js:512
 msgid " kaj "
-msgstr " і "
+msgstr ""
 
 #: motioneye/static/js/ui.js:515
 msgid " pli ol "
-msgstr " більше ніж "
+msgstr ""
 
 #: motioneye/static/js/ui.js:520
 msgid " malpli ol "
-msgstr " менше ніж "
+msgstr ""
 
 #: motioneye/static/js/ui.js:573
 msgid "enigu validan tempon en la sekva formato: HH:MM"
-msgstr "Введіть дійсний час у такому форматі: HH: MM"
+msgstr ""
 
 #: motioneye/static/js/ui.js:630
 msgid "enigu validan URL (ekz. http://ekzemplo.com:8080/cams/)"
-msgstr "Введіть дійсну URL -адресу (наприклад, http://ekzemplo.com:8080/cams/)"
+msgstr ""
 
 #: motioneye/static/js/ui.js:971
 msgid "fermi"
-msgstr "закрити"
+msgstr ""
 
 #: motioneye/static/js/ui.js:1017 motioneye/static/js/ui.js:1024
 msgid "Ne"
-msgstr "Ні"
+msgstr ""
 
 #: motioneye/static/js/ui.js:1018 motioneye/static/js/ui.js:1025
 msgid "Jes"
-msgstr "Так"
+msgstr ""
 
 #: motioneye/static/js/ui.js:1031 motioneye/static/js/ui.js:1036
 msgid "Bone"
-msgstr "В порядку"
+msgstr ""
 
 #: l10n/v4l2.js:4
 msgid "Auto Exposure"
-msgstr "Автоматичне опромінення"
+msgstr ""
 
 #: l10n/v4l2.js:5
 msgid "Backlight Compensation"
-msgstr "Компенсація підсвічування"
+msgstr ""
 
 #: l10n/v4l2.js:6
 msgid "Brightness"
-msgstr "Яскравість"
+msgstr ""
 
 #: l10n/v4l2.js:7
 msgid "Contrast"
-msgstr "Протиставляти"
+msgstr ""
 
 #: l10n/v4l2.js:8
 msgid "Exposure Absolute"
-msgstr "Експозиція абсолютно"
+msgstr ""
 
 #: l10n/v4l2.js:9
 msgid "Exposure Auto"
-msgstr "Експозиція автоматично"
+msgstr ""
 
 #: l10n/v4l2.js:10
 msgid "Exposure Auto Priority"
-msgstr "Експозиція Авто -пріоритет"
+msgstr ""
 
 #: l10n/v4l2.js:11
 msgid "Exposure Time Absolute"
-msgstr "Час експозиції абсолютно"
+msgstr ""
 
 #: l10n/v4l2.js:12
 msgid "Focus Absolute"
-msgstr "Зосередитись абсолютно"
+msgstr ""
 
 #: l10n/v4l2.js:13
 msgid "Focus Auto"
-msgstr "Фокус автоматично"
+msgstr ""
 
 #: l10n/v4l2.js:14
 msgid "Gain"
-msgstr "Виграш"
+msgstr ""
 
 #: l10n/v4l2.js:15
 msgid "Gamma"
-msgstr "Гамма"
+msgstr ""
 
 #: l10n/v4l2.js:16
 msgid "Hue"
-msgstr "Відтінок"
+msgstr ""
 
 #: l10n/v4l2.js:17
 msgid "Led1 Mode"
-msgstr "Режим LED1"
+msgstr ""
 
 #: l10n/v4l2.js:18
 msgid "Led1 Frequency"
-msgstr "Частота LED1"
+msgstr ""
 
 #: l10n/v4l2.js:19
 msgid "Pan Absolute"
-msgstr "Пан абсолютно"
+msgstr ""
 
 #: l10n/v4l2.js:20
 msgid "Power Line Frequency"
-msgstr "Частота лінії електропередач"
+msgstr ""
 
 #: l10n/v4l2.js:21
 msgid "Saturation"
-msgstr "Насичення"
+msgstr ""
 
 #: l10n/v4l2.js:22
 msgid "Sharpness"
-msgstr "Різкість"
+msgstr ""
 
 #: l10n/v4l2.js:23
 msgid "Tilt Absolute"
-msgstr "Нахил абсолютно"
+msgstr ""
 
 #: l10n/v4l2.js:24
 msgid "White Balance Temperature"
-msgstr "Температура балансу білого"
+msgstr ""
 
 #: l10n/v4l2.js:25
 msgid "White Balance Temperature Auto"
-msgstr "Температура балансу білого автоматично"
+msgstr ""
 
 #: l10n/v4l2.js:26
 msgid "Zoom Absolute"
-msgstr "Збільшити абсолютно"
-
-#~ msgid "bone"
-#~ msgstr "в порядку"
+msgstr ""
