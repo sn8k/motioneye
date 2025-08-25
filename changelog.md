@@ -5,3 +5,4 @@
 - Introduced corresponding camera keys (audio_device, audio_codec, audio_bitrate) with default handling.
 - Added Motion option mappings for audio settings across versions.
 - Defined global audio defaults in settings.py.
+- Added audio device enumeration and `has_audio_support` template helper.

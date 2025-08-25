@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# version: 2025-08-25
+
 from motioneye import config, motionctl, settings, update, utils
 from motioneye.handlers.base import BaseHandler
 
@@ -55,6 +57,7 @@ class MainHandler(BaseHandler):
             has_hevc_nvmpi_support=motionctl.has_hevc_nvmpi_support(),
             has_h264_qsv_support=motionctl.has_h264_qsv_support(),
             has_hevc_qsv_support=motionctl.has_hevc_qsv_support(),
+            has_audio_support=motionctl.has_audio_support(),
             has_motion=bool(motionctl.find_motion()[0]),
             mask_width=utils.MASK_WIDTH,
         )
