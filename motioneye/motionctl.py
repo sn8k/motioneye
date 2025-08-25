@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# version: 2025-08-25
+
 import errno
 import logging
 import os.path
@@ -445,6 +447,46 @@ def has_hevc_qsv_support():
     # TODO also check for motion codec parameter support
 
     return 'hevc_qsv' in codecs.get('hevc', {}).get('encoders', set())
+
+
+def list_audio_devices():
+    """Return a list of available audio capture devices."""
+    try:
+        output = utils.call_subprocess(['arecord', '-l'])
+    except subprocess.CalledProcessError:
+        try:
+            output = utils.call_subprocess(
+                'ffmpeg -hide_banner -f alsa -list_devices true -i dummy 2>&1 || true',
+                shell=True,
+            )
+        except subprocess.CalledProcessError:
+            return []
+
+    devices = []
+    card = None
+    card_name = ''
+    for line in output.splitlines():
+        line = line.strip()
+        m = re.match(r"card (\d+): ([^,]+)", line)
+        if m:
+            card = m.group(1)
+            card_name = m.group(2).strip()
+            continue
+        m = re.match(r"device (\d+): ([^\\[]+)", line)
+        if m and card is not None:
+            device = m.group(1)
+            name = m.group(2).strip()
+            devices.append(f"hw:{card},{device} {card_name} {name}".strip())
+            continue
+        m = re.search(r"\]\s*(\d+):\s*(.+)$", line)
+        if m:
+            devices.append(f"{m.group(1)} {m.group(2).strip()}")
+    return devices
+
+
+def has_audio_support():
+    """Return True if any audio capture device is available."""
+    return bool(list_audio_devices())
 
 
 def has_h264_nvenc_support():
