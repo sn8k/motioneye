@@ -3,6 +3,8 @@ import os.path
 import socket
 import sys
 
+# version: 2025-08-25
+
 import motioneye
 
 config_file = None
@@ -61,6 +63,12 @@ PORT = 8765
 
 # path to the motion binary to use (automatically detected by default)
 MOTION_BINARY = None
+
+# audio defaults
+AUDIO_DEVICE = None
+AUDIO_ENABLED = False
+AUDIO_CODEC = 'aac'
+AUDIO_BITRATE = 128
 
 # whether motion HTTP control interface listens on
 # localhost or on all interfaces

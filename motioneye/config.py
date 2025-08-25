@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# version: 2025-08-25
+
 import collections
 import datetime
 import glob
@@ -109,6 +111,10 @@ _USED_MOTION_OPTIONS = {
     'smart_mask_speed',
     'snapshot_filename',
     'snapshot_interval',
+    'sound_device',
+    'sound_enabled',
+    'ffmpeg_audio_codec',
+    'ffmpeg_audio_bitrate',
     'stream_authentication',
     'stream_auth_method',
     'stream_localhost',
@@ -161,6 +167,10 @@ _MOTION_41_TO_43_OPTIONS_MAPPING = {
     'output_debug_pictures': 'picture_output_motion',
     'quality': 'picture_quality',
     'rtsp_uses_tcp': 'netcam_use_tcp',
+    'snd_device': 'sound_device',
+    'snd_enabled': 'sound_enabled',
+    'ffmpeg_audio_codec': 'ffmpeg_audio_codec',
+    'ffmpeg_audio_bitrate': 'ffmpeg_audio_bitrate',
     'text_double': text_double,
     'webcontrol_html_output': webcontrol_html_output,
 }
@@ -177,6 +187,10 @@ _MOTION_43_TO_41_OPTIONS_MAPPING = {
     'picture_output_motion': 'output_debug_pictures',
     'picture_quality': 'quality',
     'netcam_use_tcp': 'rtsp_uses_tcp',
+    'sound_device': 'snd_device',
+    'sound_enabled': 'snd_enabled',
+    'ffmpeg_audio_codec': 'ffmpeg_audio_codec',
+    'ffmpeg_audio_bitrate': 'ffmpeg_audio_bitrate',
     'text_scale': text_scale,
     'webcontrol_interface': webcontrol_interface,
     # motion pre-v4.1
@@ -851,6 +865,10 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         'framerate': int(ui['framerate']),
         'rotate': int(ui['rotation']),
         'mask_privacy': '',
+        'sound_device': ui['audio_device'],
+        'sound_enabled': ui['audio_enabled'],
+        'ffmpeg_audio_codec': ui['audio_codec'],
+        'ffmpeg_audio_bitrate': ui['audio_bitrate'],
         # file storage
         '@storage_device': ui['storage_device'],
         '@network_server': ui['network_server'],
@@ -1316,6 +1334,10 @@ def motion_camera_dict_to_ui(data):
         'rotation': int(data['rotate']),
         'privacy_mask': False,
         'privacy_mask_lines': [],
+        'audio_device': data.get('sound_device', ''),
+        'audio_enabled': data.get('sound_enabled', False),
+        'audio_codec': data.get('ffmpeg_audio_codec', settings.AUDIO_CODEC),
+        'audio_bitrate': data.get('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE),
         # file storage
         'smb_shares': settings.SMB_SHARES,
         'storage_device': data['@storage_device'],
@@ -2191,6 +2213,10 @@ def _set_default_motion_camera(camera_id, data):
     data.setdefault('framerate', 2)
     data.setdefault('rotate', 0)
     data.setdefault('mask_privacy', '')
+    data.setdefault('sound_device', settings.AUDIO_DEVICE)
+    data.setdefault('sound_enabled', settings.AUDIO_ENABLED)
+    data.setdefault('ffmpeg_audio_codec', settings.AUDIO_CODEC)
+    data.setdefault('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE)
 
     data.setdefault('@storage_device', 'custom-path')
     data.setdefault('@network_server', '')
