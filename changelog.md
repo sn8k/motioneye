@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.5 -->
+<!-- version: 2025-08-26.6 -->
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
@@ -13,6 +13,7 @@
 - Restored original .mo translation binaries to avoid binary diffs.
 - Added make_mo.sh script to compile translation files with install/remove options.
 - Excluded compiled translation binaries (*.mo) from version control and removed existing files.
+- Bumped package version to 0.43.1b9 and regenerated egg-info metadata.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).
