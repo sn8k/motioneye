@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26 -->
+<!-- version: 2025-08-26.1 -->
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
@@ -8,6 +8,7 @@
 - Added camera UI fields for enabling audio, selecting devices, codec and bitrate.
 - Updated translation template and bumped version to 0.43.1b8.
 - Refreshed JavaScript translation source strings.
+- Synchronized all locale PO files with the latest template and incremented `Project-Id-Version`.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).
