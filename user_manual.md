@@ -8,6 +8,7 @@ motionEye supports audio options per camera:
 - **Audio Enabled** – maps to `sound_enabled`.
 - **Audio Codec** – maps to `ffmpeg_audio_codec`.
 - **Audio Bitrate** – maps to `ffmpeg_audio_bitrate`.
+- UI now provides a checkbox to enable audio and selectors for device, codec and bitrate.
 
 Global defaults reside in `settings.py` (`AUDIO_DEVICE`, `AUDIO_ENABLED`, `AUDIO_CODEC`, `AUDIO_BITRATE`).
 Configuration and preference APIs accept these options via `audio_*` fields in GET or POST requests.

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+<!-- version: 2025-08-26 -->
 
 {% macro config_item(config, depends="") -%}
     <tr class="settings-item additional-config"
@@ -294,6 +295,36 @@
                             <td class="settings-item-value"><input type="checkbox" class="styled device camera-config" id="autoBrightnessSwitch"></td>
                             <td><span class="help-mark" title="{{ _("ebligas aŭtomatan brilon de programaro (rekomendita nur por kameraoj sen aŭtomata brilo)") }}">?</span></td>
                         </tr>
+                        {% if has_audio_support %}
+                        <tr class="settings-item">
+                            <td class="settings-item-label"><span class="settings-item-label">{{ _("Aŭdio Aktivigita") }}</span></td>
+                            <td class="settings-item-value"><input type="checkbox" class="styled device camera-config" id="audioDeviceEnabledSwitch"></td>
+                            <td><span class="help-mark" title="{{ _("ebligas aŭdion por ĉi tiu kamerao") }}">?</span></td>
+                        </tr>
+                        <tr class="settings-item" depends="audioDeviceEnabled">
+                            <td class="settings-item-label"><span class="settings-item-label">{{ _("Aŭdio Aparato") }}</span></td>
+                            <td class="settings-item-value">
+                                <select class="styled device camera-config" id="audioDeviceSelect"></select>
+                            </td>
+                            <td><span class="help-mark" title="{{ _("elektu la aŭdkaptan aparaton") }}">?</span></td>
+                        </tr>
+                        <tr class="settings-item" depends="audioDeviceEnabled">
+                            <td class="settings-item-label"><span class="settings-item-label">{{ _("Aŭdio Kodeko") }}</span></td>
+                            <td class="settings-item-value">
+                                <select class="styled device camera-config" id="audioCodecSelect">
+                                    <option value="aac">AAC</option>
+                                    <option value="mp3">MP3</option>
+                                    <option value="pcm_s16le">PCM</option>
+                                </select>
+                            </td>
+                            <td><span class="help-mark" title="{{ _("elektu la audiokodekon") }}">?</span></td>
+                        </tr>
+                        <tr class="settings-item" min="8" max="512" depends="audioDeviceEnabled">
+                            <td class="settings-item-label"><span class="settings-item-label">{{ _("Aŭdio Bitrapideco") }}</span></td>
+                            <td class="settings-item-value"><input type="text" class="styled number device camera-config" id="audioBitrateEntry"></td>
+                            <td><span class="help-mark" title="{{ _("bitrapideco por kodita aŭdio en kbps") }}">?</span></td>
+                        </tr>
+                        {% endif %}
                         <tr class="settings-item">
                             <td colspan="100"><div class="settings-item-separator"></div></td>
                         </tr>
