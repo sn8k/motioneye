@@ -1,4 +1,4 @@
-<!-- version: 2025-08-25 -->
+<!-- version: 2025-08-26 -->
 
 # User Manual
 
@@ -14,3 +14,8 @@ Global defaults reside in `settings.py` (`AUDIO_DEVICE`, `AUDIO_ENABLED`, `AUDIO
 ## Audio Detection
 Use `list_audio_devices()` to enumerate capture hardware. Templates can check
 `has_audio_support` to determine if audio devices are available.
+
+## Timelapse Audio
+During video conversion, motionEye now maps existing audio streams with `-map 0:a` and
+encodes them using a codec from `FFMPEG_AUDIO_CODEC_MAPPING`. Output files automatically
+use the correct extension (e.g., `.mp4`) when video and audio are present.

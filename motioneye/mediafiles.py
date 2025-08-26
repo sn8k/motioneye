@@ -87,6 +87,21 @@ FFMPEG_EXT_MAPPING = {
     'hevc': 'mp4',
 }
 
+FFMPEG_AUDIO_CODEC_MAPPING = {
+    'mpeg4': 'mp3',
+    'msmpeg4': 'mp3',
+    'swf': 'aac',
+    'flv': 'aac',
+    'mov': 'aac',
+    'mp4': 'aac',
+    'mkv': 'aac',
+    'mp4:h264_omx': 'aac',
+    'mkv:h264_omx': 'aac',
+    'mp4:h264_v4l2m2m': 'aac',
+    'mkv:h264_v4l2m2m': 'aac',
+    'hevc': 'aac',
+}
+
 MOVIE_EXT_TYPE_MAPPING = {
     'avi': 'video/x-msvideo',
     'mp4': 'video/mp4',
@@ -646,7 +661,8 @@ def make_timelapse_movie(camera_config, framerate, interval, group):
 
     codec = FFMPEG_CODEC_MAPPING.get(movie_codec, movie_codec)
     fmt = FFMPEG_FORMAT_MAPPING.get(movie_codec, movie_codec)
-    file_format = FFMPEG_EXT_MAPPING.get(movie_codec, movie_codec)
+    audio_codec = FFMPEG_AUDIO_CODEC_MAPPING.get(movie_codec, 'aac')
+    file_ext = FFMPEG_EXT_MAPPING.get(movie_codec, movie_codec)
 
     # create a subprocess to retrieve media files
     def do_list_media(pipe):
@@ -676,7 +692,7 @@ def make_timelapse_movie(camera_config, framerate, interval, group):
     media_list = []
 
     # use correct extension for the movie_codec
-    tmp_filename = os.path.join(settings.MEDIA_PATH, f'.{int(time())}.{file_format}')
+    tmp_filename = os.path.join(settings.MEDIA_PATH, f'.{int(time())}.{file_ext}')
 
     def read_media_list():
         while parent_pipe.poll():
@@ -752,7 +768,8 @@ def make_timelapse_movie(camera_config, framerate, interval, group):
         # don't specify file format with -f, let ffmpeg work it out from the extension
         cmd = 'rm -f %(tmp_filename)s;'
         cmd += (
-            'cat %(jpegs)s | ffmpeg -framerate %(framerate)s -f image2pipe -vcodec mjpeg -i - -vcodec %(codec)s '
+            'cat %(jpegs)s | ffmpeg -framerate %(framerate)s -f image2pipe -vcodec mjpeg -i - '
+            '-map 0:v -map 0:a? -vcodec %(codec)s -acodec %(acodec)s '
             '-format %(format)s -b:v %(bitrate)s -qscale:v 0.1 %(tmp_filename)s'
         )
 
@@ -763,6 +780,7 @@ def make_timelapse_movie(camera_config, framerate, interval, group):
             'jpegs': ' '.join(('"' + p['path'] + '"') for p in pictures),
             'framerate': framerate,
             'codec': codec,
+            'acodec': audio_codec,
             'format': fmt,
             'bitrate': bitrate,
         }
