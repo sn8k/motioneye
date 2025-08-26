@@ -5,10 +5,10 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: motionEye 0.43.1b8\n"
+"Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-26 17:32+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2025-08-26 00:00+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: vi\n"
@@ -312,35 +312,35 @@ msgstr ""
 
 #: motioneye/templates/main.html:300
 msgid "Aŭdio Aktivigita"
-msgstr ""
+msgstr "Audio Enabled"
 
 #: motioneye/templates/main.html:302
 msgid "ebligas aŭdion por ĉi tiu kamerao"
-msgstr ""
+msgstr "enable audio for this camera"
 
 #: motioneye/templates/main.html:305
 msgid "Aŭdio Aparato"
-msgstr ""
+msgstr "Audio Device"
 
 #: motioneye/templates/main.html:309
 msgid "elektu la aŭdkaptan aparaton"
-msgstr ""
+msgstr "select the audio capture device"
 
 #: motioneye/templates/main.html:312
 msgid "Aŭdio Kodeko"
-msgstr ""
+msgstr "Audio Codec"
 
 #: motioneye/templates/main.html:320
 msgid "elektu la audiokodekon"
-msgstr ""
+msgstr "select the audio codec"
 
 #: motioneye/templates/main.html:323
 msgid "Aŭdio Bitrapideco"
-msgstr ""
+msgstr "Audio Bitrate"
 
 #: motioneye/templates/main.html:325
 msgid "bitrapideco por kodita aŭdio en kbps"
-msgstr ""
+msgstr "bitrate for encoded audio in kbps"
 
 #: motioneye/templates/main.html:332
 msgid "Video-rezolucio"

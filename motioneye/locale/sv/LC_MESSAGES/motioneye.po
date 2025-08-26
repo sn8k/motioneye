@@ -6,10 +6,10 @@
 # Erik <erik1337.el@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version: motionEye 0.43.1b8\n"
+"Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-08-26 17:32+0000\n"
-"PO-Revision-Date: 2023-09-15 13:51+0000\n"
+"PO-Revision-Date: 2025-08-26 00:00+0000\n"
 "Last-Translator: Erik <erik1337.el@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/motioneye-"
 "project/motioneye-python-texts/sv/>\n"
@@ -322,7 +322,7 @@ msgstr ""
 
 #: motioneye/templates/main.html:300
 msgid "Aŭdio Aktivigita"
-msgstr ""
+msgstr "Audio Enabled"
 
 #: motioneye/templates/main.html:302
 #, fuzzy
@@ -336,23 +336,23 @@ msgstr "Video enhet"
 
 #: motioneye/templates/main.html:309
 msgid "elektu la aŭdkaptan aparaton"
-msgstr ""
+msgstr "select the audio capture device"
 
 #: motioneye/templates/main.html:312
 msgid "Aŭdio Kodeko"
-msgstr ""
+msgstr "Audio Codec"
 
 #: motioneye/templates/main.html:320
 msgid "elektu la audiokodekon"
-msgstr ""
+msgstr "select the audio codec"
 
 #: motioneye/templates/main.html:323
 msgid "Aŭdio Bitrapideco"
-msgstr ""
+msgstr "Audio Bitrate"
 
 #: motioneye/templates/main.html:325
 msgid "bitrapideco por kodita aŭdio en kbps"
-msgstr ""
+msgstr "bitrate for encoded audio in kbps"
 
 #: motioneye/templates/main.html:332
 msgid "Video-rezolucio"
