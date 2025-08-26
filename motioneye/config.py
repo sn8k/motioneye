@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# version: 2025-08-25
+# version: 2025-08-26
 
 import collections
 import datetime
@@ -866,9 +866,9 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         'rotate': int(ui['rotation']),
         'mask_privacy': '',
         'sound_device': ui['audio_device'],
-        'sound_enabled': ui['audio_enabled'],
+        'sound_enabled': bool(ui['audio_enabled']),
         'ffmpeg_audio_codec': ui['audio_codec'],
-        'ffmpeg_audio_bitrate': ui['audio_bitrate'],
+        'ffmpeg_audio_bitrate': int(ui['audio_bitrate']),
         # file storage
         '@storage_device': ui['storage_device'],
         '@network_server': ui['network_server'],
@@ -1335,9 +1335,11 @@ def motion_camera_dict_to_ui(data):
         'privacy_mask': False,
         'privacy_mask_lines': [],
         'audio_device': data.get('sound_device', ''),
-        'audio_enabled': data.get('sound_enabled', False),
+        'audio_enabled': bool(data.get('sound_enabled', False)),
         'audio_codec': data.get('ffmpeg_audio_codec', settings.AUDIO_CODEC),
-        'audio_bitrate': data.get('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE),
+        'audio_bitrate': int(
+            data.get('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE)
+        ),
         # file storage
         'smb_shares': settings.SMB_SHARES,
         'storage_device': data['@storage_device'],
@@ -2214,9 +2216,9 @@ def _set_default_motion_camera(camera_id, data):
     data.setdefault('rotate', 0)
     data.setdefault('mask_privacy', '')
     data.setdefault('sound_device', settings.AUDIO_DEVICE)
-    data.setdefault('sound_enabled', settings.AUDIO_ENABLED)
+    data.setdefault('sound_enabled', bool(settings.AUDIO_ENABLED))
     data.setdefault('ffmpeg_audio_codec', settings.AUDIO_CODEC)
-    data.setdefault('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE)
+    data.setdefault('ffmpeg_audio_bitrate', int(settings.AUDIO_BITRATE))
 
     data.setdefault('@storage_device', 'custom-path')
     data.setdefault('@network_server', '')

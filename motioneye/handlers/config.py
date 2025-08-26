@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# version: 2025-08-26
+
 import datetime
 import json
 import logging
@@ -137,13 +139,7 @@ class ConfigHandler(BaseHandler):
 
     @BaseHandler.auth(admin=True)
     async def set_config(self, camera_id):
-        try:
-            ui_config = json.loads(self.request.body)
-
-        except Exception as e:
-            logging.error(f'could not decode json: {str(e)}')
-
-            raise
+        ui_config = self.get_all_arguments()
 
         camera_ids = config.get_camera_ids()
 
