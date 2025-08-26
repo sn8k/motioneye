@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.1 -->
+<!-- version: 2025-08-26.2 -->
 
 # User Manual
 
@@ -42,3 +42,30 @@ Remove an installed copy:
 ```
 l10n/make_mo.sh --remove [/path/to/make_mo]
 ```
+
+## JavaScript Translation Update
+To refresh the browser translation files:
+
+1. Regenerate the template:
+
+```
+make -B motioneye/locale/motioneye.js.pot
+```
+
+2. Merge the template into each locale:
+
+```
+for p in motioneye/locale/*/LC_MESSAGES/motioneye.js.po; do
+    msgmerge --no-wrap -N -U "$p" motioneye/locale/motioneye.js.pot
+done
+```
+
+3. Set `Project-Id-Version: motionEye 0.43.1b9` and update the `PO-Revision-Date` header in every `.js.po`.
+
+4. Compile the JSON assets:
+
+```
+make motioneye/static/js/motioneye.*.json
+```
+
+5. Confirm that the new audio strings appear in the generated JSON files.

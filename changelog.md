@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.6 -->
+<!-- version: 2025-08-26.7 -->
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
@@ -14,6 +14,10 @@
 - Added make_mo.sh script to compile translation files with install/remove options.
 - Excluded compiled translation binaries (*.mo) from version control and removed existing files.
 - Bumped package version to 0.43.1b9 and regenerated egg-info metadata.
+- Regenerated `motioneye.js.pot` and merged updates into all `.js.po`.
+- Updated PO headers with `Project-Id-Version: motionEye 0.43.1b9` and current revision dates.
+- Recompiled JavaScript translation JSON files including new audio messages.
+- Documented translation update workflow in the user manual.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).
