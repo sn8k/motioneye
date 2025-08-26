@@ -1,1 +1,1 @@
-VERSION = "0.43.1b7"  # version: 2025-08-26
+VERSION = "0.43.1b8"  # version: 2025-08-26
