@@ -1,9 +1,12 @@
+# version: 2025-08-26.1
+
 *.log
 *.py[cod]
 __pycache__
 *.bak
 *.pid
 *.pot
+*.mo
 *.po~
 *.old
 toto*
