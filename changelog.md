@@ -7,6 +7,7 @@
 - Validated and persisted audio configuration values.
 - Added camera UI fields for enabling audio, selecting devices, codec and bitrate.
 - Updated translation template and bumped version to 0.43.1b8.
+- Refreshed JavaScript translation source strings.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).
