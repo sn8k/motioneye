@@ -1340,6 +1340,7 @@ def motion_camera_dict_to_ui(data):
         'audio_bitrate': int(
             data.get('ffmpeg_audio_bitrate', settings.AUDIO_BITRATE)
         ),
+        'audio_devices': motionctl.list_audio_devices(),
         # file storage
         'smb_shares': settings.SMB_SHARES,
         'storage_device': data['@storage_device'],

@@ -1,3 +1,4 @@
+/* version: 2025-08-26 */
 
 var USERNAME_COOKIE = 'meye_username';
 var PASSWORD_COOKIE = 'meye_password_hash';
@@ -743,6 +744,7 @@ function initUI() {
     $('#preserveMoviesSelect').change(updateConfigUI);
     $('#moviePassthroughSwitch').change(updateConfigUI);
     $('#workingScheduleEnabledSwitch').change(checkMinimizeSection).change(updateConfigUI);
+    $('#audioDeviceEnabledSwitch').change(updateConfigUI);
 
     $('#mondayEnabledSwitch').change(updateConfigUI);
     $('#tuesdayEnabledSwitch').change(updateConfigUI);
@@ -1956,6 +1958,12 @@ function cameraUi2Dict() {
             }
         }).filter(function (e) {return e;}),
 
+        /* audio */
+        'audio_device': $('#audioDeviceSelect').val(),
+        'audio_enabled': $('#audioDeviceEnabledSwitch').length ? $('#audioDeviceEnabledSwitch')[0].checked : false,
+        'audio_codec': $('#audioCodecSelect').val(),
+        'audio_bitrate': $('#audioBitrateEntry').val(),
+
         /* file storage */
         'storage_device': $('#storageDeviceSelect').val(),
         'network_server': $('#networkServerEntry').val(),
@@ -2228,6 +2236,17 @@ function dict2CameraUi(dict) {
     $('#deviceTypeEntry').val(prettyType); markHideIfNull(!prettyType, 'deviceTypeEntry');
     $('#deviceTypeEntry')[0].proto = dict['proto'];
     $('#autoBrightnessSwitch')[0].checked = dict['auto_brightness']; markHideIfNull('auto_brightness', 'autoBrightnessSwitch');
+
+    if ($('#audioDeviceEnabledSwitch').length) {
+        $('#audioDeviceEnabledSwitch')[0].checked = dict['audio_enabled']; markHideIfNull('audio_enabled', 'audioDeviceEnabledSwitch');
+        $('#audioDeviceSelect').html('');
+        (dict['audio_devices'] || []).forEach(function (dev) {
+            $('#audioDeviceSelect').append('<option value="' + dev + '">' + dev + '</option>');
+        });
+        $('#audioDeviceSelect').val(dict['audio_device']); markHideIfNull('audio_devices', 'audioDeviceSelect');
+        $('#audioCodecSelect').val(dict['audio_codec']); markHideIfNull('audio_codec', 'audioCodecSelect');
+        $('#audioBitrateEntry').val(dict['audio_bitrate']); markHideIfNull('audio_bitrate', 'audioBitrateEntry');
+    }
 
     $('#resolutionSelect').html('');
     if (dict['available_resolutions']) {
