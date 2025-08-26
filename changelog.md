@@ -3,6 +3,8 @@
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
 - Ensured converted files use the proper extension matching video and audio content.
+- Enabled GET/POST handling for `audio_*` parameters in config and preference APIs.
+- Validated and persisted audio configuration values.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).

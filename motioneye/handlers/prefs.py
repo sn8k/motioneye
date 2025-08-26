@@ -15,7 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import json
+# version: 2025-08-26
+
 import logging
 
 from motioneye.handlers.base import BaseHandler
@@ -25,15 +26,21 @@ __all__ = ('PrefsHandler',)
 
 class PrefsHandler(BaseHandler):
     def get(self, key=None):
-        self.finish_json(self.get_pref(key))
+        if key:
+            data = self.get_pref(key)
+        else:
+            args = self.get_all_arguments()
+            data = {k: self.get_pref(k) for k in args} if args else self.get_pref(None)
+
+        self.finish_json(data)
 
     def post(self, key=None):
-        try:
-            value = json.loads(self.request.body)
+        data = self.get_all_arguments()
 
-        except Exception as e:
-            logging.error('could not decode json: %s' % e)
+        if key:
+            self.set_pref(key, data.get(key))
+        else:
+            for pref_key, pref_value in data.items():
+                self.set_pref(pref_key, pref_value)
 
-            raise
-
-        self.set_pref(key, value)
+        self.finish_json()
