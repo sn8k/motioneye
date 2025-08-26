@@ -1,0 +1,6 @@
+tornado
+jinja2
+pillow
+pycurl
+babel
+boto3
