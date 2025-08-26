@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.1 -->
+<!-- version: 2025-08-26.3 -->
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
@@ -9,6 +9,8 @@
 - Updated translation template and bumped version to 0.43.1b8.
 - Refreshed JavaScript translation source strings.
 - Synchronized all locale PO files with the latest template and incremented `Project-Id-Version`.
+- Filled audio msgstr entries for all locales and updated revision dates; bumped Project-Id-Version to 0.43.1b9.
+- Restored original .mo translation binaries to avoid binary diffs.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).
