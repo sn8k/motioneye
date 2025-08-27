@@ -1,3 +1,4 @@
+# version: 2025-08-26.1
 FROM debian:trixie-slim
 LABEL maintainer="Marcus Klein <himself@kleini.org>"
 
@@ -17,7 +18,7 @@ RUN printf '%b' '[global]\nbreak-system-packages=true\n' > /etc/pip.conf && \
     esac && \
     apt-get -q update && \
     DEBIAN_FRONTEND="noninteractive" apt-get -qq --option Dpkg::Options::="--force-confnew" --no-install-recommends install \
-      ca-certificates curl python3 fdisk $PACKAGES && \
+      ca-certificates curl python3 fdisk alsa-utils ffmpeg $PACKAGES && \
     curl -sSfO 'https://bootstrap.pypa.io/get-pip.py' && \
     python3 get-pip.py && \
     python3 -m pip install --no-cache-dir --upgrade pip setuptools wheel && \
