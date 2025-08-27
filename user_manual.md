@@ -1,4 +1,4 @@
-<!-- version: 2025-08-27.1 -->
+<!-- version: 2025-08-27.2 -->
 
 # User Manual
 
@@ -27,6 +27,7 @@ use the correct extension (e.g., `.mp4`) when video and audio are present.
 
 ## Translation Compilation
 The `l10n/make_mo.sh` script builds binary `.mo` files from each `motioneye.po` or `motioneye.js.po` found under `motioneye/locale/*/LC_MESSAGES/`.
+It requires `msgfmt` and optionally `po2json` when generating JSON files. The script exits early with a clear message if a required tool is missing.
 
 Run the script without arguments to compile every locale:
 
@@ -44,6 +45,12 @@ Remove an installed copy:
 
 ```
 l10n/make_mo.sh --remove [/path/to/make_mo]
+```
+
+Generate JSON translations alongside `.mo` files:
+
+```
+l10n/make_mo.sh --json
 ```
 
 ## JavaScript Translation Update
