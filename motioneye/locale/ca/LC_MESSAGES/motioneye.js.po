@@ -7,9 +7,10 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Eduard Reñé Claramunt <edurenye@hotmail.com>\n"
-"Language-Team: Catalan <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ca/>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/motioneye-"
+"project/motioneye-javascript/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +50,9 @@ msgstr "introduïu una adreça de correu electrònic vàlida"
 
 #: motioneye/static/js/main.js:656
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
-msgstr "introduïu una llista d'adreces de correu electrònic vàlides separades per comes"
+msgstr ""
+"introduïu una llista d'adreces de correu electrònic vàlides separades per "
+"comes"
 
 #: motioneye/static/js/main.js:663
 msgid "specialaj signoj ne rajtas en dosiernomo"
@@ -61,15 +64,21 @@ msgstr "introduïu un valor vàlid"
 
 #: motioneye/static/js/main.js:845
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr "Això eliminarà recursivament tots els fitxers presents a la carpeta del núvol \""
+msgstr ""
+"Això eliminarà recursivament tots els fitxers presents a la carpeta del "
+"núvol \""
 
 #: motioneye/static/js/main.js:846
 msgid "\", ne nur tiuj alŝutitaj de motionEye!"
 msgstr "\", no només els penjats per motionEye!"
 
 #: motioneye/static/js/main.js:927
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr "Això eliminarà recursivament tots els fitxers multimèdia antics presents al directori \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
+msgstr ""
+"Això eliminarà recursivament tots els fitxers multimèdia antics presents al "
+"directori \""
 
 #: motioneye/static/js/main.js:928
 msgid "\", ne nur tiuj kreitaj de motionEye!"
@@ -272,7 +281,8 @@ msgstr "S'ha produït un error de xarxa."
 
 #: motioneye/static/js/main.js:3691
 msgid "Malkodado-eraro aŭ neprogresinta funkcio."
-msgstr "Error de descodificació del suport o funcions multimèdia no compatibles."
+msgstr ""
+"Error de descodificació del suport o funcions multimèdia no compatibles."
 
 #: motioneye/static/js/main.js:3694
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
@@ -379,24 +389,56 @@ msgid "la kameraon, kiun vi volas aldoni"
 msgstr "la càmera que voleu afegir"
 
 #: motioneye/static/js/main.js:3958
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "Les càmeres remotes motionEye són càmeres instal·lades darrere d'un altre servidor motionEye. Afegir-los aquí us permetrà visualitzar-los i gestionar-los de forma remota."
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"Les càmeres remotes motionEye són càmeres instal·lades darrere d'un altre "
+"servidor motionEye. Afegir-los aquí us permetrà visualitzar-los i gestionar-"
+"los de forma remota."
 
 #: motioneye/static/js/main.js:3973
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "Les càmeres de xarxa (o càmeres IP) són dispositius que transmeten de forma nativa vídeos RTSP/RTMP o MJPEG o imatges JPEG senzilles. Consulteu el manual del vostre dispositiu per esbrinar l'URL correcte de RTSP, RTMP, MJPEG o JPEG."
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"Les càmeres de xarxa (o càmeres IP) són dispositius que transmeten de forma "
+"nativa vídeos RTSP/RTMP o MJPEG o imatges JPEG senzilles. Consulteu el "
+"manual del vostre dispositiu per esbrinar l'URL correcte de RTSP, RTMP, "
+"MJPEG o JPEG."
 
 #: motioneye/static/js/main.js:3978
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "Les càmeres MMAL locals són dispositius connectats directament al vostre sistema motionEye. Normalment són càmeres integrades."
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"Les càmeres MMAL locals són dispositius connectats directament al vostre "
+"sistema motionEye. Normalment són càmeres integrades."
 
 #: motioneye/static/js/main.js:3993
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "Si afegiu el vostre dispositiu com a càmera MJPEG senzilla en lloc de com a càmera de xarxa, millorarà la velocitat de fotogrames, però no hi haurà disponible cap detecció de moviment, captura d'imatges o gravació de pel·lícules. La càmera ha de ser accessible tant al vostre servidor com al vostre navegador. Aquest tipus de càmera no és compatible amb Internet Explorer."
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"Si afegiu el vostre dispositiu com a càmera MJPEG senzilla en lloc de com a "
+"càmera de xarxa, millorarà la velocitat de fotogrames, però no hi haurà "
+"disponible cap detecció de moviment, captura d'imatges o gravació de "
+"pel·lícules. La càmera ha de ser accessible tant al vostre servidor com al "
+"vostre navegador. Aquest tipus de càmera no és compatible amb Internet "
+"Explorer."
 
 #: motioneye/static/js/main.js:3998
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "Les càmeres locals V4L2 són dispositius de càmera connectats directament al vostre sistema motionEye, normalment mitjançant USB."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"Les càmeres locals V4L2 són dispositius de càmera connectats directament al "
+"vostre sistema motionEye, normalment mitjançant USB."
 
 #: motioneye/static/js/main.js:4149
 msgid "Aldonadi kameraon..."
@@ -456,11 +498,16 @@ msgstr "Velocitat de fotogrames de la pel·lícula"
 
 #: motioneye/static/js/main.js:4244
 msgid "Elektu kiom rapide vi volas ke la akselita video estu."
-msgstr "Tria la rapidesa amb la qual vols que sigui la reproducció en timelapse."
+msgstr ""
+"Tria la rapidesa amb la qual vols que sigui la reproducció en timelapse."
 
 #: motioneye/static/js/main.js:4253
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "Donada la gran quantitat d'imatges, la creació del vostre timelapse pot trigar una estona!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
+msgstr ""
+"Donada la gran quantitat d'imatges, la creació del vostre timelapse pot "
+"trigar una estona!"
 
 #: motioneye/static/js/main.js:4270
 msgid "Krei akselita video"
@@ -520,7 +567,8 @@ msgstr "prendre una instantània"
 
 #: motioneye/static/js/main.js:5177
 msgid "Vi ankoraŭ ne agordis iun kameraon. Alklaku ĉi tie por aldoni unu ..."
-msgstr "Encara no has configurat cap càmera. Feu clic aquí per afegir-ne una ..."
+msgstr ""
+"Encara no has configurat cap càmera. Feu clic aquí per afegir-ne una ..."
 
 #: motioneye/static/js/ui.js:503
 msgid "enigu pozitivan nombron"
@@ -672,3 +720,36 @@ msgstr "Zoom absolut"
 
 #~ msgid "bone"
 #~ msgstr "d'acord"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "Alias per aquesta càmera"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "Dispositiu de video"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+
