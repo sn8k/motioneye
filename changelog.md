@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.7 -->
+<!-- version: 2025-08-26.8 -->
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.
@@ -18,6 +18,8 @@
 - Updated PO headers with `Project-Id-Version: motionEye 0.43.1b9` and current revision dates.
 - Recompiled JavaScript translation JSON files including new audio messages.
 - Documented translation update workflow in the user manual.
+- Added PyAudio and ffmpeg-python dependencies and documented audio prerequisites.
+- Docker image installs `alsa-utils` and `ffmpeg` and lists ALSA devices at startup.
 
 2025-08-25
 - Added audio configuration support (sound_device, sound_enabled, ffmpeg_audio_codec, ffmpeg_audio_bitrate).

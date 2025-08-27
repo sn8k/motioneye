@@ -1,6 +1,9 @@
-<!-- version: 2025-08-26.2 -->
+<!-- version: 2025-08-26.3 -->
 
 # User Manual
+
+## Audio Prerequisites
+motionEye relies on **PyAudio** and **ffmpeg-python** for sound features. Install `alsa-utils` and `ffmpeg` on the host and expose `/dev/snd` to containers to access audio hardware.
 
 ## Audio Configuration
 motionEye supports audio options per camera:

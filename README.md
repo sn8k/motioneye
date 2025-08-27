@@ -1,3 +1,4 @@
+<!-- version: 2025-08-26.1 -->
 # What is motionEye?
 
 **motionEye** is an online interface for the software [_motion_](https://motion-project.github.io/), a video surveillance program with motion detection.
@@ -23,11 +24,19 @@ You can contribute to translations on [__Weblate__](https://hosted.weblate.org/p
     sudo apt --no-install-recommends install ca-certificates curl python3
     ```
 
+    For audio capture support, install ALSA utilities and ffmpeg:
+
+    ```sh
+    sudo apt --no-install-recommends install alsa-utils ffmpeg
+    ```
+
     On **ARMv6 and ARMv7 (32-bit), RISC-V and other rare CPU architectures** additional build dependencies may be required to compile the [Pillow](https://pypi.org/project/pillow/) and [PycURL](https://pypi.org/project/pycurl/) modules:
     ```sh
     sudo apt update
     sudo apt --no-install-recommends install ca-certificates curl python3 python3-dev gcc libjpeg62-turbo-dev libcurl4-openssl-dev libssl-dev
     ```
+
+The Python package pulls in **PyAudio** and **ffmpeg-python** modules to handle audio.
 
 2. Install the Python package manager `pip`
     ```sh
