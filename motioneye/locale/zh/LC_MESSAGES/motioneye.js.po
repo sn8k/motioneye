@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Ziteng <765484893@qq.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"motioneye-project/motioneye-javascript/zh_Hans/>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,7 +70,9 @@ msgid "\", ne nur tiuj alŝutitaj de motionEye!"
 msgstr "”，不只是由motionEye上传的！"
 
 #: motioneye/static/js/main.js:927
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
 msgstr "将递归删除文件夹中所有过期的媒体文件”"
 
 #: motioneye/static/js/main.js:928
@@ -380,23 +383,47 @@ msgid "la kameraon, kiun vi volas aldoni"
 msgstr "您要添加的摄像头"
 
 #: motioneye/static/js/main.js:3958
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "远程MotionEye摄像头是安装在另一台MotionEye服务器下摄像头。在此处添加将使您可以远程查看和管理它们。"
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"远程MotionEye摄像头是安装在另一台MotionEye服务器下摄像头。在此处添加将使您可"
+"以远程查看和管理它们。"
 
 #: motioneye/static/js/main.js:3973
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "网络摄像头（或IP摄像头）是指传输原生RTSP / RTMP流或MJPEG视频流或普通MJPEG图像流的设备。请查阅您的设备手册，以找到正确的RTSP，RTMP，MJPEG或JPEG的URL地址。"
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"网络摄像头（或IP摄像头）是指传输原生RTSP / RTMP流或MJPEG视频流或普通MJPEG图像"
+"流的设备。请查阅您的设备手册，以找到正确的RTSP，RTMP，MJPEG或JPEG的URL地址。"
 
 #: motioneye/static/js/main.js:3978
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "本地MMAL摄像头是指直接连接到motionEye系统的设备。这些通常是硬件提供接口兼容的摄像头。"
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"本地MMAL摄像头是指直接连接到motionEye系统的设备。这些通常是硬件提供接口兼容的"
+"摄像头。"
 
 #: motioneye/static/js/main.js:3993
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "将设备添加为简单的MJPEG摄像头而不是网络摄像头可以改善摄影效果，但是无法进行运动检测，图像捕获或动画录制。您的服务器和浏览器必须可以访问该相机。这类相机与Internet Explorer不匹配。"
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"将设备添加为简单的MJPEG摄像头而不是网络摄像头可以改善摄影效果，但是无法进行运"
+"动检测，图像捕获或动画录制。您的服务器和浏览器必须可以访问该相机。这类相机与"
+"Internet Explorer不匹配。"
 
 #: motioneye/static/js/main.js:3998
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
 msgstr "本地V4L2摄像头通常通过USB直接连接到motionEye系统。"
 
 #: motioneye/static/js/main.js:4149
@@ -460,7 +487,9 @@ msgid "Elektu kiom rapide vi volas ke la akselita video estu."
 msgstr "选择您想要视频减缓的速度。"
 
 #: motioneye/static/js/main.js:4253
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
 msgstr "图片太多会导致创建视频需要一些时间！"
 
 #: motioneye/static/js/main.js:4270
@@ -681,3 +710,36 @@ msgstr "绝对缩放"
 #, fuzzy
 #~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
 #~ msgstr "格式不受支持，否则将无法使用/无法播放。"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "摄像头设备的别名"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "视频设备"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

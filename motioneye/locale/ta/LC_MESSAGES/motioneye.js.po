@@ -7,9 +7,10 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
-"Language-Team: Tamil <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ta/>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/motioneye-project/"
+"motioneye-javascript/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +69,9 @@ msgid "\", ne nur tiuj alŝutitaj de motionEye!"
 msgstr "\", மோசன் பதிவேற்றியவை மட்டுமல்ல!"
 
 #: motioneye/static/js/main.js:927
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
 msgstr "இந்த மறுநிகழ்வு கோப்பகத்தில் உள்ள அனைத்து பழைய ஊடக கோப்புகளையும் நீக்கும் \""
 
 #: motioneye/static/js/main.js:928
@@ -379,24 +382,52 @@ msgid "la kameraon, kiun vi volas aldoni"
 msgstr "நீங்கள் சேர்க்க விரும்பும் கேமரா"
 
 #: motioneye/static/js/main.js:3958
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "ஃபோரா மோசன் ஐ கேமரா மற்றொரு மோசன்இஇ சேவையகத்தின் பின்னால் நிறுவப்பட்ட கேமராக்கள். அவற்றை இங்கே சேர்ப்பது தூரத்திலிருந்து அவற்றைப் பார்க்கவும் நிர்வகிக்கவும் உங்களை அனுமதிக்கும்."
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"ஃபோரா மோசன் ஐ கேமரா மற்றொரு மோசன்இஇ சேவையகத்தின் பின்னால் நிறுவப்பட்ட கேமராக்கள். அவற்றை "
+"இங்கே சேர்ப்பது தூரத்திலிருந்து அவற்றைப் பார்க்கவும் நிர்வகிக்கவும் உங்களை அனுமதிக்கும்."
 
 #: motioneye/static/js/main.js:3973
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "வலை கேமராக்கள் (அல்லது ஐபி கேமராக்கள்) என்பது RTSP/RTMP அல்லது MJPEG வீடியோக்கள் அல்லது எளிய JPEG படங்களை பூசும் சாதனங்கள். சரியான முகவரி RTSP, RTMP, MJPEG அல்லது JPEG ஐ அறிய உங்கள் சாதனத்தின் கையேட்டைப் பாருங்கள்."
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"வலை கேமராக்கள் (அல்லது ஐபி கேமராக்கள்) என்பது RTSP/RTMP அல்லது MJPEG வீடியோக்கள் அல்லது "
+"எளிய JPEG படங்களை பூசும் சாதனங்கள். சரியான முகவரி RTSP, RTMP, MJPEG அல்லது JPEG ஐ "
+"அறிய உங்கள் சாதனத்தின் கையேட்டைப் பாருங்கள்."
 
 #: motioneye/static/js/main.js:3978
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "உள்ளக MMAL கேமராக்கள் உங்கள் இயக்க அமைப்புடன் நேரடியாக இணைக்கப்பட்ட சாதனங்கள். இவை பொதுவாக அட்டை சார்ந்த கேமராக்கள்."
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"உள்ளக MMAL கேமராக்கள் உங்கள் இயக்க அமைப்புடன் நேரடியாக இணைக்கப்பட்ட சாதனங்கள். இவை "
+"பொதுவாக அட்டை சார்ந்த கேமராக்கள்."
 
 #: motioneye/static/js/main.js:3993
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "நிகழ்நிலை கேமரா புகைப்படத்தை எவ்வாறு மேம்படுத்துகிறது என்பதற்குப் பதிலாக உங்கள் சாதனத்தை எளிய MJPEG கேமராவாகச் சேர்ப்பது, ஆனால் இயக்கக் கண்டறிதல், பட பிடிப்பு அல்லது பதிவு திரைப்படங்கள் எதுவும் கிடைக்காது. உங்கள் சேவையகம் மற்றும் உங்கள் உலாவிக்கு கேமரா அணுகப்பட வேண்டும். இந்த வகை கேமரா இன்டர்நெட் எக்ச்ப்ளோரருடன் பொருந்தவில்லை."
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"நிகழ்நிலை கேமரா புகைப்படத்தை எவ்வாறு மேம்படுத்துகிறது என்பதற்குப் பதிலாக உங்கள் சாதனத்தை "
+"எளிய MJPEG கேமராவாகச் சேர்ப்பது, ஆனால் இயக்கக் கண்டறிதல், பட பிடிப்பு அல்லது பதிவு "
+"திரைப்படங்கள் எதுவும் கிடைக்காது. உங்கள் சேவையகம் மற்றும் உங்கள் உலாவிக்கு கேமரா அணுகப்பட "
+"வேண்டும். இந்த வகை கேமரா இன்டர்நெட் எக்ச்ப்ளோரருடன் பொருந்தவில்லை."
 
 #: motioneye/static/js/main.js:3998
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "உள்ளக வி 4 எல் 2 கேமராக்கள் கேமரா சாதனங்கள் ஆகும், இது பொதுவாக யூ.எச்.பி மூலம் உங்கள் இயக்க அமைப்புடன் நேரடியாக இணைக்கப்பட்டுள்ளது."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"உள்ளக வி 4 எல் 2 கேமராக்கள் கேமரா சாதனங்கள் ஆகும், இது பொதுவாக யூ.எச்.பி மூலம் உங்கள் "
+"இயக்க அமைப்புடன் நேரடியாக இணைக்கப்பட்டுள்ளது."
 
 #: motioneye/static/js/main.js:4149
 msgid "Aldonadi kameraon..."
@@ -459,8 +490,12 @@ msgid "Elektu kiom rapide vi volas ke la akselita video estu."
 msgstr "ஆயுதமேந்திய வீடியோ எவ்வளவு விரைவாக இருக்க வேண்டும் என்பதைத் தேர்வுசெய்க."
 
 #: motioneye/static/js/main.js:4253
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "அதிக எண்ணிக்கையிலான படங்களைக் கருத்தில் கொண்டு, உங்கள் வீடியோவை உருவாக்க சிறிது நேரம் ஆகலாம்!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
+msgstr ""
+"அதிக எண்ணிக்கையிலான படங்களைக் கருத்தில் கொண்டு, உங்கள் வீடியோவை உருவாக்க சிறிது நேரம் "
+"ஆகலாம்!"
 
 #: motioneye/static/js/main.js:4270
 msgid "Krei akselita video"
@@ -520,7 +555,8 @@ msgstr "ஒரு உடனடி எடுக்க"
 
 #: motioneye/static/js/main.js:5177
 msgid "Vi ankoraŭ ne agordis iun kameraon. Alklaku ĉi tie por aldoni unu ..."
-msgstr "நீங்கள் இதுவரை எந்த கேமராவையும் அமைக்கவில்லை. ஒன்றைச் சேர்க்க இங்கே சொடுக்கு செய்க ..."
+msgstr ""
+"நீங்கள் இதுவரை எந்த கேமராவையும் அமைக்கவில்லை. ஒன்றைச் சேர்க்க இங்கே சொடுக்கு செய்க ..."
 
 #: motioneye/static/js/ui.js:503
 msgid "enigu pozitivan nombron"
@@ -669,3 +705,36 @@ msgstr "வெள்ளை இருப்பு வெப்பநிலை ஆ
 #: l10n/v4l2.js:26
 msgid "Zoom Absolute"
 msgstr "சூம் முழுமையான"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "இந்த கேமரா சாதனம் பற்றிய மாற்றுப்பெயர்"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "வீடியோ-தடை"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

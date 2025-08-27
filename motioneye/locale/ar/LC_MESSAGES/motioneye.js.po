@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: ar\n"
@@ -71,7 +71,8 @@ msgstr "أدخل قيمة صالحة"
 #: motioneye/static/js/main.js:845
 #, fuzzy
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr "سيؤدي هذا بشكل متكرر إلى حذف جميع الملفات الموجودة في المجلد السحابي \""
+msgstr ""
+"سيؤدي هذا بشكل متكرر إلى حذف جميع الملفات الموجودة في المجلد السحابي \""
 
 #: motioneye/static/js/main.js:846
 #, fuzzy
@@ -80,8 +81,11 @@ msgstr "\"، وليس فقط تلك التي تم تحميلها بواسطة mo
 
 #: motioneye/static/js/main.js:927
 #, fuzzy
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr "سيؤدي هذا بشكل متكرر إلى حذف جميع ملفات الوسائط القديمة الموجودة في المجلد \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
+msgstr ""
+"سيؤدي هذا بشكل متكرر إلى حذف جميع ملفات الوسائط القديمة الموجودة في المجلد \""
 
 #: motioneye/static/js/main.js:928
 #, fuzzy
@@ -468,28 +472,56 @@ msgstr "الكاميرا التي تريد إضافتها"
 
 #: motioneye/static/js/main.js:3958
 #, fuzzy
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "كاميرا MotionEye عن بعد هي كاميرا مثبتة خلف خادم MotionEye آخر. ستسمح لك إضافتها هنا بمشاهدتها وإدارتها من مسافة بعيدة."
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"كاميرا MotionEye عن بعد هي كاميرا مثبتة خلف خادم MotionEye آخر. ستسمح لك "
+"إضافتها هنا بمشاهدتها وإدارتها من مسافة بعيدة."
 
 #: motioneye/static/js/main.js:3973
 #, fuzzy
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "كاميرات الشبكة (أو كاميرات IP) هي الأجهزة التي تقوم بدفق مقاطع فيديو RTSP / RTMP أو MJPEG أو صور JPEG البسيطة. راجع دليل جهازك لمعرفة عنوان URL RTSP أو RTMP أو MJPEG أو JPEG الصحيح."
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"كاميرات الشبكة (أو كاميرات IP) هي الأجهزة التي تقوم بدفق مقاطع فيديو RTSP / "
+"RTMP أو MJPEG أو صور JPEG البسيطة. راجع دليل جهازك لمعرفة عنوان URL RTSP أو "
+"RTMP أو MJPEG أو JPEG الصحيح."
 
 #: motioneye/static/js/main.js:3978
 #, fuzzy
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "كاميرات MMAL المحلية هي أجهزة متصلة مباشرة بنظام motionEye الخاص بك. عادة ما تكون هذه الكاميرات خاصة بالبطاقة."
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"كاميرات MMAL المحلية هي أجهزة متصلة مباشرة بنظام motionEye الخاص بك. عادة ما "
+"تكون هذه الكاميرات خاصة بالبطاقة."
 
 #: motioneye/static/js/main.js:3993
 #, fuzzy
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "ستؤدي إضافة جهازك ككاميرا MJPEG بسيطة بدلاً من ككاميرا ويب إلى تحسين التصوير الفوتوغرافي ، ولكن لن يتوفر أي كشف عن الحركة أو التقاط الصور أو تسجيل الأفلام. يجب أن تكون الكاميرا متاحة لخادمك ومتصفحك. لا يتطابق هذا النوع من الكاميرا مع Internet Explorer."
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"ستؤدي إضافة جهازك ككاميرا MJPEG بسيطة بدلاً من ككاميرا ويب إلى تحسين التصوير "
+"الفوتوغرافي ، ولكن لن يتوفر أي كشف عن الحركة أو التقاط الصور أو تسجيل "
+"الأفلام. يجب أن تكون الكاميرا متاحة لخادمك ومتصفحك. لا يتطابق هذا النوع من "
+"الكاميرا مع Internet Explorer."
 
 #: motioneye/static/js/main.js:3998
 #, fuzzy
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "كاميرات V4L2 المحلية عبارة عن أجهزة كاميرا متصلة مباشرة بنظام motionEye الخاص بك ، عادةً عبر USB."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"كاميرات V4L2 المحلية عبارة عن أجهزة كاميرا متصلة مباشرة بنظام motionEye "
+"الخاص بك ، عادةً عبر USB."
 
 #: motioneye/static/js/main.js:4149
 #, fuzzy
@@ -568,7 +600,9 @@ msgstr "اختر مدى السرعة التي تريدها لتسريع الفي
 
 #: motioneye/static/js/main.js:4253
 #, fuzzy
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
 msgstr "بالنظر إلى العدد الكبير من الصور ، قد يستغرق إنشاء الفيديو بعض الوقت!"
 
 #: motioneye/static/js/main.js:4270
@@ -841,4 +875,38 @@ msgstr "تكبير بالتأكيد"
 
 #, fuzzy
 #~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
-#~ msgstr "التنسيق غير مدعوم أو غير قابل للاستخدام / غير قابل للاستخدام في اللعب."
+#~ msgstr ""
+#~ "التنسيق غير مدعوم أو غير قابل للاستخدام / غير قابل للاستخدام في اللعب."
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "الاسم المستعار على جهاز الكاميرا هذا"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "جهاز فيديو"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

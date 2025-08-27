@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: hi\n"
@@ -80,7 +80,9 @@ msgstr "\", न केवल प्रस्ताव द्वारा अप�
 
 #: motioneye/static/js/main.js:927
 #, fuzzy
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
 msgstr "यह फ़ोल्डर में सभी पुरानी मीडिया फ़ाइलों को पुन: हटा देगा \""
 
 #: motioneye/static/js/main.js:928
@@ -468,28 +470,56 @@ msgstr "कैमरा जिसे आप जोड़ना चाहते �
 
 #: motioneye/static/js/main.js:3958
 #, fuzzy
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "एक रिमोट मोशन कैमरा एक कैमरा है जो दूसरे MotionEye सर्वर के पीछे स्थापित होता है। उन्हें यहां जोड़ने से आप उन्हें दूर से देख और प्रबंधित कर पाएंगे।"
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"एक रिमोट मोशन कैमरा एक कैमरा है जो दूसरे MotionEye सर्वर के पीछे स्थापित होता है। उन्हें "
+"यहां जोड़ने से आप उन्हें दूर से देख और प्रबंधित कर पाएंगे।"
 
 #: motioneye/static/js/main.js:3973
 #, fuzzy
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "नेटवर्क कैमरा (या आईपी कैमरा) ऐसे उपकरण हैं जो मूल रूप से RTSP / RTMP या MJPEG वीडियो या सरल JPEG छवियों को स्ट्रीम करते हैं। सही RTSP, RTMP, MJPEG या JPEG URL का पता लगाने के लिए अपने डिवाइस के मैनुअल से परामर्श करें।"
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"नेटवर्क कैमरा (या आईपी कैमरा) ऐसे उपकरण हैं जो मूल रूप से RTSP / RTMP या MJPEG वीडियो "
+"या सरल JPEG छवियों को स्ट्रीम करते हैं। सही RTSP, RTMP, MJPEG या JPEG URL का पता "
+"लगाने के लिए अपने डिवाइस के मैनुअल से परामर्श करें।"
 
 #: motioneye/static/js/main.js:3978
 #, fuzzy
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "स्थानीय एमएमएएल कैमरे ऐसे उपकरण हैं जो सीधे आपके मोशन सिस्टम से जुड़े होते हैं। ये आमतौर पर कार्ड-विशिष्ट कैमरे होते हैं।"
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"स्थानीय एमएमएएल कैमरे ऐसे उपकरण हैं जो सीधे आपके मोशन सिस्टम से जुड़े होते हैं। ये आमतौर पर "
+"कार्ड-विशिष्ट कैमरे होते हैं।"
 
 #: motioneye/static/js/main.js:3993
 #, fuzzy
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "वेब कैमरा के बजाय एक साधारण MJPEG कैमरे के रूप में अपने डिवाइस को जोड़ने से फोटोग्राफी में सुधार होगा, लेकिन इसके लिए कोई मोशन डिटेक्शन, इमेज कैप्चर या मूवी रिकॉर्डिंग उपलब्ध नहीं होगी। कैमरा आपके सर्वर और आपके ब्राउज़र के लिए सुलभ होना चाहिए। इस प्रकार का कैमरा इंटरनेट एक्सप्लोरर से मेल नहीं खाता है।"
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"वेब कैमरा के बजाय एक साधारण MJPEG कैमरे के रूप में अपने डिवाइस को जोड़ने से फोटोग्राफी में "
+"सुधार होगा, लेकिन इसके लिए कोई मोशन डिटेक्शन, इमेज कैप्चर या मूवी रिकॉर्डिंग उपलब्ध नहीं "
+"होगी। कैमरा आपके सर्वर और आपके ब्राउज़र के लिए सुलभ होना चाहिए। इस प्रकार का कैमरा "
+"इंटरनेट एक्सप्लोरर से मेल नहीं खाता है।"
 
 #: motioneye/static/js/main.js:3998
 #, fuzzy
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "स्थानीय V4L2 कैमरे आमतौर पर USB के माध्यम से सीधे आपके मोशन सिस्टम से जुड़े कैमरा डिवाइस होते हैं।"
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"स्थानीय V4L2 कैमरे आमतौर पर USB के माध्यम से सीधे आपके मोशन सिस्टम से जुड़े कैमरा डिवाइस "
+"होते हैं।"
 
 #: motioneye/static/js/main.js:4149
 #, fuzzy
@@ -568,8 +598,11 @@ msgstr "चुनें कि आप कितनी तेजी से त्
 
 #: motioneye/static/js/main.js:4253
 #, fuzzy
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "बड़ी संख्या में छवियों को ध्यान में रखते हुए, आपके वीडियो को बनाने में कुछ समय लग सकता है!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
+msgstr ""
+"बड़ी संख्या में छवियों को ध्यान में रखते हुए, आपके वीडियो को बनाने में कुछ समय लग सकता है!"
 
 #: motioneye/static/js/main.js:4270
 #, fuzzy
@@ -842,3 +875,36 @@ msgstr "ज़ूम बिल्कुल"
 #, fuzzy
 #~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
 #~ msgstr "प्रारूप समर्थित नहीं है या अन्यथा अनुपयोगी / खेलने के लिए अनुपयोगी है।"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "इस कैमरा डिवाइस पर उर्फ"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "वीडियो डिवाइस"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

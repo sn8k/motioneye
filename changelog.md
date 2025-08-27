@@ -1,9 +1,10 @@
-<!-- version: 2025-08-27.2 -->
+<!-- version: 2025-08-27.3 -->
 
 2025-08-27
 - Removed compiled translation binaries from package data; `.po` files ship for on-install compilation.
 - `l10n/make_mo.sh --install` now invokes `msgfmt` to build `.mo` files during installation.
 - Added early checks for `msgfmt` and `po2json` in `l10n/make_mo.sh` with a new `--json` option to generate JSON files.
+- Added audio translations across all JavaScript locales and regenerated JSON resources.
 
 2025-08-26
 - Added FFMPEG audio codec mapping and optional audio stream inclusion during conversions.

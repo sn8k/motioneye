@@ -9,9 +9,10 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: qnotions <qnotions@gmail.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ja/>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/motioneye-"
+"project/motioneye-javascript/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +75,8 @@ msgstr "有効な値を入力してください"
 #: motioneye/static/js/main.js:845
 #, fuzzy
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr "これにより、クラウドフォルダ内のすべてのファイルが再帰的に削除されます \""
+msgstr ""
+"これにより、クラウドフォルダ内のすべてのファイルが再帰的に削除されます \""
 
 #: motioneye/static/js/main.js:846
 #, fuzzy
@@ -83,8 +85,11 @@ msgstr "\"、motionEyeによってアップロードされたものだけでは�
 
 #: motioneye/static/js/main.js:927
 #, fuzzy
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr "これにより、フォルダ内のすべての古いメディアファイルが再帰的に削除されます \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
+msgstr ""
+"これにより、フォルダ内のすべての古いメディアファイルが再帰的に削除されます \""
 
 #: motioneye/static/js/main.js:928
 #, fuzzy
@@ -338,7 +343,8 @@ msgstr "デコードエラーまたは非投影関数。"
 #: motioneye/static/js/main.js:3694
 #, fuzzy
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
-msgstr "フォーマットがサポートされていないか、アクセスできない/再生に適していません。"
+msgstr ""
+"フォーマットがサポートされていないか、アクセスできない/再生に適していません。"
 
 #: motioneye/static/js/main.js:3697
 #, fuzzy
@@ -467,28 +473,56 @@ msgstr "追加するカメラ"
 
 #: motioneye/static/js/main.js:3958
 #, fuzzy
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "リモートmotionEyeカメラは、別のMotionEyeサーバーの背後に設置されたカメラです。ここに追加すると、離れた場所から監視および管理できます。"
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"リモートmotionEyeカメラは、別のMotionEyeサーバーの背後に設置されたカメラで"
+"す。ここに追加すると、離れた場所から監視および管理できます。"
 
 #: motioneye/static/js/main.js:3973
 #, fuzzy
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "ネットワークカメラ（またはIPカメラ）は、RTSP / RTMPまたはMJPEGビデオまたは単純なJPEG画像をネイティブにストリーミングするデバイスです。デバイスのマニュアルを参照して、正しいRTSP、RTMP、MJPEG、またはJPEG URLを確認してください。"
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"ネットワークカメラ（またはIPカメラ）は、RTSP / RTMPまたはMJPEGビデオまたは単"
+"純なJPEG画像をネイティブにストリーミングするデバイスです。デバイスのマニュア"
+"ルを参照して、正しいRTSP、RTMP、MJPEG、またはJPEG URLを確認してください。"
 
 #: motioneye/static/js/main.js:3978
 #, fuzzy
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "ローカルMMALカメラは、motionEyeシステムに直接接続されているデバイスです。これらは通常、カード固有のカメラです。"
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"ローカルMMALカメラは、motionEyeシステムに直接接続されているデバイスです。これ"
+"らは通常、カード固有のカメラです。"
 
 #: motioneye/static/js/main.js:3993
 #, fuzzy
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "デバイスをWebカメラとしてではなく、単純なMJPEGカメラとして追加すると、写真が改善されますが、動きの検出、画像のキャプチャ、または動画の記録は利用できません。カメラは、サーバーとブラウザーにアクセスできる必要があります。このタイプのカメラはInternet Explorerと一致しません。"
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"デバイスをWebカメラとしてではなく、単純なMJPEGカメラとして追加すると、写真が"
+"改善されますが、動きの検出、画像のキャプチャ、または動画の記録は利用できませ"
+"ん。カメラは、サーバーとブラウザーにアクセスできる必要があります。このタイプ"
+"のカメラはInternet Explorerと一致しません。"
 
 #: motioneye/static/js/main.js:3998
 #, fuzzy
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "ローカルV4L2カメラは、通常USBを介してモーションアイシステムに直接接続されたカメラデバイスです。"
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"ローカルV4L2カメラは、通常USBを介してモーションアイシステムに直接接続されたカ"
+"メラデバイスです。"
 
 #: motioneye/static/js/main.js:4149
 #, fuzzy
@@ -565,7 +599,9 @@ msgstr "アクセラレーションビデオの速度を選択します。"
 
 #: motioneye/static/js/main.js:4253
 #, fuzzy
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
 msgstr "画像の数が多いため、動画の作成には時間がかかる場合があります。"
 
 #: motioneye/static/js/main.js:4270
@@ -641,7 +677,8 @@ msgstr "スナップショットを撮る"
 #: motioneye/static/js/main.js:5177
 #, fuzzy
 msgid "Vi ankoraŭ ne agordis iun kameraon. Alklaku ĉi tie por aldoni unu ..."
-msgstr "あなたはまだカメラを設定していません。 1つを追加するにはここをクリック..."
+msgstr ""
+"あなたはまだカメラを設定していません。 1つを追加するにはここをクリック..."
 
 #: motioneye/static/js/ui.js:503
 #, fuzzy
@@ -838,4 +875,38 @@ msgstr "絶対にズームします"
 
 #, fuzzy
 #~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
-#~ msgstr "サポートされていない形式、または再生に使用できない/使用できない形式。"
+#~ msgstr ""
+#~ "サポートされていない形式、または再生に使用できない/使用できない形式。"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "このカメラデバイスのエイリアス"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "ビデオデバイス"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

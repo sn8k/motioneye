@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Dmitrii <nuke142@gmail.com>\n"
-"Language-Team: Russian <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ru/>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/motioneye-"
+"project/motioneye-javascript/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.17-dev\n"
 
 #: motioneye/static/js/main.js:609
@@ -50,7 +52,8 @@ msgstr "введите действительный адрес электрон�
 
 #: motioneye/static/js/main.js:656
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
-msgstr "введите список действительных адресов электронной почты, разделенных запятыми"
+msgstr ""
+"введите список действительных адресов электронной почты, разделенных запятыми"
 
 #: motioneye/static/js/main.js:663
 msgid "specialaj signoj ne rajtas en dosiernomo"
@@ -69,7 +72,9 @@ msgid "\", ne nur tiuj alŝutitaj de motionEye!"
 msgstr "\", а не только загруженные motionEye!"
 
 #: motioneye/static/js/main.js:927
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
 msgstr "Это рекурсивно удалит все старые медиа-файлы в папке \""
 
 #: motioneye/static/js/main.js:928
@@ -277,7 +282,8 @@ msgstr "Ошибка декодирования или неподдержива�
 
 #: motioneye/static/js/main.js:3694
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
-msgstr "Формат не поддерживается или недоступен/не подходит для воспроизведения."
+msgstr ""
+"Формат не поддерживается или недоступен/не подходит для воспроизведения."
 
 #: motioneye/static/js/main.js:3697
 msgid "Nekonata eraro okazis."
@@ -380,24 +386,54 @@ msgid "la kameraon, kiun vi volas aldoni"
 msgstr "камера, которую вы хотите добавить"
 
 #: motioneye/static/js/main.js:3958
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "Удаленная камера motionEye - это камера, установленная на другом сервером MotionEye. Добавление их здесь позволит вам наблюдать и управлять ими удалённо."
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"Удаленная камера motionEye - это камера, установленная на другом сервером "
+"MotionEye. Добавление их здесь позволит вам наблюдать и управлять ими "
+"удалённо."
 
 #: motioneye/static/js/main.js:3973
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "Сетевые камеры (или IP-камеры) - это устройства, которые изначально передают потоковое видео RTSP/RTMP или MJPEG или простые изображения JPEG. Обратитесь к руководству вашего устройства, чтобы узнать правильный URL RTSP, RTMP, MJPEG или JPEG."
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"Сетевые камеры (или IP-камеры) - это устройства, которые изначально передают "
+"потоковое видео RTSP/RTMP или MJPEG или простые изображения JPEG. Обратитесь "
+"к руководству вашего устройства, чтобы узнать правильный URL RTSP, RTMP, "
+"MJPEG или JPEG."
 
 #: motioneye/static/js/main.js:3978
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "Локальные MMAL камеры — это устройства, подключенные непосредственно к вашей системе motionEye. Обычно это камеры для определённых плат."
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"Локальные MMAL камеры — это устройства, подключенные непосредственно к вашей "
+"системе motionEye. Обычно это камеры для определённых плат."
 
 #: motioneye/static/js/main.js:3993
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "Добавление вашего устройства в качестве простой MJPEG камеры вместо сетевой камеры улучшит частоту кадров, но не будет доступно обнаружение движения, захват изображения или видеозапись. Камера должна быть доступна вашему серверу и вашему браузеру. Этот тип камеры не совместим с Internet Explorer."
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"Добавление вашего устройства в качестве простой MJPEG камеры вместо сетевой "
+"камеры улучшит частоту кадров, но не будет доступно обнаружение движения, "
+"захват изображения или видеозапись. Камера должна быть доступна вашему "
+"серверу и вашему браузеру. Этот тип камеры не совместим с Internet Explorer."
 
 #: motioneye/static/js/main.js:3998
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "Локальные V4L2 камеры - это камеры, подключенные непосредственно к вашей системе motionEye, обычно через USB."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"Локальные V4L2 камеры - это камеры, подключенные непосредственно к вашей "
+"системе motionEye, обычно через USB."
 
 #: motioneye/static/js/main.js:4149
 msgid "Aldonadi kameraon..."
@@ -460,8 +496,12 @@ msgid "Elektu kiom rapide vi volas ke la akselita video estu."
 msgstr "Выберите, насколько быстрый таймлапс вы хотите."
 
 #: motioneye/static/js/main.js:4253
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "Учитывая большое количество изображений, создание таймлапса может занять некоторое время!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
+msgstr ""
+"Учитывая большое количество изображений, создание таймлапса может занять "
+"некоторое время!"
 
 #: motioneye/static/js/main.js:4270
 msgid "Krei akselita video"
@@ -680,4 +720,39 @@ msgstr "Абсолютный зум"
 
 #, fuzzy
 #~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
-#~ msgstr "Формат не поддерживается или иным образом непригоден / непригоден для воспроизведения."
+#~ msgstr ""
+#~ "Формат не поддерживается или иным образом непригоден / непригоден для "
+#~ "воспроизведения."
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "псевдоним для этой камеры"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "Камера"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+

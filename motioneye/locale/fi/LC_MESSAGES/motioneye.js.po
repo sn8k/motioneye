@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: motionEye 0.43.1b9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-26 21:37+0000\n"
-"PO-Revision-Date: 2025-08-26 21:38+0000\n"
+"PO-Revision-Date: 2025-08-27 00:41+0000\n"
 "Last-Translator: Sami Heino <sami.heino@iki.fi>\n"
-"Language-Team: Finnish <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/fi/>\n"
+"Language-Team: Finnish <https://hosted.weblate.org/projects/motioneye-"
+"project/motioneye-javascript/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +51,8 @@ msgstr "syötä voimassa oleva sähköpostiosoite"
 
 #: motioneye/static/js/main.js:656
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
-msgstr "kirjoita pilkuilla eroteltu luettelo kelvollisista sähköpostiosoitteista"
+msgstr ""
+"kirjoita pilkuilla eroteltu luettelo kelvollisista sähköpostiosoitteista"
 
 #: motioneye/static/js/main.js:663
 msgid "specialaj signoj ne rajtas en dosiernomo"
@@ -69,7 +71,9 @@ msgid "\", ne nur tiuj alŝutitaj de motionEye!"
 msgstr "\", ei pelkästään motionEyen lataamat!"
 
 #: motioneye/static/js/main.js:927
-msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
+msgid ""
+"Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la "
+"dosierujo \""
 msgstr "Tämä poistaa rekursiivisesti kaikki vanhat mediatiedostot kansiosta \""
 
 #: motioneye/static/js/main.js:928
@@ -277,7 +281,8 @@ msgstr "Median purkuvirhe tai ei-tuettu mediaominaisuus."
 
 #: motioneye/static/js/main.js:3694
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
-msgstr "Formaattia ei tueta tai se ei ole saavutettavissa / sovellu toistettavaksi."
+msgstr ""
+"Formaattia ei tueta tai se ei ole saavutettavissa / sovellu toistettavaksi."
 
 #: motioneye/static/js/main.js:3697
 msgid "Nekonata eraro okazis."
@@ -380,24 +385,53 @@ msgid "la kameraon, kiun vi volas aldoni"
 msgstr "kamera, jonka haluat lisätä"
 
 #: motioneye/static/js/main.js:3958
-msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "Etä-motionEye-kamera, joka on asennettu toisen MotionEye-palvelimen taakse. Niiden lisääminen antaa sinun katsoa ja hallita niitä etänä."
+msgid ""
+"Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de "
+"MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de "
+"malproksime."
+msgstr ""
+"Etä-motionEye-kamera, joka on asennettu toisen MotionEye-palvelimen taakse. "
+"Niiden lisääminen antaa sinun katsoa ja hallita niitä etänä."
 
 #: motioneye/static/js/main.js:3973
-msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "Verkkokamerat (tai IP-kamerat) ovat laitteita, jotka tukevat RTSP/RTMP- tai MJPEG-videoita tai yksinkertaisia JPEG-kuvia. Selvitä oikea RTSP, RTMP, MJPEG tai JPEG URL laitteesi käsikirjasta."
+msgid ""
+"Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP "
+"aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via "
+"aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
+msgstr ""
+"Verkkokamerat (tai IP-kamerat) ovat laitteita, jotka tukevat RTSP/RTMP- tai "
+"MJPEG-videoita tai yksinkertaisia JPEG-kuvia. Selvitä oikea RTSP, RTMP, "
+"MJPEG tai JPEG URL laitteesi käsikirjasta."
 
 #: motioneye/static/js/main.js:3978
-msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "Paikalliset MMAL-kamerat ovat laitteita, jotka on liitetty suoraan motionEye-järjestelmään. Nämä ovat yleensä piirilevykohtiasia kameroita."
+msgid ""
+"Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-"
+"sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
+msgstr ""
+"Paikalliset MMAL-kamerat ovat laitteita, jotka on liitetty suoraan motionEye-"
+"järjestelmään. Nämä ovat yleensä piirilevykohtiasia kameroita."
 
 #: motioneye/static/js/main.js:3993
-msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "Laitteen lisääminen pelkäksi MJPEG-kameraksi verkkokameran sijaan parantaa päivitysnopeutta, mutta siihen ei ole saatavilla liikkeen tunnistusta, kuvan tallentamista tai videon tallennusta. Kameran on oltava palvelimen ja selaimesi käytettävissä. Tämä kamera ei ole yhteensopiva Internet Explorerin kanssa."
+msgid ""
+"Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan "
+"kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado "
+"aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti "
+"alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne "
+"kongruas kun Internet Explorer."
+msgstr ""
+"Laitteen lisääminen pelkäksi MJPEG-kameraksi verkkokameran sijaan parantaa "
+"päivitysnopeutta, mutta siihen ei ole saatavilla liikkeen tunnistusta, kuvan "
+"tallentamista tai videon tallennusta. Kameran on oltava palvelimen ja "
+"selaimesi käytettävissä. Tämä kamera ei ole yhteensopiva Internet Explorerin "
+"kanssa."
 
 #: motioneye/static/js/main.js:3998
-msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "Paikalliset V4L2-kamerat ovat kameralaitteita, jotka on kytketty suoraan motionEye-järjestelmään, yleensä USB:n kautta."
+msgid ""
+"Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via "
+"motionEye-sistemo, kutime per USB."
+msgstr ""
+"Paikalliset V4L2-kamerat ovat kameralaitteita, jotka on kytketty suoraan "
+"motionEye-järjestelmään, yleensä USB:n kautta."
 
 #: motioneye/static/js/main.js:4149
 msgid "Aldonadi kameraon..."
@@ -460,8 +494,12 @@ msgid "Elektu kiom rapide vi volas ke la akselita video estu."
 msgstr "Valitse miten nopea haluat intervallivideon olevan."
 
 #: motioneye/static/js/main.js:4253
-msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "Huomioiden suuren kuvien määrän, intervallivideon luominen saattaa kestää jonkin aikaa!"
+msgid ""
+"Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom "
+"da tempo!"
+msgstr ""
+"Huomioiden suuren kuvien määrän, intervallivideon luominen saattaa kestää "
+"jonkin aikaa!"
 
 #: motioneye/static/js/main.js:4270
 msgid "Krei akselita video"
@@ -670,3 +708,36 @@ msgstr "Automaattinen valkotasapaino"
 #: l10n/v4l2.js:26
 msgid "Zoom Absolute"
 msgstr "Absoluuttinen zoomaus"
+#: motioneye/templates/main.html:300
+msgid "Aŭdio Aktivigita"
+msgstr "Audio Enabled"
+
+#: motioneye/templates/main.html:302
+#, fuzzy
+msgid "ebligas aŭdion por ĉi tiu kamerao"
+msgstr "alias tälle kameralaitteelle"
+
+#: motioneye/templates/main.html:305
+#, fuzzy
+msgid "Aŭdio Aparato"
+msgstr "Videolaite"
+
+#: motioneye/templates/main.html:309
+msgid "elektu la aŭdkaptan aparaton"
+msgstr "select the audio capture device"
+
+#: motioneye/templates/main.html:312
+msgid "Aŭdio Kodeko"
+msgstr "Audio Codec"
+
+#: motioneye/templates/main.html:323
+msgid "Aŭdio Bitrapideco"
+msgstr "Audio Bitrate"
+
+#: motioneye/templates/main.html:325
+msgid "bitrapideco por kodita aŭdio en kbps"
+msgstr "bitrate for encoded audio in kbps"
+
+msgid "elektu la audiokodekon"
+msgstr "select the audio codec"
+
