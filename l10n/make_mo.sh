@@ -1,7 +1,7 @@
 #!/bin/bash
-# version: 2025-08-26
-# date: 2025-08-26
-VERSION="2025-08-26"
+# version: 2025-08-27.1
+# date: 2025-08-27
+VERSION="2025-08-27"
 
 set -e
 
@@ -28,6 +28,7 @@ while [[ $# -gt 0 ]]; do
             cp "$0" "$target"
             chmod +x "$target"
             echo "Installed to $target"
+            "$target"
             exit 0
             ;;
         --remove)
