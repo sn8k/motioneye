@@ -1,4 +1,4 @@
-<!-- version: 2025-08-26.3 -->
+<!-- version: 2025-08-27.1 -->
 
 # User Manual
 
@@ -34,7 +34,7 @@ Run the script without arguments to compile every locale:
 l10n/make_mo.sh
 ```
 
-Install the script system-wide:
+Install the script system-wide and compile the translations:
 
 ```
 l10n/make_mo.sh --install [/path/to/make_mo]
