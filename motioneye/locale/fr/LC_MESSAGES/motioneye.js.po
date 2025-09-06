@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Automatically generated, 2020.
 #
+# Lorcan Lerouvillois <lorcan.lerouvillois@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-02 23:03+0000\n"
-"PO-Revision-Date: 2022-06-12 14:56+0000\n"
-"Last-Translator: jmichault <jmt.2000@free.fr>\n"
+"PO-Revision-Date: 2025-09-07 05:01+0000\n"
+"Last-Translator: Lorcan Lerouvillois <lorcan.lerouvillois@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
@@ -196,11 +197,11 @@ msgstr "L'accès au service de téléchargement a réussi !"
 
 #: motioneye/static/js/main.js:3117
 msgid "Sciiga retpoŝto fiaskis:"
-msgstr "L'e-mail de notification a échoué :"
+msgstr "Échec de la notification par e-mail :"
 
 #: motioneye/static/js/main.js:3120
 msgid "Notification email succeeded!"
-msgstr ""
+msgstr "Notification par e-mail réussie !"
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
@@ -208,7 +209,7 @@ msgstr "Assurez-vous que toutes les options de configuration sont valides !"
 
 #: motioneye/static/js/main.js:3152
 msgid "Sciiga Telegramo fiaskis:"
-msgstr "Le «Telegrem» de notification a échoué :"
+msgstr "Le «Telegram» de notification a échoué :"
 
 #: motioneye/static/js/main.js:3155
 msgid "Sciiga Telegramo sukcesis!"
