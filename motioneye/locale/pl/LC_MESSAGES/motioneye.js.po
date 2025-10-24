@@ -2,20 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # nepozs <szopen@os.pl>, 2023.
+# Maksymilian Kłusek <123858.xyz@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 16:57+0000\n"
-"PO-Revision-Date: 2023-04-05 00:45+0000\n"
-"Last-Translator: nepozs <szopen@os.pl>\n"
+"PO-Revision-Date: 2025-10-25 06:02+0000\n"
+"Last-Translator: Maksymilian Kłusek <123858.xyz@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
@@ -199,7 +200,7 @@ msgstr "Nie udało się wysłać e-maila z powiadomieniem:"
 
 #: motioneye/static/js/main.js:3120
 msgid "Notification email succeeded!"
-msgstr ""
+msgstr "E-Mail powiadomieniowy został wysłany!"
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
