@@ -4,20 +4,21 @@
 # netuddki6 <lehelbek2013@gmail.com>, 2024.
 # Csaba Fero <csaba.fero@gmail.com>, 2024.
 # PaulReeps <paul@paulreeps.de>, 2025.
+# Robert Brutoczki <robibrutoczki@googlemail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-19 16:57+0000\n"
-"PO-Revision-Date: 2025-05-25 02:01+0000\n"
-"Last-Translator: PaulReeps <paul@paulreeps.de>\n"
+"PO-Revision-Date: 2025-10-12 02:11+0000\n"
+"Last-Translator: Robert Brutoczki <robibrutoczki@googlemail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: motioneye/static/js/main.js:608
 msgid "specialaj signoj ne rajtas en pasvorto"
@@ -201,7 +202,7 @@ msgstr "Sikertelen értesítő e-mail:"
 
 #: motioneye/static/js/main.js:3120
 msgid "Notification email succeeded!"
-msgstr ""
+msgstr "Értesítő email sikeres !"
 
 #: motioneye/static/js/main.js:3136
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
