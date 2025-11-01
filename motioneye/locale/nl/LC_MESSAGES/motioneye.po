@@ -4,30 +4,31 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 # piet <piet@users.noreply.hosted.weblate.org>, 2024.
 # Zhang Wei <Zhang@users.noreply.hosted.weblate.org>, 2024.
+# Marijn <168113859+Marijn0@users.noreply.github.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-10-30 22:46+0000\n"
-"PO-Revision-Date: 2024-10-20 10:16+0000\n"
-"Last-Translator: Zhang Wei <Zhang@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-11-01 12:29+0000\n"
+"Last-Translator: Marijn <168113859+Marijn0@users.noreply.github.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.6.0\n"
 
 #: motioneye/config.py:860
 msgid "Device names are only allowed to contain alphanumerical characters, hyphen -, underscore _, plus +, and space"
-msgstr ""
+msgstr "Apparaatnamen mogen alleen alfanumerieke tekens, een koppelteken -, een underscore _, een plusteken + en spaties bevatten"
 
 #: motioneye/config.py:864
 #, python-format
 msgid "File names are only allowed to contain alphanumerical characters, parenthesis (), forward slash /, dot ., underscore _, hyphen -, space, and a subset of motion conversion specifiers: %C %Y %m %d %H %M %S %q %v"
-msgstr ""
+msgstr "Bestandsnamen mogen alleen alfanumerieke tekens bevatten, haakjes (), schuine streep /, punt ., underscore _, koppelteken -, spatie en een beperkte set motion-conversiespecificaties: %C %Y %m %d %H %M %S %q %v"
 
 #: motioneye/config.py:869
 msgid "Directory names are only allowed to contain alphanumerical characters, space, parenthesis (), forward slash /, dot ., underscore _, and hyphen -"
