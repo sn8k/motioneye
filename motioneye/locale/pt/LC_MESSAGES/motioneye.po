@@ -7,21 +7,43 @@
 # Cleiton Carvalho <cleitonsilvacarvalho@gmail.com>, 2023.
 # piet <piet@users.noreply.hosted.weblate.org>, 2024.
 # Zhang Wei <Zhang@users.noreply.hosted.weblate.org>, 2024.
+# João Antonio da Cruz Junior <joaoacj@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-28 19:42+0000\n"
-"PO-Revision-Date: 2024-10-20 10:16+0000\n"
-"Last-Translator: Zhang Wei <Zhang@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2025-10-30 22:46+0000\n"
+"PO-Revision-Date: 2025-08-22 06:01+0000\n"
+"Last-Translator: João Antonio da Cruz Junior <joaoacj@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/motioneye-project/motioneye-python-texts/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.13\n"
 "Generated-By: Babel 2.6.0\n"
+
+#: motioneye/config.py:860
+msgid "Device names are only allowed to contain alphanumerical characters, hyphen -, underscore _, plus +, and space"
+msgstr ""
+
+#: motioneye/config.py:864
+#, python-format
+msgid "File names are only allowed to contain alphanumerical characters, parenthesis (), forward slash /, dot ., underscore _, hyphen -, space, and a subset of motion conversion specifiers: %C %Y %m %d %H %M %S %q %v"
+msgstr ""
+
+#: motioneye/config.py:869
+msgid "Directory names are only allowed to contain alphanumerical characters, space, parenthesis (), forward slash /, dot ., underscore _, and hyphen -"
+msgstr ""
+
+#: motioneye/config.py:874
+msgid "Email addresses are only allowed to contain alphanumerical characters, underscore _, plus +, dot ., at @, caret ^, tilde ~, angle brackets <>, hyphen -, and may be separated by comma, and space"
+msgstr ""
+
+#: motioneye/config.py:879
+msgid "URLs are not allowed to contain caret ^, semicolon ;, or apostrophe '"
+msgstr ""
 
 #: motioneye/server.py:232
 msgid "interrompa signalo ricevita, fermanta …"
@@ -52,7 +74,6 @@ msgid "saluton! ĉi tio estas motionEye-servilo "
 msgstr "Olá, este é um servidor motionEye "
 
 #: motioneye/server.py:437
-#, fuzzy
 msgid "purigado komenciĝis"
 msgstr "limpeza iniciada"
 
@@ -65,7 +86,6 @@ msgid "taskoj komenciĝis"
 msgstr "tarefas iniciadas"
 
 #: motioneye/server.py:446
-#, fuzzy
 msgid "mjpg klienta rubo-kolektanto komenciĝis"
 msgstr "coletor de lixo do cliente mjpg iniciado"
 
@@ -74,7 +94,6 @@ msgid "servilo komenciĝis"
 msgstr "servidor iniciado"
 
 #: motioneye/server.py:470
-#, fuzzy
 msgid "servilo haltis"
 msgstr "servidor parado"
 
@@ -208,7 +227,6 @@ msgid "Motion Versio"
 msgstr "Versão do Motion"
 
 #: motioneye/templates/main.html:210
-#, fuzzy
 msgid "Operaciumo Versio"
 msgstr "Versão do sistema operacional"
 
