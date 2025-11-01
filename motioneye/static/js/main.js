@@ -19,6 +19,8 @@ var username = '';
 var passwordHash = '';
 var basePath = null;
 var signatureRegExp = new RegExp('[^A-Za-z0-9/?_.=&{}\\[\\]":, -]', 'g');
+// regex definitions for input sanity checks in frontend
+// they must match the ones in motioneye/config.py
 var deviceNameValidRegExp = new RegExp('^[A-Za-z0-9\-\_\+\ ]+$');
 var filenameValidRegExp = new RegExp('^([A-Za-z0-9 \(\)/._-]|%[CYmdHMSqv])+$');
 var dirnameValidRegExp = new RegExp('^[A-Za-z0-9 \(\)/._-]+$');
@@ -3117,7 +3119,7 @@ function doTestEmail() {
             showErrorMessage(i18n.gettext("Sciiga retpoŝto fiaskis:") + data.error + '!');
         }
         else {
-            showPopupMessage(i18n.gettext("Sciiga retpoŝto fiaskis:"), 'info');
+            showPopupMessage(i18n.gettext("Notification email succeeded!"), 'info');
         }
     });
 }
