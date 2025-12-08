@@ -130,7 +130,7 @@ LOCAL_TIME_FILE = None
 ENABLE_REBOOT = False
 
 # enables motionEye version update (not implemented by default)
-ENABLE_UPDATE = False
+ENABLE_UPDATE = True
 
 # timeout in seconds to use when talking to the SMTP server
 SMTP_TIMEOUT = 60

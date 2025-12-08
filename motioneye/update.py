@@ -17,10 +17,16 @@
 import datetime
 import logging
 import re
+import shutil
+import sys
+from functools import cmp_to_key
+from pathlib import Path
 
 from tornado import ioloop
 
 from motioneye import utils
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
 def get_os_version():
@@ -96,6 +102,93 @@ def compare_versions(version1, version2):
         return 0
 
 
+def _is_git_repo():
+    return (REPO_ROOT / '.git').is_dir()
+
+
+def _git(*args):
+    return utils.call_subprocess(['git', '-C', str(REPO_ROOT), *args])
+
+
+def _restart_service_if_exists():
+    service_name = 'motioneye.service'
+
+    if shutil.which('systemctl'):
+        try:
+            utils.call_subprocess(['systemctl', 'daemon-reload'])
+            utils.call_subprocess(['systemctl', 'enable', '--now', service_name])
+            utils.call_subprocess(['systemctl', 'restart', service_name])
+            return
+        except Exception as exc:
+            logging.warning('systemd restart failed: %s', exc)
+
+    if shutil.which('service'):
+        try:
+            utils.call_subprocess(['service', 'motioneye', 'restart'])
+            return
+        except Exception as exc:
+            logging.warning('service restart failed: %s', exc)
+
+    logging.info(
+        'no system service detected; restart the server manually with meyectl startserver'
+    )
+
+
+def get_source_update_status():
+    if not _is_git_repo():
+        return None
+
+    try:
+        branch = _git('rev-parse', '--abbrev-ref', 'HEAD')
+    except Exception as exc:
+        logging.warning('failed to detect current branch: %s', exc)
+        return None
+
+    try:
+        _git('fetch', '--all')
+    except Exception as exc:
+        logging.warning('failed to fetch updates: %s', exc)
+
+    try:
+        behind = int(_git('rev-list', '--count', f'HEAD..origin/{branch}') or 0)
+    except Exception as exc:
+        logging.warning('failed to compare local and remote revisions: %s', exc)
+        behind = 0
+
+    current_revision = _git('rev-parse', '--short', 'HEAD')
+    update_revision = None
+    if behind > 0:
+        try:
+            update_revision = _git('rev-parse', '--short', f'origin/{branch}')
+        except Exception as exc:
+            logging.warning('failed to resolve remote revision: %s', exc)
+
+    return {
+        'update_version': f'{branch}@{update_revision}' if update_revision else None,
+        'current_version': f'{branch}@{current_revision}',
+    }
+
+
+def perform_source_update(version=None):
+    if not _is_git_repo():
+        raise Exception('source update is not available because the install is not a git clone')
+
+    branch = version.split('@')[0] if version else _git('rev-parse', '--abbrev-ref', 'HEAD')
+    logging.info('updating branch %s from source...', branch)
+
+    _git('checkout', branch)
+    _git('pull', '--ff-only', 'origin', branch)
+
+    utils.call_subprocess([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip', 'wheel'])
+    utils.call_subprocess(
+        [sys.executable, '-m', 'pip', 'install', '--upgrade', '-e', str(REPO_ROOT)]
+    )
+
+    _restart_service_if_exists()
+
+    return {'ok': True}
+
+
 def get_all_versions():
     try:
         import platformupdate
@@ -108,6 +201,10 @@ def get_all_versions():
 
 def perform_update(version):
     logging.info(f'updating to version {version}...')
+
+    source_status = get_source_update_status()
+    if source_status:
+        return perform_source_update(version)
 
     try:
         import platformupdate
@@ -122,3 +219,17 @@ def perform_update(version):
     ioloop.IOLoop.current().add_timeout(
         datetime.timedelta(seconds=2), platformupdate.perform_update, version=version
     )
+
+
+def get_update_status():
+    source_status = get_source_update_status()
+    if source_status:
+        return source_status
+
+    versions = get_all_versions()
+    current_version = get_os_version()[1]
+    recent_versions = [v for v in versions if compare_versions(v, current_version) > 0]
+    recent_versions.sort(key=cmp_to_key(compare_versions))
+    update_version = recent_versions[-1] if recent_versions else None
+
+    return {'update_version': update_version, 'current_version': current_version}
