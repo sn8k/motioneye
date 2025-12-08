@@ -3022,14 +3022,16 @@ function runUpdateDialog() {
         content: container,
         buttons: [
             {
-                value: i18n.gettext('Check'),
-                onclick: function () {
+                caption: i18n.gettext('Check'),
+                isDefault: true,
+                click: function () {
                     performUpdateCheck(repoEntry.val().trim(), branchSelect.val());
                     return false; /* keeps dialog hidden until after check */
                 }
             },
             {
-                value: i18n.gettext('Cancel')
+                caption: i18n.gettext('Cancel'),
+                isCancel: true
             }
         ]
     });
