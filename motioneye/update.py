@@ -24,6 +24,7 @@ from pathlib import Path
 
 from tornado import ioloop
 
+import motioneye
 from motioneye import utils
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -290,7 +291,7 @@ def get_update_status(repo_url=None, branch=None):
         return source_status
 
     versions = get_all_versions()
-    current_version = get_os_version()[1]
+    current_version = motioneye.VERSION
     recent_versions = [v for v in versions if compare_versions(v, current_version) > 0]
     recent_versions.sort(key=cmp_to_key(compare_versions))
     update_version = recent_versions[-1] if recent_versions else None
