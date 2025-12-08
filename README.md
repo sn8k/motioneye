@@ -66,3 +66,23 @@ http://[your_ip]:8765/
 ```
 
 Use usernamme _admin_ with empty password when prompted for credentials. For security, __please do set up a proper password for the admin user__, at least if you plan to make your motionEye installation accessible from the Internet.
+
+## Optional audio streaming
+
+To mux a USB microphone directly into your primary RTSP video feed on Raspberry Pi OS Trixie, enable the audio restreamer in `/etc/motioneye/motioneye.conf`:
+
+```
+AUDIO_ENABLED true
+AUDIO_DEVICE_NAME USB
+AUDIO_DEVICE plug:default
+AUDIO_RTSP_PORT 8555
+AUDIO_RTSP_PATH stream
+# Optional override if you don't want to use the first local Motion camera stream
+# AUDIO_VIDEO_SOURCE http://127.0.0.1:8081
+```
+
+`AUDIO_DEVICE_NAME` looks up the ALSA card by its friendly name (as printed in `/proc/asound/cards`) so that USB devices do not break when their numeric IDs change. If no match is found, the restreamer falls back to the explicit `AUDIO_DEVICE` string.
+
+After restarting motionEye, the microphone is muxed with your main video on `rtsp://<server-ip>:8555/stream` using AAC audio. By default, the video input is the first enabled local Motion camera stream; set `AUDIO_VIDEO_SOURCE` to override.
+
+You can also toggle these options from the motionEye UI under **Audio RTSP** in the general settings; changes there will update `motioneye.conf` and restart the restreamer automatically.

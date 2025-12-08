@@ -27,7 +27,7 @@ import time
 from tornado.ioloop import IOLoop
 from tornado.web import Application
 
-from motioneye import meeting, settings, template
+from motioneye import audioctl, meeting, settings, template
 from motioneye.controls import smbctl, v4l2ctl
 from motioneye.handlers.action import ActionHandler
 from motioneye.handlers.base import ManifestHandler, NotFoundHandler
@@ -415,7 +415,7 @@ def make_app(debug: bool = False) -> Application:
 
 def run():
     import motioneye
-    from motioneye import cleanup, mjpgclient, motionctl, tasks, wsswitch
+    from motioneye import audiostream, cleanup, mjpgclient, motionctl, tasks, wsswitch
     from motioneye.controls import smbctl
 
     configure_signals()
@@ -443,6 +443,10 @@ def run():
 
     meeting.start()
     logging.info('Meeting heartbeat scheduler started')
+
+    audiostream.start()
+    if settings.AUDIO_ENABLED:
+        logging.info('RTSP audio restream enabled')
 
     if settings.MJPG_CLIENT_TIMEOUT:
         mjpgclient.start()
