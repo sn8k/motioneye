@@ -3019,7 +3019,7 @@ function runUpdateDialog() {
 
     runModalDialog({
         title: i18n.gettext('Software Update'),
-        text: container,
+        content: container,
         buttons: [
             {
                 value: i18n.gettext('Check'),
