@@ -52,6 +52,15 @@ MEDIA_PATH = '/var/lib/motioneye'
 # the log level (use FATAL, ERROR, WARNING, INFO or DEBUG)
 LOG_LEVEL = logging.INFO
 
+# enable RTSP audio restreaming (requires ffmpeg and an ALSA-compatible device)
+AUDIO_ENABLED = False
+
+# ALSA device identifier to capture audio from (for example: "hw:1,0" for USB mics)
+AUDIO_DEVICE = 'hw:1,0'
+
+# port to bind the RTSP audio restream on
+AUDIO_RTSP_PORT = 8555
+
 # the IP address to listen on
 # (0.0.0.0 for all interfaces, 127.0.0.1 for localhost)
 LISTEN = '0.0.0.0'

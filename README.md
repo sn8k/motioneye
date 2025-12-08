@@ -66,3 +66,15 @@ http://[your_ip]:8765/
 ```
 
 Use usernamme _admin_ with empty password when prompted for credentials. For security, __please do set up a proper password for the admin user__, at least if you plan to make your motionEye installation accessible from the Internet.
+
+## Optional audio streaming
+
+To serve USB microphone audio alongside your RTSP video feed on Raspberry Pi OS Trixie, enable the audio restreamer in `/etc/motioneye/motioneye.conf`:
+
+```
+AUDIO_ENABLED true
+AUDIO_DEVICE hw:1,0
+AUDIO_RTSP_PORT 8555
+```
+
+After restarting motionEye, the microphone is available from `rtsp://<server-ip>:8555/audio` using AAC. Clients can reuse that track when muxing the video stream.
