@@ -485,30 +485,41 @@ class SessionManager:
             if session.state == SessionState.PLAYING
         ]
     
-    def broadcast_video_frame(self, stream_url: str, frame_data: bytes):
+    def broadcast_video_frame(self, stream_id: str, frame_data: bytes):
         """Broadcast a video frame to all playing sessions on a stream.
         
         Args:
-            stream_url: Stream URL to broadcast to
+            stream_id: Stream identifier to broadcast to
             frame_data: H.264 frame data
         """
-        for session in self.get_playing_sessions():
-            if session.stream_url == stream_url or not stream_url:
-                session.send_video_frame(frame_data)
+        sessions = self.get_playing_sessions()
+        for session in sessions:
+            # Match stream_url (may contain full path) with stream_id
+            session_stream = session.stream_url.strip('/').split('/')[0] if session.stream_url else ''
+            if session_stream == stream_id or stream_id in session.stream_url or not stream_id:
+                try:
+                    session.send_video_frame(frame_data)
+                except Exception as e:
+                    logging.debug(f"Error sending video to session {session.session_id}: {e}")
                 
     def broadcast_audio_samples(
         self,
-        stream_url: str,
+        stream_id: str,
         audio_data: bytes,
         is_aac: bool = False,
     ):
         """Broadcast audio samples to all playing sessions on a stream.
         
         Args:
-            stream_url: Stream URL to broadcast to
+            stream_id: Stream identifier to broadcast to
             audio_data: Audio sample data
             is_aac: True for AAC, False for PCM
         """
-        for session in self.get_playing_sessions():
-            if session.stream_url == stream_url or not stream_url:
-                session.send_audio_samples(audio_data, is_aac=is_aac)
+        sessions = self.get_playing_sessions()
+        for session in sessions:
+            session_stream = session.stream_url.strip('/').split('/')[0] if session.stream_url else ''
+            if session_stream == stream_id or stream_id in session.stream_url or not stream_id:
+                try:
+                    session.send_audio_samples(audio_data, is_aac=is_aac)
+                except Exception as e:
+                    logging.debug(f"Error sending audio to session {session.session_id}: {e}")

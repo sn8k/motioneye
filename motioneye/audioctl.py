@@ -1,8 +1,8 @@
-"""UI plumbing and persistence for RTSP audio mux settings.
+"""UI plumbing and persistence for audio settings.
 
 This module provides:
 - Detection of available ALSA audio input devices
-- UI configuration for audio settings
+- UI configuration for audio settings (shared between native RTSP and legacy mode)
 - Persistence of audio settings to motioneye.conf
 """
 
@@ -13,17 +13,8 @@ import subprocess
 import time
 from typing import Any, Dict, List, Optional, Tuple
 
-from motioneye import audiostream, settings
+from motioneye import settings
 from motioneye.config import additional_config, additional_section
-
-_DEFAULTS: Dict[str, Any] = {
-    "enabled": False,
-    "video_source": None,
-    "device_name": None,
-    "device": "plug:default",
-    "rtsp_port": 8555,
-    "rtsp_path": "stream",
-}
 
 # Cache for detected audio devices
 _audio_devices_cache: Optional[List[Tuple[str, str]]] = None
@@ -60,8 +51,6 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
         if result.returncode == 0:
             # Parse output like:
             # card 0: Device [USB Audio Device], device 0: USB Audio [USB Audio]
-            #   Subdevices: 1/1
-            #   Subdevice #0: subdevice #0
             for line in result.stdout.split('\n'):
                 match = re.match(
                     r'card\s+(\d+):\s+(\w+)\s+\[([^\]]+)\],\s+device\s+(\d+):\s+(.+)',
@@ -75,7 +64,6 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
                     
                     # Create ALSA device identifier
                     device_id = f"hw:{card_num},{device_num}"
-                    # Also add plug: version for better compatibility
                     plug_device_id = f"plug:hw:{card_num},{device_num}"
                     
                     # Create friendly name
@@ -83,7 +71,7 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
                     if device_desc and device_desc != card_name:
                         friendly_name = f"{card_name} - {device_desc}"
                     
-                    # Add both hw: and plug: versions
+                    # Add plug: version for better compatibility
                     devices.append((plug_device_id, f"{friendly_name} (plug)"))
                     devices.append((device_id, f"{friendly_name} (direct)"))
         
@@ -100,7 +88,6 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
                     parts = line.split('\t')
                     if len(parts) >= 2:
                         source_name = parts[1]
-                        # Filter for input sources (not monitors)
                         if '.monitor' not in source_name and source_name:
                             devices.append((f"pulse:{source_name}", f"PulseAudio: {source_name}"))
         except (subprocess.TimeoutExpired, FileNotFoundError):
@@ -179,6 +166,10 @@ def _persist_setting(name: str, value: Any) -> None:
 
         parts = line.split(" ", 1)
         if len(parts) != 2:
+            # Skip malformed lines (no value)
+            if len(parts) == 1 and parts[0].upper() == name.upper():
+                updated = True  # Remove this malformed line
+                continue
             new_lines.append(line)
             continue
 
@@ -204,12 +195,6 @@ def _persist_setting(name: str, value: Any) -> None:
         logging.error("Could not persist setting %s to %s: %s", name, path, e)
 
 
-def _apply_and_restart() -> None:
-    """Apply changes and restart the audio stream."""
-    audiostream.stop()
-    audiostream.start()
-
-
 def _bool(value: Any) -> bool:
     """Convert value to boolean."""
     return str(value).lower() in ("1", "true", "yes", "on")
@@ -224,7 +209,6 @@ def _set(key: str, value: Any) -> None:
     """Set a setting value and persist it."""
     setattr(settings, key, value)
     _persist_setting(key.lower(), value)
-    _apply_and_restart()
 
 
 def _get_optional_str(value: Any) -> str:
@@ -232,76 +216,72 @@ def _get_optional_str(value: Any) -> str:
     return "" if value is None else str(value)
 
 
-def _set_optional_str(key: str, value: Any) -> None:
-    """Set optional string value, treating empty as None."""
-    if value is None:
-        value = ""
-    value = str(value).strip()
-    setattr(settings, key, value or None)
-    _persist_setting(key.lower(), value)
-    _apply_and_restart()
-
-
 # =============================================================================
-# Section Definition
+# Legacy Audio Stream Section (FFmpeg restreamer)
 # =============================================================================
 
 @additional_section
-def audio() -> Dict[str, Any]:
-    """Audio RTSP section definition."""
+def audio_legacy() -> Dict[str, Any]:
+    """Legacy Audio RTSP section definition."""
     return {
-        "label": "Audio RTSP", 
-        "description": "Mux microphone audio with the RTSP feed (legacy ffmpeg mode)",
+        "label": "Audio Stream (Legacy)", 
+        "description": "FFmpeg-based audio/video muxing (use RTSP Server instead for native streaming)",
         "open": False,
     }
 
 
-# =============================================================================
-# Configuration Options
-# =============================================================================
-
 @additional_config
-def audio_enabled() -> Dict[str, Any]:
-    """Enable audio streaming option."""
+def audio_legacy_enabled() -> Dict[str, Any]:
+    """Enable legacy audio streaming option."""
+    def apply_and_restart():
+        # Import here to avoid circular imports
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
+    def set_enabled(enabled):
+        _set("AUDIO_ENABLED", _bool(enabled))
+        apply_and_restart()
+    
     return {
-        "label": "Enable Audio Streaming", 
-        "description": "Start the ffmpeg restream to mux microphone audio into RTSP.",
+        "label": "Enable Legacy Audio Stream", 
+        "description": "Start FFmpeg restream to mux microphone audio into separate RTSP endpoint.",
         "type": "bool",
-        "section": "audio",
+        "section": "audio_legacy",
         "get": lambda: _bool(_get("AUDIO_ENABLED")),
-        "set": lambda enabled: _set("AUDIO_ENABLED", _bool(enabled)),
+        "set": set_enabled,
     }
 
 
 @additional_config
-def audio_device() -> Dict[str, Any]:
-    """Audio input device selection."""
+def audio_legacy_device() -> Dict[str, Any]:
+    """Audio input device selection for legacy mode."""
+    def apply_and_restart():
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
     def get_device():
-        """Get current audio device, defaulting to first detected if not set."""
         current = _get("AUDIO_DEVICE")
         if current:
             return current
-        # Return default device if not configured
         return get_default_audio_device()
     
     def set_device(device: str):
-        """Set audio device."""
         device = device.strip() if device else get_default_audio_device()
         setattr(settings, "AUDIO_DEVICE", device)
         _persist_setting("audio_device", device)
-        _apply_and_restart()
+        apply_and_restart()
     
     def get_choices():
-        """Get list of available audio devices as choices."""
         devices = detect_audio_devices()
-        # Format: [(value, display_name), ...]
         return devices if devices else [("plug:default", "Default Audio Device")]
     
     return {
         "label": "Audio Input Device",
         "description": "Select the audio capture device (microphone) to use.",
         "type": "choices",
-        "section": "audio",
+        "section": "audio_legacy",
         "choices": get_choices(),
         "get": get_device,
         "set": set_device,
@@ -309,56 +289,100 @@ def audio_device() -> Dict[str, Any]:
 
 
 @additional_config
-def audio_device_name() -> Dict[str, Any]:
-    """ALSA card name filter (optional, for advanced users)."""
+def audio_legacy_device_name() -> Dict[str, Any]:
+    """ALSA card name filter (optional)."""
+    def apply_and_restart():
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
+    def set_name(name):
+        if name is None:
+            name = ""
+        name = str(name).strip()
+        setattr(settings, "AUDIO_DEVICE_NAME", name or None)
+        _persist_setting("audio_device_name", name)
+        apply_and_restart()
+    
     return {
         "label": "ALSA Card Name Filter",
         "description": "Optional: Filter devices by ALSA card name (e.g. 'USB'). Leave empty to use device selection above.",
         "type": "str",
-        "section": "audio",
+        "section": "audio_legacy",
         "get": lambda: _get_optional_str(_get("AUDIO_DEVICE_NAME")),
-        "set": lambda name: _set_optional_str("AUDIO_DEVICE_NAME", name),
+        "set": set_name,
     }
 
 
 @additional_config
-def audio_video_source() -> Dict[str, Any]:
-    """Video source URL override."""
+def audio_legacy_video_source() -> Dict[str, Any]:
+    """Video source URL override for legacy mode."""
+    def apply_and_restart():
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
+    def set_source(source):
+        if source is None:
+            source = ""
+        source = str(source).strip()
+        setattr(settings, "AUDIO_VIDEO_SOURCE", source or None)
+        _persist_setting("audio_video_source", source)
+        apply_and_restart()
+    
     return {
         "label": "Video Source URL",
         "description": "Override the video URL to mux with microphone audio. Leave empty to use first camera.",
         "type": "str",
-        "section": "audio",
+        "section": "audio_legacy",
         "get": lambda: _get_optional_str(_get("AUDIO_VIDEO_SOURCE")),
-        "set": lambda source: _set_optional_str("AUDIO_VIDEO_SOURCE", source),
+        "set": set_source,
     }
 
 
 @additional_config
-def audio_rtsp_port() -> Dict[str, Any]:
-    """RTSP port for audio stream."""
+def audio_legacy_rtsp_port() -> Dict[str, Any]:
+    """RTSP port for legacy audio stream."""
+    def apply_and_restart():
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
+    def set_port(port):
+        _set("AUDIO_RTSP_PORT", int(port or 8555))
+        apply_and_restart()
+    
     return {
-        "label": "RTSP Port",
-        "description": "Port number to serve the combined audio/video stream on.",
+        "label": "Legacy RTSP Port",
+        "description": "Port number for the legacy audio/video combined stream (default: 8555).",
         "type": "number",
-        "section": "audio",
+        "section": "audio_legacy",
         "min": 1,
         "max": 65535,
-        "get": lambda: _get("AUDIO_RTSP_PORT") or _DEFAULTS["rtsp_port"],
-        "set": lambda port: _set("AUDIO_RTSP_PORT", int(port or _DEFAULTS["rtsp_port"])),
+        "get": lambda: _get("AUDIO_RTSP_PORT") or 8555,
+        "set": set_port,
     }
 
 
 @additional_config
-def audio_rtsp_path() -> Dict[str, Any]:
-    """RTSP path for audio stream."""
+def audio_legacy_rtsp_path() -> Dict[str, Any]:
+    """RTSP path for legacy audio stream."""
+    def apply_and_restart():
+        from motioneye import audiostream
+        audiostream.stop()
+        audiostream.start()
+    
+    def set_path(path):
+        _set("AUDIO_RTSP_PATH", str(path or "stream"))
+        apply_and_restart()
+    
     return {
         "label": "RTSP Path",
-        "description": "Path component for the unified RTSP endpoint.",
+        "description": "Path component for the legacy RTSP endpoint.",
         "type": "str",
-        "section": "audio",
-        "get": lambda: _get("AUDIO_RTSP_PATH") or _DEFAULTS["rtsp_path"],
-        "set": lambda path: _set("AUDIO_RTSP_PATH", str(path or _DEFAULTS["rtsp_path"])),
+        "section": "audio_legacy",
+        "get": lambda: _get("AUDIO_RTSP_PATH") or "stream",
+        "set": set_path,
     }
 
 
@@ -379,9 +403,9 @@ def audio_detected_devices() -> Dict[str, Any]:
         return "".join(lines)
     
     return {
-        "label": "Detected Devices",
+        "label": "Detected Audio Devices",
         "description": "Audio capture devices found on this system.",
         "type": "html",
-        "section": "audio",
+        "section": "audio_legacy",
         "get": get_devices_html,
     }

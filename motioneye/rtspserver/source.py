@@ -82,6 +82,7 @@ class FFmpegTranscoder:
         self._running = False
         self._video_thread: Optional[threading.Thread] = None
         self._audio_thread: Optional[threading.Thread] = None
+        self._stderr_thread: Optional[threading.Thread] = None
         
         # Stored SPS/PPS for client configuration
         self.sps: Optional[bytes] = None
@@ -99,12 +100,13 @@ class FFmpegTranscoder:
             return False
             
         binary, version, _ = ffmpeg_info
-        logging.info(f"Starting transcoder with ffmpeg {version}")
+        logging.info(f"Starting transcoder with ffmpeg {version} for {self.source_url}")
         
         self._running = True
         
         # Build FFmpeg command
         cmd = self._build_ffmpeg_command(binary)
+        logging.info(f"FFmpeg command: {' '.join(cmd)}")
         
         try:
             self._process = subprocess.Popen(
@@ -118,16 +120,35 @@ class FFmpegTranscoder:
             self._video_thread = threading.Thread(
                 target=self._read_video_output,
                 daemon=True,
+                name=f"ffmpeg-video-{self.config.camera_id}",
             )
             self._video_thread.start()
             
-            logging.info(f"Transcoder started for {self.source_url}")
+            # Start stderr reader for debugging
+            self._stderr_thread = threading.Thread(
+                target=self._read_stderr,
+                daemon=True,
+                name=f"ffmpeg-stderr-{self.config.camera_id}",
+            )
+            self._stderr_thread.start()
+            
+            logging.info(f"Transcoder started for camera {self.config.camera_id}")
             return True
             
         except Exception as e:
-            logging.error(f"Failed to start transcoder: {e}")
+            logging.error(f"Failed to start transcoder: {e}", exc_info=True)
             self._running = False
             return False
+    
+    def _read_stderr(self):
+        """Read and log FFmpeg stderr output."""
+        while self._running and self._process and self._process.poll() is None:
+            try:
+                line = self._process.stderr.readline()
+                if line:
+                    logging.debug(f"FFmpeg: {line.decode('utf-8', errors='replace').strip()}")
+            except Exception:
+                break
             
     def stop(self):
         """Stop the transcoder."""
@@ -147,8 +168,12 @@ class FFmpegTranscoder:
         if self._video_thread:
             self._video_thread.join(timeout=2)
             self._video_thread = None
+        
+        if self._stderr_thread:
+            self._stderr_thread.join(timeout=2)
+            self._stderr_thread = None
             
-        logging.info("Transcoder stopped")
+        logging.info(f"Transcoder stopped for camera {self.config.camera_id}")
         
     def _build_ffmpeg_command(self, binary: str) -> list:
         """Build FFmpeg command line.
@@ -162,9 +187,13 @@ class FFmpegTranscoder:
         cmd = [
             binary,
             '-hide_banner',
-            '-loglevel', 'warning',
-            '-fflags', 'nobuffer',
+            '-loglevel', 'info',  # More verbose for debugging
+            # Input options for MJPEG stream
+            '-fflags', '+genpts+nobuffer',
             '-flags', 'low_delay',
+            '-probesize', '32',
+            '-analyzeduration', '0',
+            '-f', 'mjpeg',  # Explicit format for MJPEG input
             '-i', self.source_url,
         ]
         
@@ -189,6 +218,7 @@ class FFmpegTranscoder:
             '-keyint_min', str(self.config.framerate),
             '-sc_threshold', '0',
             '-r', str(self.config.framerate),
+            '-pix_fmt', 'yuv420p',
         ])
         
         # Output format - raw H.264 Annex B format
@@ -205,11 +235,16 @@ class FFmpegTranscoder:
         buffer = b''
         start_code_4 = b'\x00\x00\x00\x01'
         start_code_3 = b'\x00\x00\x01'
+        frame_count = 0
+        
+        logging.info(f"Video reader started for camera {self.config.camera_id}")
         
         while self._running and self._process and self._process.poll() is None:
             try:
                 chunk = self._process.stdout.read(8192)
                 if not chunk:
+                    if self._running:
+                        logging.warning(f"FFmpeg stdout closed for camera {self.config.camera_id}")
                     break
                     
                 buffer += chunk
@@ -257,15 +292,27 @@ class FFmpegTranscoder:
                     
                     # Process NAL unit
                     self._process_nal_unit(nal_data)
+                    frame_count += 1
+                    
+                    if frame_count % 100 == 0:
+                        logging.debug(f"Camera {self.config.camera_id}: processed {frame_count} NAL units")
                     
             except Exception as e:
                 if self._running:
-                    logging.error(f"Error reading video output: {e}")
+                    logging.error(f"Error reading video output: {e}", exc_info=True)
                 break
                 
         # Process remaining data
         if buffer and self._running:
             self._process_nal_unit(buffer)
+        
+        # Check process exit code
+        if self._process:
+            exit_code = self._process.poll()
+            if exit_code is not None and exit_code != 0:
+                logging.error(f"FFmpeg exited with code {exit_code} for camera {self.config.camera_id}")
+        
+        logging.info(f"Video reader stopped for camera {self.config.camera_id}, total frames: {frame_count}")
             
     def _process_nal_unit(self, nal_data: bytes):
         """Process a single NAL unit.

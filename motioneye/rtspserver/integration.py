@@ -53,8 +53,7 @@ def get_rtsp_settings() -> Dict[str, Any]:
         'username': getattr(settings, 'RTSP_USERNAME', None),
         'password': getattr(settings, 'RTSP_PASSWORD', None),
         'audio_enabled': getattr(settings, 'RTSP_AUDIO_ENABLED', False),
-        'audio_device': getattr(settings, 'AUDIO_DEVICE', 'plug:default'),
-        'audio_device_name': getattr(settings, 'AUDIO_DEVICE_NAME', None),
+        'audio_device': getattr(settings, 'RTSP_AUDIO_DEVICE', None) or getattr(settings, 'AUDIO_DEVICE', 'plug:default'),
         'video_bitrate': getattr(settings, 'RTSP_VIDEO_BITRATE', 2000),
         'video_preset': getattr(settings, 'RTSP_VIDEO_PRESET', 'ultrafast'),
     }

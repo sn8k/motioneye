@@ -5,7 +5,53 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.43.1b21] - 2025-12-09
+
+### Corrigé
+
+#### Serveur RTSP - Streaming vidéo (2025-12-09)
+
+Correction du serveur RTSP qui n'envoyait pas les données vidéo aux clients.
+
+**Problème :** Le serveur RTSP acceptait les connexions mais ne transmettait aucune donnée.
+
+**Corrections apportées :**
+
+- `motioneye/rtspserver/session.py` :
+  - Amélioration de `broadcast_video_frame()` et `broadcast_audio_samples()` pour matcher correctement les sessions avec les streams
+  - Le matching utilise maintenant plusieurs méthodes (comparaison exacte, containment, fallback)
+  - Ajout de try/except pour éviter les crashes silencieux
+
+- `motioneye/rtspserver/source.py` :
+  - Ajout de logs détaillés dans `start()` avec la commande FFmpeg complète
+  - Amélioration de `_build_ffmpeg_command()` avec options MJPEG explicites
+  - Ajout du thread `_read_stderr` pour capturer les erreurs FFmpeg
+  - Logs de progression dans `_read_video_output()` (toutes les 100 frames)
+  - Affichage du code de sortie FFmpeg en cas d'erreur
+
+#### Interface utilisateur - Suppression du doublon Audio (2025-12-09)
+
+Suppression de la section "Audio RTSP" redondante avec "RTSP Server".
+
+**Modifications :**
+
+- `motioneye/audioctl.py` - Refonte :
+  - Section renommée "Audio Stream (Legacy)" pour distinguer du serveur natif
+  - Préfixe `audio_legacy_` pour toutes les options
+  - Description clarifiée : "FFmpeg-based audio/video muxing"
+
+- `motioneye/rtspserver/config.py` :
+  - Ajout de l'option `rtsp_audio_device` avec sélection par dropdown
+  - Import des fonctions de détection depuis `audioctl`
+
+- `motioneye/rtspserver/integration.py` :
+  - Utilisation de `RTSP_AUDIO_DEVICE` en priorité sur `AUDIO_DEVICE`
+
+### Modifié
+
+- `motioneye/__init__.py` : Version 0.43.1b21+20251209
+
+## [0.43.1b20] - 2025-12-08
 
 ### Ajouté
 

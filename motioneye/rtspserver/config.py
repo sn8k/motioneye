@@ -22,6 +22,7 @@ from typing import Any, Dict
 
 from motioneye import settings
 from motioneye.config import additional_config, additional_section
+from motioneye.audioctl import detect_audio_devices, get_default_audio_device
 
 
 def _get_rtsp_integration():
@@ -226,11 +227,41 @@ def rtsp_audio_enabled() -> Dict[str, Any]:
     """Enable audio in RTSP streams option."""
     return {
         "label": "Enable Audio",
-        "description": "Include audio from ALSA device in RTSP streams.",
+        "description": "Include audio from microphone in RTSP streams.",
         "type": "bool",
         "section": "rtsp_server",
         "get": lambda: _bool(_get("RTSP_AUDIO_ENABLED")),
         "set": lambda enabled: _set("RTSP_AUDIO_ENABLED", _bool(enabled)),
+    }
+
+
+@additional_config
+def rtsp_audio_device() -> Dict[str, Any]:
+    """Audio input device selection for RTSP server."""
+    def get_device():
+        current = _get("RTSP_AUDIO_DEVICE")
+        if current:
+            return current
+        return get_default_audio_device()
+    
+    def set_device(device: str):
+        device = device.strip() if device else get_default_audio_device()
+        setattr(settings, "RTSP_AUDIO_DEVICE", device)
+        _persist_setting("rtsp_audio_device", device)
+        _apply_and_restart()
+    
+    def get_choices():
+        devices = detect_audio_devices()
+        return devices if devices else [("plug:default", "Default Audio Device")]
+    
+    return {
+        "label": "Audio Input Device",
+        "description": "Select the microphone/audio capture device for RTSP audio.",
+        "type": "choices",
+        "section": "rtsp_server",
+        "choices": get_choices(),
+        "get": get_device,
+        "set": set_device,
     }
 
 
