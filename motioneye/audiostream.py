@@ -22,7 +22,7 @@ import re
 import subprocess
 from typing import List, Optional, Tuple
 
-from motioneye import mediafiles, settings
+from motioneye import config, mediafiles, settings
 
 _process: Optional[subprocess.Popen] = None
 
@@ -90,13 +90,43 @@ def _resolve_audio_device() -> str:
     return getattr(settings, 'AUDIO_DEVICE', 'plug:default')
 
 
-def start():
-    """Starts a minimal RTSP audio restream using ffmpeg.
+def _resolve_video_source() -> Optional[str]:
+    """Returns a video input URL suitable for muxing with microphone audio.
 
-    The restream is intentionally simple: we listen on the configured RTSP
-    port and expose AAC audio captured from the configured ALSA device. The
-    resulting URL is ``rtsp://<listen addr>:<port>/audio`` which can be
-    ingested by the existing RTSP pipeline together with video.
+    If ``settings.AUDIO_VIDEO_SOURCE`` is provided, it wins. Otherwise we try
+    to pick the first enabled local Motion camera's HTTP stream to avoid
+    requiring additional configuration.
+    """
+
+    explicit_source = getattr(settings, 'AUDIO_VIDEO_SOURCE', None)
+    if explicit_source:
+        return explicit_source
+
+    try:
+        cameras = config.get_enabled_local_motion_cameras()
+    except Exception as e:  # pragma: no cover - defensive logging
+        logging.warning('unable to resolve motion camera for RTSP mux: %s', e)
+        return None
+
+    if not cameras:
+        logging.warning('no enabled local motion cameras available for RTSP mux')
+        return None
+
+    stream_port = cameras[0].get('stream_port')
+    if not stream_port:
+        logging.warning('first local motion camera lacks a stream_port, cannot mux audio')
+        return None
+
+    return f'http://127.0.0.1:{stream_port}'
+
+
+def start():
+    """Starts a minimal RTSP A/V restream using ffmpeg.
+
+    The restream listens on the configured RTSP port and muxes AAC microphone
+    audio with the primary Motion video stream. Clients can then subscribe to
+    the existing RTSP URL and receive both tracks without needing a second
+    endpoint.
     """
 
     global _process
@@ -117,15 +147,26 @@ def start():
     binary, version, _codecs = ffmpeg_info
     logging.info(f'ffmpeg {version} detected, starting RTSP audio restream')
 
+    video_source = _resolve_video_source()
+    if not video_source:
+        logging.warning('RTSP A/V mux disabled: no video source available')
+        return
+
     audio_device = _resolve_audio_device()
     audio_port = getattr(settings, 'AUDIO_RTSP_PORT', 8555)
     listen_address = getattr(settings, 'LISTEN', '0.0.0.0')
+    stream_path = getattr(settings, 'AUDIO_RTSP_PATH', 'stream')
+    output_url = f'rtsp://{listen_address}:{audio_port}/{stream_path}'
 
     args = [
         binary,
         '-hide_banner',
         '-loglevel',
         'warning',
+        '-fflags',
+        'nobuffer',
+        '-i',
+        video_source,
         '-f',
         'alsa',
         '-i',
@@ -134,6 +175,12 @@ def start():
         '1',
         '-ar',
         '16000',
+        '-map',
+        '0:v:0',
+        '-map',
+        '1:a:0',
+        '-c:v',
+        'copy',
         '-c:a',
         'aac',
         '-f',
@@ -142,7 +189,7 @@ def start():
         'listen',
         '-rtsp_transport',
         'tcp',
-        f'rtsp://{listen_address}:{audio_port}/audio',
+        output_url,
     ]
 
     audio_log = os.path.join(settings.LOG_PATH, 'audio_rtsp.log')
@@ -155,9 +202,10 @@ def start():
         return
 
     logging.info(
-        'RTSP audio restream started on %s:%s from device "%s"',
+        'RTSP A/V restream started on %s:%s (%s) with audio device "%s"',
         listen_address,
         audio_port,
+        stream_path,
         audio_device,
     )
 

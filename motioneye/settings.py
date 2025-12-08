@@ -55,6 +55,10 @@ LOG_LEVEL = logging.INFO
 # enable RTSP audio restreaming (requires ffmpeg and an ALSA-compatible device)
 AUDIO_ENABLED = False
 
+# optional video source URL to mux with microphone audio; defaults to the first
+# enabled Motion camera if unset
+AUDIO_VIDEO_SOURCE = None
+
 # Friendly ALSA card name to resolve dynamically (e.g. "USB"), avoids unstable numeric IDs
 AUDIO_DEVICE_NAME = None
 
@@ -63,6 +67,9 @@ AUDIO_DEVICE = 'plug:default'
 
 # port to bind the RTSP audio restream on
 AUDIO_RTSP_PORT = 8555
+
+# RTSP path to expose the muxed audio+video stream on
+AUDIO_RTSP_PATH = 'stream'
 
 # the IP address to listen on
 # (0.0.0.0 for all interfaces, 127.0.0.1 for localhost)
