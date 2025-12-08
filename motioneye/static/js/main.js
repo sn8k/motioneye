@@ -2888,21 +2888,71 @@ function doUpdate() {
         return runAlertDialog(i18n.gettext("Bonvolu apliki unue la modifitajn agordojn!"));
     }
 
-    showModalDialog('<div class="modal-progress"></div>');
-    ajax('GET', basePath + 'update/', null, function (data) {
-        if (data.update_version == null) {
-            runAlertDialog(i18n.gettext("motionEye estas ĝisdatigita (aktuala versio: ") + data.current_version + ')');
+    runUpdateDialog();
+}
+
+function runUpdateDialog() {
+    var defaultRepo = 'https://github.com/sn8k/motioneye.git';
+    var desiredBranch = 'main';
+    var repoEntry = $('<input type="text" class="dialog-text" style="width: 100%;" />').val(defaultRepo);
+    var branchSelect = $('<select class="dialog-select" style="width: 70%;"></select>');
+    var reloadBranches = $('<input type="button" class="blueButton" value="' + i18n.gettext('Reload') + '" />');
+    var branchStatus = $('<div class="small-info"></div>');
+
+    function renderBranches(branches) {
+        branchSelect.empty();
+        var options = branches && branches.length ? branches : [desiredBranch];
+
+        for (var i = 0; i < options.length; i++) {
+            branchSelect.append('<option value="' + options[i] + '">' + options[i] + '</option>');
         }
-        else {
-            runConfirmDialog(i18n.gettext("Nova versio havebla: ") + data.update_version + i18n.gettext(". Ĝisdatigi?"), function () {
+
+        if (options.indexOf(desiredBranch) !== -1) {
+            branchSelect.val(desiredBranch);
+        }
+
+        branchSelect.prop('disabled', false);
+    }
+
+    function refreshBranches() {
+        branchSelect.prop('disabled', true);
+        branchStatus.text(i18n.gettext('Loading branches...'));
+
+        ajax('GET', basePath + 'update/?list_branches=1&repo_url=' + encodeURIComponent(repoEntry.val()), null, function (data) {
+            var branches = data && data.branches ? data.branches : [];
+            if (!branches.length && desiredBranch !== 'main') {
+                branches.push(desiredBranch);
+            }
+
+            renderBranches(branches);
+            branchStatus.text(i18n.gettext('Select the branch to use.'));
+        }, function () {
+            renderBranches([]);
+            branchStatus.text(i18n.gettext('Failed to load branches.'));
+        });
+    }
+
+    function performUpdateCheck(repoUrl, branch) {
+        showModalDialog('<div class="modal-progress"></div>');
+
+        ajax('GET', basePath + 'update/?repo_url=' + encodeURIComponent(repoUrl) + '&branch=' + encodeURIComponent(branch), null, function (data) {
+            hideModalDialog();
+
+            if (data.update_version == null) {
+                runAlertDialog(i18n.gettext('motionEye estas ĝisdatigita (aktuala versio: ') + data.current_version + ')');
+                return;
+            }
+
+            runConfirmDialog(i18n.gettext('Nova versio havebla: ') + data.update_version + i18n.gettext('. Ĝisdatigi?'), function () {
                 refreshInterval = 1000000;
-                showModalDialog('<div style="text-align: center;"><span>Updating. This may take a few minutes.</span><div class="modal-progress"></div></div>');
-                ajax('POST', basePath + 'update/?version=' + data.update_version, null, function () {
+                showModalDialog('<div style="text-align: center;"><span>Updating from ' + repoUrl + ' (' + branch + '). This may take a few minutes.</span><div class="modal-progress"></div></div>');
+
+                ajax('POST', basePath + 'update/?version=' + encodeURIComponent(data.update_version) + '&repo_url=' + encodeURIComponent(repoUrl) + '&branch=' + encodeURIComponent(branch), null, function () {
                     var count = 0;
                     function checkServer() {
                         ajax('GET', basePath + 'config/0/get/', null,
                             function () {
-                                runAlertDialog(i18n.gettext("motionEye estis sukcese ĝisdatigita!"), function () {
+                                runAlertDialog(i18n.gettext('motionEye estis sukcese ĝisdatigita!'), function () {
                                     window.location.reload(true);
                                 });
                             },
@@ -2912,7 +2962,7 @@ function doUpdate() {
                                     setTimeout(checkServer, 5000);
                                 }
                                 else {
-                                    runAlertDialog(i18n.gettext("Ĝisdatigo malsukcesis!"), function () {
+                                    runAlertDialog(i18n.gettext('Ĝisdatigo malsukcesis!'), function () {
                                         window.location.reload(true);
                                     });
                                 }
@@ -2922,15 +2972,66 @@ function doUpdate() {
 
                     setTimeout(checkServer, 15000);
 
-                }, function (e) { /* error */
-                    runAlertDialog(i18n.gettext("La ĝisdatiga procezo malsukcesis!"), function () {
+                }, function () { /* error */
+                    runAlertDialog(i18n.gettext('La ĝisdatiga procezo malsukcesis!'), function () {
                         window.location.reload(true);
                     });
                 });
 
                 return false; /* prevents hiding the modal container */
             });
+        }, function () {
+            hideModalDialog();
+            runAlertDialog(i18n.gettext('Ne eblis kontroli ĝisdatigojn. Bonvolu provi denove.'));
+        });
+    }
+
+    var container = $('<div></div>');
+    container.append('<div class="dialog-line"><label>' + i18n.gettext('Repository URL') + '</label></div>');
+    container.append(repoEntry);
+    container.append('<div class="dialog-line" style="margin-top: 10px;"><label>' + i18n.gettext('Branch') + '</label></div>');
+
+    var branchRow = $('<div style="display: flex; align-items: center; gap: 8px;"></div>');
+    branchRow.append(branchSelect);
+    branchRow.append(reloadBranches);
+    container.append(branchRow);
+    container.append(branchStatus);
+
+    repoEntry.change(function () {
+        refreshBranches();
+    });
+    reloadBranches.click(function () {
+        refreshBranches();
+    });
+
+    ajax('GET', basePath + 'update/', null, function (data) {
+        if (data.repo_url) {
+            repoEntry.val(data.repo_url);
         }
+        if (data.branch) {
+            desiredBranch = data.branch;
+        }
+
+        refreshBranches();
+    });
+
+    refreshBranches();
+
+    runModalDialog({
+        title: i18n.gettext('Software Update'),
+        text: container,
+        buttons: [
+            {
+                value: i18n.gettext('Check'),
+                onclick: function () {
+                    performUpdateCheck(repoEntry.val().trim(), branchSelect.val());
+                    return false; /* keeps dialog hidden until after check */
+                }
+            },
+            {
+                value: i18n.gettext('Cancel')
+            }
+        ]
     });
 }
 

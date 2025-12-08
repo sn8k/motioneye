@@ -18,7 +18,7 @@
 import logging
 
 from motioneye.handlers.base import BaseHandler
-from motioneye.update import get_update_status, perform_update
+from motioneye.update import get_update_status, list_remote_branches, perform_update
 
 __all__ = ('UpdateHandler',)
 
@@ -28,14 +28,26 @@ class UpdateHandler(BaseHandler):
     def get(self):
         logging.debug('listing versions')
 
-        self.finish_json(get_update_status())
+        list_branches = self.get_argument('list_branches', '0').lower() in ('1', 'true', 'yes')
+        repo_url = self.get_argument('repo_url', None)
+        branch = self.get_argument('branch', None)
+
+        if list_branches:
+            self.finish_json({'branches': list_remote_branches(repo_url=repo_url)})
+            return
+
+        status = get_update_status(repo_url=repo_url, branch=branch)
+
+        self.finish_json(status)
 
     @BaseHandler.auth(admin=True)
     def post(self):
         version = self.get_argument('version')
+        repo_url = self.get_argument('repo_url', None)
+        branch = self.get_argument('branch', None)
 
-        logging.debug(f'performing update to version {version}')
+        logging.debug(f'performing update to version {version} (branch={branch}, repo={repo_url})')
 
-        result = perform_update(version)
+        result = perform_update(version, repo_url=repo_url, branch=branch)
 
         self.finish_json(result)

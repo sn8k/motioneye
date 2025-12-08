@@ -107,6 +107,18 @@ def _is_git_repo():
     return (REPO_ROOT / '.git').is_dir()
 
 
+def _get_remote_url():
+    if not _is_git_repo():
+        return None
+
+    try:
+        return _git('config', '--get', 'remote.origin.url')
+
+    except Exception as exc:
+        logging.warning('failed to read origin url: %s', exc)
+        return None
+
+
 def _git(*args):
     return utils.call_subprocess(['git', '-C', str(REPO_ROOT), *args])
 
@@ -147,50 +159,86 @@ def _restart_service_if_exists():
     )
 
 
-def get_source_update_status():
+def list_remote_branches(repo_url=None):
+    remote = repo_url or _get_remote_url()
+    if not remote:
+        return []
+
+    try:
+        output = utils.call_subprocess(['git', '-C', str(REPO_ROOT), 'ls-remote', '--heads', remote])
+    except Exception as exc:
+        logging.warning('failed to list branches for %s: %s', remote, exc)
+        return []
+
+    branches = []
+    for line in output.splitlines():
+        try:
+            _rev, ref = line.split('\t', 1)
+            branches.append(ref.replace('refs/heads/', ''))
+        except ValueError:
+            continue
+
+    return sorted(set(branches))
+
+
+def get_source_update_status(repo_url=None, branch=None):
     if not _is_git_repo():
         return None
 
     try:
-        branch = _git('rev-parse', '--abbrev-ref', 'HEAD')
+        current_branch = _git('rev-parse', '--abbrev-ref', 'HEAD')
     except Exception as exc:
         logging.warning('failed to detect current branch: %s', exc)
         return None
 
-    try:
-        _git('fetch', '--all')
-    except Exception as exc:
-        logging.warning('failed to fetch updates: %s', exc)
+    branch = branch or current_branch
+    remote = repo_url or _get_remote_url()
+    remote_ref = None
 
-    try:
-        behind = int(_git('rev-list', '--count', f'HEAD..origin/{branch}') or 0)
-    except Exception as exc:
-        logging.warning('failed to compare local and remote revisions: %s', exc)
-        behind = 0
+    if remote:
+        try:
+            _git('fetch', remote, branch)
+            remote_ref = 'FETCH_HEAD'
+        except Exception as exc:
+            logging.warning('failed to fetch updates from %s: %s', remote, exc)
+    else:
+        try:
+            _git('fetch', '--all')
+            remote_ref = f'origin/{branch}'
+        except Exception as exc:
+            logging.warning('failed to fetch updates: %s', exc)
 
     current_revision = _git('rev-parse', '--short', 'HEAD')
+
+    behind = 0
     update_revision = None
-    if behind > 0:
+    if remote_ref:
         try:
-            update_revision = _git('rev-parse', '--short', f'origin/{branch}')
+            behind = int(_git('rev-list', '--count', f'HEAD..{remote_ref}') or 0)
+            if behind > 0:
+                update_revision = _git('rev-parse', '--short', remote_ref)
         except Exception as exc:
-            logging.warning('failed to resolve remote revision: %s', exc)
+            logging.warning('failed to compare local and remote revisions: %s', exc)
 
     return {
         'update_version': f'{branch}@{update_revision}' if update_revision else None,
         'current_version': f'{branch}@{current_revision}',
+        'branch': branch,
+        'repo_url': remote,
     }
 
 
-def perform_source_update(version=None):
+def perform_source_update(version=None, repo_url=None, branch=None):
     if not _is_git_repo():
         raise Exception('source update is not available because the install is not a git clone')
 
-    branch = version.split('@')[0] if version else _git('rev-parse', '--abbrev-ref', 'HEAD')
-    logging.info('updating branch %s from source...', branch)
+    branch = branch or (version.split('@')[0] if version else _git('rev-parse', '--abbrev-ref', 'HEAD'))
+    remote = repo_url or _get_remote_url() or 'origin'
+
+    logging.info('updating branch %s from source via %s...', branch, remote)
 
     _git('checkout', branch)
-    _git('pull', '--ff-only', 'origin', branch)
+    _git('pull', '--ff-only', remote, branch)
 
     python_executable = str(VENV_PYTHON if VENV_PYTHON.exists() else Path(sys.executable))
 
@@ -214,12 +262,12 @@ def get_all_versions():
     return platformupdate.get_all_versions()
 
 
-def perform_update(version):
+def perform_update(version, repo_url=None, branch=None):
     logging.info(f'updating to version {version}...')
 
-    source_status = get_source_update_status()
+    source_status = get_source_update_status(repo_url=repo_url, branch=branch)
     if source_status:
-        return perform_source_update(version)
+        return perform_source_update(version, repo_url=repo_url, branch=branch)
 
     try:
         import platformupdate
@@ -236,8 +284,8 @@ def perform_update(version):
     )
 
 
-def get_update_status():
-    source_status = get_source_update_status()
+def get_update_status(repo_url=None, branch=None):
+    source_status = get_source_update_status(repo_url=repo_url, branch=branch)
     if source_status:
         return source_status
 
@@ -247,4 +295,9 @@ def get_update_status():
     recent_versions.sort(key=cmp_to_key(compare_versions))
     update_version = recent_versions[-1] if recent_versions else None
 
-    return {'update_version': update_version, 'current_version': current_version}
+    return {
+        'update_version': update_version,
+        'current_version': current_version,
+        'branch': branch,
+        'repo_url': repo_url,
+    }
