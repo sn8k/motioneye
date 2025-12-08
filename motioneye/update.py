@@ -27,6 +27,7 @@ from tornado import ioloop
 from motioneye import utils
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+VENV_PYTHON = REPO_ROOT / '.venv' / 'bin' / 'python'
 
 
 def get_os_version():
@@ -115,19 +116,31 @@ def _restart_service_if_exists():
 
     if shutil.which('systemctl'):
         try:
-            utils.call_subprocess(['systemctl', 'daemon-reload'])
-            utils.call_subprocess(['systemctl', 'enable', '--now', service_name])
-            utils.call_subprocess(['systemctl', 'restart', service_name])
-            return
+            unit_exists = any(
+                path.exists()
+                for path in (
+                    Path('/etc/systemd/system') / service_name,
+                    Path('/lib/systemd/system') / service_name,
+                )
+            )
+
+            if unit_exists or utils.call_subprocess(
+                ['systemctl', 'status', service_name]
+            ):
+                utils.call_subprocess(['systemctl', 'daemon-reload'])
+                utils.call_subprocess(['systemctl', 'enable', '--now', service_name])
+                utils.call_subprocess(['systemctl', 'restart', service_name])
+                return
         except Exception as exc:
-            logging.warning('systemd restart failed: %s', exc)
+            logging.warning('systemd restart failed or service missing: %s', exc)
 
     if shutil.which('service'):
         try:
-            utils.call_subprocess(['service', 'motioneye', 'restart'])
-            return
+            if utils.call_subprocess(['service', 'motioneye', 'status']):
+                utils.call_subprocess(['service', 'motioneye', 'restart'])
+                return
         except Exception as exc:
-            logging.warning('service restart failed: %s', exc)
+            logging.warning('service restart failed or service missing: %s', exc)
 
     logging.info(
         'no system service detected; restart the server manually with meyectl startserver'
@@ -179,9 +192,11 @@ def perform_source_update(version=None):
     _git('checkout', branch)
     _git('pull', '--ff-only', 'origin', branch)
 
-    utils.call_subprocess([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip', 'wheel'])
+    python_executable = str(VENV_PYTHON if VENV_PYTHON.exists() else Path(sys.executable))
+
+    utils.call_subprocess([python_executable, '-m', 'pip', 'install', '--upgrade', 'pip', 'wheel'])
     utils.call_subprocess(
-        [sys.executable, '-m', 'pip', 'install', '--upgrade', '-e', str(REPO_ROOT)]
+        [python_executable, '-m', 'pip', 'install', '--upgrade', '--pre', '-e', str(REPO_ROOT)]
     )
 
     _restart_service_if_exists()
