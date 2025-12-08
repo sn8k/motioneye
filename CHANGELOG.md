@@ -9,6 +9,26 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ### Ajouté
 
+#### Détection automatique des périphériques audio (2025-12-09)
+
+Amélioration de la gestion des périphériques audio avec détection automatique.
+
+**Fichier modifié :**
+
+- `motioneye/audioctl.py` - Refonte complète :
+  - Fonction `detect_audio_devices()` : détection automatique des périphériques ALSA et PulseAudio
+  - Fonction `get_default_audio_device()` : sélection intelligente du périphérique par défaut
+  - Menu déroulant dans l'UI pour sélectionner le périphérique audio
+  - Affichage des périphériques détectés dans l'interface
+  - Cache de 30 secondes pour éviter les appels répétés à `arecord`
+  - Correction du bug de persistance des valeurs vides (crash au démarrage)
+
+**Correction de bugs :**
+
+- Correction de `_persist_setting()` dans `audioctl.py` et `rtspserver/config.py` :
+  - Les valeurs vides/None ne sont plus écrites dans la config
+  - Évite l'erreur "invalid configuration line" au démarrage
+
 #### Serveur RTSP Natif (2025-12-09)
 
 Implémentation complète d'un serveur RTSP natif pour le streaming audio/vidéo, compatible avec Synology Surveillance Station.

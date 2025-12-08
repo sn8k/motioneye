@@ -42,9 +42,13 @@ def _persist_setting(name: str, value: Any) -> None:
     
     Args:
         name: Setting name
-        value: Setting value
+        value: Setting value (if None or empty string, the setting is removed)
     """
     path = _config_file_path()
+    
+    # Convert value to string for comparison
+    str_value = "" if value is None else str(value)
+    is_empty = str_value.strip() == ""
 
     try:
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -75,13 +79,18 @@ def _persist_setting(name: str, value: Any) -> None:
 
         key, _ = parts
         if key.upper() == name.upper():
-            new_lines.append(f"{name.lower()} {value}")
-            updated = True
+            if is_empty:
+                # Skip this line (remove the setting)
+                updated = True
+            else:
+                new_lines.append(f"{name.lower()} {str_value}")
+                updated = True
         else:
             new_lines.append(line)
 
-    if not updated:
-        new_lines.append(f"{name.lower()} {value}")
+    # Only add new setting if it has a non-empty value
+    if not updated and not is_empty:
+        new_lines.append(f"{name.lower()} {str_value}")
 
     try:
         with open(path, "w") as f:
