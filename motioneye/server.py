@@ -29,6 +29,7 @@ from tornado.web import Application
 
 from motioneye import audioctl, meeting, settings, template
 from motioneye.controls import smbctl, v4l2ctl
+from motioneye.rtspserver import config as rtsp_config  # Register RTSP UI config
 from motioneye.handlers.action import ActionHandler
 from motioneye.handlers.base import ManifestHandler, NotFoundHandler
 from motioneye.handlers.config import ConfigHandler
@@ -417,6 +418,7 @@ def run():
     import motioneye
     from motioneye import audiostream, cleanup, mjpgclient, motionctl, tasks, wsswitch
     from motioneye.controls import smbctl
+    from motioneye.rtspserver import integration as rtsp_integration
 
     configure_signals()
     logging.info(_('saluton! ĉi tio estas motionEye-servilo ') + motioneye.VERSION)
@@ -446,7 +448,12 @@ def run():
 
     audiostream.start()
     if settings.AUDIO_ENABLED:
-        logging.info('RTSP audio restream enabled')
+        logging.info('RTSP audio restream enabled (legacy ffmpeg mode)')
+
+    # Start native RTSP server
+    rtsp_integration.start()
+    if settings.RTSP_ENABLED:
+        logging.info(f'RTSP server enabled on port {settings.RTSP_PORT}')
 
     if settings.MJPG_CLIENT_TIMEOUT:
         mjpgclient.start()
@@ -477,6 +484,11 @@ def run():
     logging.info(_('servilo haltis'))
     tasks.stop()
     logging.info(_('taskoj haltis'))
+
+    # Stop RTSP server
+    rtsp_integration.stop()
+    if settings.RTSP_ENABLED:
+        logging.info('RTSP server stopped')
 
     if cleanup.running():
         cleanup.stop()

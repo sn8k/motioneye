@@ -43,3 +43,4 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Can be installed via `pip`.
 - Docker images are available.
 - Systemd integration is provided in `extra/`.
+- Keep changelog of every (even small) modifications.

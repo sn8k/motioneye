@@ -65,11 +65,39 @@ AUDIO_DEVICE_NAME = None
 # ALSA device identifier to capture audio from (used if AUDIO_DEVICE_NAME fails)
 AUDIO_DEVICE = 'plug:default'
 
-# port to bind the RTSP audio restream on
+# port to bind the RTSP audio restream on (legacy ffmpeg-based)
 AUDIO_RTSP_PORT = 8555
 
-# RTSP path to expose the muxed audio+video stream on
+# RTSP path to expose the muxed audio+video stream on (legacy)
 AUDIO_RTSP_PATH = 'stream'
+
+# ============================================================================
+# RTSP Server Settings (new native server)
+# ============================================================================
+
+# enable the native RTSP server
+RTSP_ENABLED = False
+
+# port to bind the RTSP server on
+RTSP_PORT = 8554
+
+# IP address for RTSP server (0.0.0.0 for all interfaces)
+RTSP_LISTEN = '0.0.0.0'
+
+# RTSP authentication (leave None to disable auth)
+RTSP_USERNAME = None
+RTSP_PASSWORD = None
+
+# enable audio in RTSP streams (requires ALSA device)
+RTSP_AUDIO_ENABLED = False
+
+# H.264 encoding bitrate in kbps
+RTSP_VIDEO_BITRATE = 2000
+
+# FFmpeg encoding preset (ultrafast, superfast, veryfast, faster, fast, medium)
+RTSP_VIDEO_PRESET = 'ultrafast'
+
+# ============================================================================
 
 # the IP address to listen on
 # (0.0.0.0 for all interfaces, 127.0.0.1 for localhost)
