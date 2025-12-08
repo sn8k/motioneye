@@ -209,15 +209,21 @@ def get_source_update_status(repo_url=None, branch=None):
         except Exception as exc:
             logging.warning('failed to fetch updates: %s', exc)
 
-    current_revision = _git('rev-parse', '--short', 'HEAD')
+    try:
+        current_ref = branch if _git('rev-parse', '--verify', branch) else 'HEAD'
+    except Exception:
+        current_ref = 'HEAD'
+
+    current_revision = _git('rev-parse', '--short', current_ref)
 
     behind = 0
     update_revision = None
     if remote_ref:
         try:
-            behind = int(_git('rev-list', '--count', f'HEAD..{remote_ref}') or 0)
-            if behind > 0:
-                update_revision = _git('rev-parse', '--short', remote_ref)
+            behind = int(_git('rev-list', '--count', f'{current_ref}..{remote_ref}') or 0)
+            remote_revision = _git('rev-parse', '--short', remote_ref)
+            if behind > 0 or remote_revision != current_revision:
+                update_revision = remote_revision
         except Exception as exc:
             logging.warning('failed to compare local and remote revisions: %s', exc)
 
