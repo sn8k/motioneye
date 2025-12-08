@@ -73,8 +73,11 @@ To serve USB microphone audio alongside your RTSP video feed on Raspberry Pi OS 
 
 ```
 AUDIO_ENABLED true
-AUDIO_DEVICE hw:1,0
+AUDIO_DEVICE_NAME USB
+AUDIO_DEVICE plug:default
 AUDIO_RTSP_PORT 8555
 ```
+
+`AUDIO_DEVICE_NAME` looks up the ALSA card by its friendly name (as printed in `/proc/asound/cards`) so that USB devices do not break when their numeric IDs change. If no match is found, the restreamer falls back to the explicit `AUDIO_DEVICE` string.
 
 After restarting motionEye, the microphone is available from `rtsp://<server-ip>:8555/audio` using AAC. Clients can reuse that track when muxing the video stream.

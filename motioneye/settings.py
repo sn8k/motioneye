@@ -55,8 +55,11 @@ LOG_LEVEL = logging.INFO
 # enable RTSP audio restreaming (requires ffmpeg and an ALSA-compatible device)
 AUDIO_ENABLED = False
 
-# ALSA device identifier to capture audio from (for example: "hw:1,0" for USB mics)
-AUDIO_DEVICE = 'hw:1,0'
+# Friendly ALSA card name to resolve dynamically (e.g. "USB"), avoids unstable numeric IDs
+AUDIO_DEVICE_NAME = None
+
+# ALSA device identifier to capture audio from (used if AUDIO_DEVICE_NAME fails)
+AUDIO_DEVICE = 'plug:default'
 
 # port to bind the RTSP audio restream on
 AUDIO_RTSP_PORT = 8555
