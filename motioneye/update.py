@@ -192,45 +192,40 @@ def get_source_update_status(repo_url=None, branch=None):
         logging.warning('failed to detect current branch: %s', exc)
         return None
 
-    branch = branch or current_branch
+    target_branch = branch or current_branch
     remote = repo_url or _get_remote_url()
     remote_ref = None
 
     if remote:
         try:
-            _git('fetch', remote, branch)
+            _git('fetch', remote, target_branch)
             remote_ref = 'FETCH_HEAD'
         except Exception as exc:
             logging.warning('failed to fetch updates from %s: %s', remote, exc)
     else:
         try:
             _git('fetch', '--all')
-            remote_ref = f'origin/{branch}'
+            remote_ref = f'origin/{target_branch}'
         except Exception as exc:
             logging.warning('failed to fetch updates: %s', exc)
 
-    try:
-        current_ref = branch if _git('rev-parse', '--verify', branch) else 'HEAD'
-    except Exception:
-        current_ref = 'HEAD'
+    # Always compare HEAD (current position) with the remote target
+    current_revision = _git('rev-parse', '--short', 'HEAD')
 
-    current_revision = _git('rev-parse', '--short', current_ref)
-
-    behind = 0
     update_revision = None
     if remote_ref:
         try:
-            behind = int(_git('rev-list', '--count', f'{current_ref}..{remote_ref}') or 0)
             remote_revision = _git('rev-parse', '--short', remote_ref)
-            if behind > 0 or remote_revision != current_revision:
+            # There's an update if remote is different from current HEAD
+            if remote_revision != current_revision:
                 update_revision = remote_revision
         except Exception as exc:
             logging.warning('failed to compare local and remote revisions: %s', exc)
 
     return {
-        'update_version': f'{branch}@{update_revision}' if update_revision else None,
-        'current_version': f'{branch}@{current_revision}',
-        'branch': branch,
+        'update_version': f'{target_branch}@{update_revision}' if update_revision else None,
+        'current_version': f'{current_branch}@{current_revision}',
+        'branch': target_branch,
         'repo_url': remote,
     }
 
