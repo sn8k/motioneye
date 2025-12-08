@@ -1,14 +1,47 @@
 #!/usr/bin/env bash
 # All-in-one installer/updater for motionEye on Debian Trixie (Raspberry Pi 3B+ x64 Lite).
-# Version: 2025.12.08.1
+# Version: 2025.12.08.5
 set -euo pipefail
 
 REPO_URL="https://github.com/sn8k/motioneye.git"
 INSTALL_DIR="/opt/motioneye"
 VENV_DIR="$INSTALL_DIR/.venv"
+BRANCH=""
 
 log() {
     echo "[motioneye-aio] $*"
+}
+
+prompt_branch_selection() {
+    if [[ -n "$BRANCH" ]]; then
+        log "Using preselected branch '$BRANCH'."
+        return
+    fi
+
+    local branches=()
+
+    if command -v git >/dev/null 2>&1; then
+        log "Fetching available branches from $REPO_URL..."
+        mapfile -t branches < <(git ls-remote --heads "$REPO_URL" | awk '{print $2}' | sed 's@refs/heads/@@' | sort)
+    else
+        log "git is not available yet; defaulting to offering the 'main' branch."
+    fi
+
+    if [[ ${#branches[@]} -eq 0 ]]; then
+        branches=("main")
+    fi
+
+    log "Select the branch to use:"
+    PS3="Enter the number of the branch to checkout: "
+    select opt in "${branches[@]}"; do
+        if [[ -n "$opt" ]]; then
+            BRANCH="$opt"
+            break
+        fi
+        echo "Please select a valid branch number."
+    done
+
+    log "Branch selected: $BRANCH"
 }
 
 require_root() {
@@ -31,16 +64,28 @@ ensure_repo() {
     if [[ -d "$INSTALL_DIR/.git" ]]; then
         log "Repository already present, fetching latest changes..."
         git -C "$INSTALL_DIR" fetch --all
+        if [[ -n "$BRANCH" ]]; then
+            git -C "$INSTALL_DIR" checkout "$BRANCH"
+        fi
     else
         log "Cloning motionEye sources into $INSTALL_DIR..."
         mkdir -p "$INSTALL_DIR"
-        git clone "$REPO_URL" "$INSTALL_DIR"
+        if [[ -n "$BRANCH" ]]; then
+            git clone --branch "$BRANCH" --single-branch "$REPO_URL" "$INSTALL_DIR"
+        else
+            git clone "$REPO_URL" "$INSTALL_DIR"
+        fi
     fi
 }
 
 update_repo() {
     log "Pulling latest changes..."
-    git -C "$INSTALL_DIR" pull --ff-only
+    if [[ -n "$BRANCH" ]]; then
+        git -C "$INSTALL_DIR" checkout "$BRANCH"
+        git -C "$INSTALL_DIR" pull --ff-only origin "$BRANCH"
+    else
+        git -C "$INSTALL_DIR" pull --ff-only
+    fi
 }
 
 setup_venv() {
@@ -72,33 +117,69 @@ initialize_service() {
 }
 
 restart_service_if_exists() {
-    if command -v systemctl >/dev/null 2>&1 && systemctl list-unit-files | grep -q '^motioneye.service'; then
-        log "Restarting motionEye service..."
-        systemctl daemon-reload
-        systemctl enable --now motioneye.service
-        systemctl restart motioneye.service
-    else
-        log "No systemd service detected; you can start motionEye manually with: $VENV_DIR/bin/meyectl startserver"
+    local service_name="motioneye.service"
+
+    if command -v systemctl >/dev/null 2>&1; then
+        if systemctl status "$service_name" >/dev/null 2>&1 || [[ -f "/etc/systemd/system/$service_name" ]] || [[ -f "/lib/systemd/system/$service_name" ]]; then
+            log "Restarting motionEye service via systemd..."
+            systemctl daemon-reload
+            systemctl enable --now "$service_name"
+            systemctl restart "$service_name"
+            return
+        fi
     fi
+
+    if command -v service >/dev/null 2>&1 && service motioneye status >/dev/null 2>&1; then
+        log "Restarting motionEye service via init system..."
+        service motioneye restart
+        return
+    fi
+
+    log "No system service detected; you can start motionEye manually with: $VENV_DIR/bin/meyectl startserver"
 }
 
 usage() {
     cat <<USAGE
-Usage: $0 install|update
+Usage: $0 [-b|--branch <name>] install|update
   install : fresh installation on Debian Trixie Lite (RPi 3B+ x64)
   update  : update existing installation in $INSTALL_DIR and restart service
 USAGE
 }
 
 main() {
-    if [[ $# -ne 1 ]]; then
+    ACTION=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -b|--branch)
+                if [[ $# -lt 2 ]]; then
+                    echo "Missing branch name for $1" >&2
+                    usage
+                    exit 1
+                fi
+                BRANCH=$2
+                shift 2
+                ;;
+            install|update)
+                ACTION="$1"
+                shift
+                ;;
+            *)
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    if [[ -z "$ACTION" ]]; then
         usage
         exit 1
     fi
 
+    prompt_branch_selection
     require_root
 
-    case "$1" in
+    case "$ACTION" in
         install)
             install_packages
             ensure_repo
