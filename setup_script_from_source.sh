@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # All-in-one installer/updater for motionEye on Debian Trixie (Raspberry Pi 3B+ x64 Lite).
-# Version: 2025.12.08.1
+# Version: 2025.12.08.2
 set -euo pipefail
 
 REPO_URL="https://github.com/sn8k/motioneye.git"
 INSTALL_DIR="/opt/motioneye"
 VENV_DIR="$INSTALL_DIR/.venv"
+BRANCH=""
 
 log() {
     echo "[motioneye-aio] $*"
@@ -31,16 +32,28 @@ ensure_repo() {
     if [[ -d "$INSTALL_DIR/.git" ]]; then
         log "Repository already present, fetching latest changes..."
         git -C "$INSTALL_DIR" fetch --all
+        if [[ -n "$BRANCH" ]]; then
+            git -C "$INSTALL_DIR" checkout "$BRANCH"
+        fi
     else
         log "Cloning motionEye sources into $INSTALL_DIR..."
         mkdir -p "$INSTALL_DIR"
-        git clone "$REPO_URL" "$INSTALL_DIR"
+        if [[ -n "$BRANCH" ]]; then
+            git clone --branch "$BRANCH" --single-branch "$REPO_URL" "$INSTALL_DIR"
+        else
+            git clone "$REPO_URL" "$INSTALL_DIR"
+        fi
     fi
 }
 
 update_repo() {
     log "Pulling latest changes..."
-    git -C "$INSTALL_DIR" pull --ff-only
+    if [[ -n "$BRANCH" ]]; then
+        git -C "$INSTALL_DIR" checkout "$BRANCH"
+        git -C "$INSTALL_DIR" pull --ff-only origin "$BRANCH"
+    else
+        git -C "$INSTALL_DIR" pull --ff-only
+    fi
 }
 
 setup_venv() {
@@ -84,21 +97,45 @@ restart_service_if_exists() {
 
 usage() {
     cat <<USAGE
-Usage: $0 install|update
+Usage: $0 [-b|--branch <name>] install|update
   install : fresh installation on Debian Trixie Lite (RPi 3B+ x64)
   update  : update existing installation in $INSTALL_DIR and restart service
 USAGE
 }
 
 main() {
-    if [[ $# -ne 1 ]]; then
+    ACTION=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -b|--branch)
+                if [[ $# -lt 2 ]]; then
+                    echo "Missing branch name for $1" >&2
+                    usage
+                    exit 1
+                fi
+                BRANCH=$2
+                shift 2
+                ;;
+            install|update)
+                ACTION="$1"
+                shift
+                ;;
+            *)
+                usage
+                exit 1
+                ;;
+        esac
+    done
+
+    if [[ -z "$ACTION" ]]; then
         usage
         exit 1
     fi
 
     require_root
 
-    case "$1" in
+    case "$ACTION" in
         install)
             install_packages
             ensure_repo
