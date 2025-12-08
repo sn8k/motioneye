@@ -27,7 +27,7 @@ import time
 from tornado.ioloop import IOLoop
 from tornado.web import Application
 
-from motioneye import meeting, settings, template
+from motioneye import audioctl, meeting, settings, template
 from motioneye.controls import smbctl, v4l2ctl
 from motioneye.handlers.action import ActionHandler
 from motioneye.handlers.base import ManifestHandler, NotFoundHandler

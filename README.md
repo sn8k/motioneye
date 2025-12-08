@@ -84,3 +84,5 @@ AUDIO_RTSP_PATH stream
 `AUDIO_DEVICE_NAME` looks up the ALSA card by its friendly name (as printed in `/proc/asound/cards`) so that USB devices do not break when their numeric IDs change. If no match is found, the restreamer falls back to the explicit `AUDIO_DEVICE` string.
 
 After restarting motionEye, the microphone is muxed with your main video on `rtsp://<server-ip>:8555/stream` using AAC audio. By default, the video input is the first enabled local Motion camera stream; set `AUDIO_VIDEO_SOURCE` to override.
+
+You can also toggle these options from the motionEye UI under **Audio RTSP** in the general settings; changes there will update `motioneye.conf` and restart the restreamer automatically.
