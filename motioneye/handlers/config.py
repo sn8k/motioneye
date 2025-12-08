@@ -26,6 +26,7 @@ from tornado.web import HTTPError
 
 from motioneye import (
     config,
+    meeting,
     meyectl,
     motionctl,
     remote,
