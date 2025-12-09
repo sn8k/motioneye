@@ -82,8 +82,9 @@ def _send_sps_pps_to_waiting_clients(stream_id: str, stream_config: StreamConfig
                 session._sps_pps_sent = True
                 logging.info(f"Sending delayed SPS/PPS to session {session.session_id}")
                 try:
-                    session.send_video_frame(stream_config.sps_raw)
-                    session.send_video_frame(stream_config.pps_raw)
+                    # Combine SPS + PPS into one frame so they share the same timestamp
+                    combined = stream_config.sps_raw + stream_config.pps_raw
+                    session.send_video_frame(combined)
                 except Exception as e:
                     logging.warning(f"Failed to send delayed SPS/PPS: {e}")
 
@@ -308,7 +309,26 @@ def _configure_single_camera(
             if (sps_updated or pps_updated) and stream_config.sps_raw and stream_config.pps_raw:
                 _send_sps_pps_to_waiting_clients(stream_id, stream_config)
             
-            _server.broadcast_frame(stream_id, video_data=data)
+            # Check if this is an IDR frame (NAL type 5) - prefix with SPS+PPS
+            # This ensures decoder always has parameters before keyframes
+            frame_to_send = data
+            if stream_config.sps_raw and stream_config.pps_raw and len(data) > 4:
+                # Get NAL type from data (skip start code)
+                if data.startswith(b'\x00\x00\x00\x01'):
+                    nal_type = data[4] & 0x1F
+                elif data.startswith(b'\x00\x00\x01'):
+                    nal_type = data[3] & 0x1F
+                else:
+                    nal_type = 0
+                    
+                # NAL type 5 = IDR frame (keyframe)
+                if nal_type == 5:
+                    # Prefix with SPS + PPS for complete access unit
+                    frame_to_send = stream_config.sps_raw + stream_config.pps_raw + data
+                    if frame_counter[0] <= 5:
+                        logging.info(f"Prefixed IDR frame with SPS+PPS for {stream_id}")
+            
+            _server.broadcast_frame(stream_id, video_data=frame_to_send)
             
     def on_audio_samples(data: bytes):
         if _server:

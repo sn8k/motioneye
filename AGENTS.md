@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b35** - Send delayed SPS/PPS to clients that connect before FFmpeg ready
+**0.43.1b36** - Fix H.264 decoding: prefix IDR frames with SPS+PPS
 
 ## MUST DO : 
 - keep this file up-to-date

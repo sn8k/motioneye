@@ -779,12 +779,13 @@ class RTSPServer:
         stream_config = self.streams.get(stream_id)
         
         if stream_config and stream_config.sps_raw and stream_config.pps_raw:
-            # Send SPS and PPS to the new client
+            # Send SPS and PPS together with same timestamp
+            # Concatenate them so they are treated as one access unit
             logging.info(f"Sending SPS/PPS to new session {session.session_id}")
             try:
-                # Send SPS first, then PPS
-                session.send_video_frame(stream_config.sps_raw)
-                session.send_video_frame(stream_config.pps_raw)
+                # Combine SPS + PPS into one frame so they share the same timestamp
+                combined = stream_config.sps_raw + stream_config.pps_raw
+                session.send_video_frame(combined)
             except Exception as e:
                 logging.warning(f"Failed to send SPS/PPS to session {session.session_id}: {e}")
         else:

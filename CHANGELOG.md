@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b36]
+
+### Corrigé
+
+- **Erreur "non-existing PPS referenced" dans les décodeurs H.264** (`rtspserver/integration.py`, `server.py`) :
+  - Préfixe automatiquement SPS+PPS à chaque IDR frame (keyframe)
+  - Combine SPS+PPS en une seule unité d'accès (même timestamp RTP)
+  - Le décodeur reçoit maintenant les paramètres H.264 avant chaque keyframe
+  - Résout le problème d'image figée dans VLC et ffplay
+
 ## [0.43.1b35]
 
 ### Corrigé
