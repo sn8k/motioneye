@@ -267,7 +267,8 @@ class RTSPClientHandler:
         Returns:
             RTSP response
         """
-        logging.debug(f"RTSP {request.method} {request.uri} from {self.client_address}")
+        # Log all RTSP requests for debugging
+        logging.info(f"RTSP {request.method} {request.uri} from {self.client_address}")
         
         # Get CSeq header
         cseq = request.headers.get('CSeq', '0')
@@ -287,10 +288,12 @@ class RTSPClientHandler:
         handler = handler_map.get(request.method)
         if handler:
             response = await handler(request)
+            logging.info(f"RTSP {request.method} response: {response.status_code}")
         else:
             response = RTSPResponse(
                 status_code=RTSPStatusCode.METHOD_NOT_ALLOWED
             )
+            logging.warning(f"RTSP method not allowed: {request.method}")
             
         # Add common headers
         response.headers['CSeq'] = cseq

@@ -54,9 +54,10 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b22** - Native RTSP server with audio support
+**0.43.1b23** - Native RTSP server with audio support (legacy audio removed)
 
 ## MUST DO : 
 - keep this file up-to-date
 - Keep changelog of every (even small) modifications.
 - ALWAYS update motioneye version.
+- PAS DE DATES DANS LES CHANGELOGS ! on ecrit les changelogs versions apres version

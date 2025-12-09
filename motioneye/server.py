@@ -416,7 +416,7 @@ def make_app(debug: bool = False) -> Application:
 
 def run():
     import motioneye
-    from motioneye import audiostream, cleanup, mjpgclient, motionctl, tasks, wsswitch
+    from motioneye import cleanup, mjpgclient, motionctl, tasks, wsswitch
     from motioneye.controls import smbctl
     from motioneye.rtspserver import integration as rtsp_integration
 
@@ -445,10 +445,6 @@ def run():
 
     meeting.start()
     logging.info('Meeting heartbeat scheduler started')
-
-    audiostream.start()
-    if settings.AUDIO_ENABLED:
-        logging.info('RTSP audio restream enabled (legacy ffmpeg mode)')
 
     # Start native RTSP server
     rtsp_integration.start()

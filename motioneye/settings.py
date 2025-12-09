@@ -52,27 +52,8 @@ MEDIA_PATH = '/var/lib/motioneye'
 # the log level (use FATAL, ERROR, WARNING, INFO or DEBUG)
 LOG_LEVEL = logging.INFO
 
-# enable RTSP audio restreaming (requires ffmpeg and an ALSA-compatible device)
-AUDIO_ENABLED = False
-
-# optional video source URL to mux with microphone audio; defaults to the first
-# enabled Motion camera if unset
-AUDIO_VIDEO_SOURCE = None
-
-# Friendly ALSA card name to resolve dynamically (e.g. "USB"), avoids unstable numeric IDs
-AUDIO_DEVICE_NAME = None
-
-# ALSA device identifier to capture audio from (used if AUDIO_DEVICE_NAME fails)
-AUDIO_DEVICE = 'plug:default'
-
-# port to bind the RTSP audio restream on (legacy ffmpeg-based)
-AUDIO_RTSP_PORT = 8555
-
-# RTSP path to expose the muxed audio+video stream on (legacy)
-AUDIO_RTSP_PATH = 'stream'
-
 # ============================================================================
-# RTSP Server Settings (new native server)
+# RTSP Server Settings
 # ============================================================================
 
 # enable the native RTSP server

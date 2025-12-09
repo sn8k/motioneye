@@ -5,7 +5,31 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [0.43.1b22] - 2025-12-09
+## [0.43.1b23]
+
+### Supprimé
+
+- **Code audio legacy supprimé** :
+  - Suppression de `motioneye/audiostream.py` (FFmpeg restreamer legacy)
+  - Suppression de la section "Audio Stream (Legacy)" dans l'UI
+  - Suppression des settings legacy : `AUDIO_ENABLED`, `AUDIO_DEVICE`, `AUDIO_DEVICE_NAME`, `AUDIO_VIDEO_SOURCE`, `AUDIO_RTSP_PORT`, `AUDIO_RTSP_PATH`
+  - Nettoyage de `audioctl.py` : conserve uniquement `detect_audio_devices()` et `get_default_audio_device()`
+
+### Corrigé
+
+- **Détection audio ALSA améliorée** (`audioctl.py`) :
+  - Ajout de logs de debug pour diagnostiquer la détection
+  - Option "Default Audio Device" ajoutée seulement si aucun device réel trouvé
+  - Affiche le nom complet du périphérique (ex: "Microsoft® LifeCam HD-5000")
+
+### Amélioré
+
+- **Logs RTSP étendus** (`rtspserver/server.py`) :
+  - Log de chaque requête RTSP (OPTIONS, DESCRIBE, SETUP, PLAY)
+  - Log du code de réponse pour chaque requête
+  - Facilite le debug des connexions clients
+
+## [0.43.1b22]
 
 ### Corrigé
 
