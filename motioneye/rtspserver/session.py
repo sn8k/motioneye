@@ -334,10 +334,18 @@ class RTSPSession:
                     # Log first TCP packet per session
                     if not hasattr(self, '_tcp_packet_logged'):
                         self._tcp_packet_logged = True
+                        self._first_ts = packet.timestamp
                         logging.info(
                             f"Session {self.session_id}: First TCP packet sent, "
                             f"channel={channel.rtp_channel}, size={len(interleaved)}, "
                             f"seq={packet.sequence_number}, ts={packet.timestamp}"
+                        )
+                    # Log every 500 packets to check timestamp progression
+                    elif channel.packets_sent % 500 == 0:
+                        ts_delta = packet.timestamp - self._first_ts
+                        logging.info(
+                            f"Session {self.session_id}: TCP packets={channel.packets_sent}, "
+                            f"bytes={channel.bytes_sent}, ts_delta={ts_delta} ({ts_delta/90000:.2f}s)"
                         )
                 except Exception as e:
                     logging.warning(f"Failed to send interleaved RTP: {e}")
@@ -534,10 +542,23 @@ class SessionManager:
                     packets = session.send_video_frame(frame_data)
                     if packets > 0:
                         sent_count += 1
+                        # Track total packets per session
+                        if not hasattr(session, '_total_packets'):
+                            session._total_packets = 0
+                            session._total_frames = 0
+                        session._total_packets += packets
+                        session._total_frames += 1
+                        
                         # Log first successful send per session
                         if not hasattr(session, '_packets_logged'):
                             session._packets_logged = True
                             logging.info(f"First video packets sent: {packets} packets to session {session.session_id}")
+                        # Log every 100 frames
+                        elif session._total_frames % 100 == 0:
+                            logging.info(
+                                f"Session {session.session_id}: sent {session._total_frames} frames, "
+                                f"{session._total_packets} packets total"
+                            )
                 except Exception as e:
                     logging.warning(f"Error sending video to session {session.session_id}: {e}")
                     

@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b34]
+
+### Amélioré
+
+- **Compteurs de frames/paquets par session** (`rtspserver/session.py`) :
+  - Log du nombre total de frames et paquets tous les 100 frames
+  - Log de la progression du timestamp RTP tous les 500 paquets TCP
+  - Permet de vérifier que les données sont effectivement envoyées au client
+
 ## [0.43.1b33]
 
 ### Amélioré
