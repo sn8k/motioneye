@@ -59,6 +59,35 @@ def get_rtsp_settings() -> Dict[str, Any]:
     }
 
 
+def _send_sps_pps_to_waiting_clients(stream_id: str, stream_config: StreamConfig):
+    """Send SPS/PPS to clients that are playing but haven't received it yet.
+    
+    This handles the case where a client connects before FFmpeg has produced
+    the SPS/PPS parameters.
+    
+    Args:
+        stream_id: Stream identifier
+        stream_config: Stream configuration with SPS/PPS data
+    """
+    if not _server:
+        return
+        
+    sessions = _server.session_manager.get_playing_sessions()
+    for session in sessions:
+        # Check if this session is for our stream
+        session_stream = session.stream_url.strip('/').split('/')[0] if session.stream_url else ''
+        if session_stream == stream_id or stream_id in session.stream_url:
+            # Check if we already sent SPS/PPS to this session
+            if not hasattr(session, '_sps_pps_sent'):
+                session._sps_pps_sent = True
+                logging.info(f"Sending delayed SPS/PPS to session {session.session_id}")
+                try:
+                    session.send_video_frame(stream_config.sps_raw)
+                    session.send_video_frame(stream_config.pps_raw)
+                except Exception as e:
+                    logging.warning(f"Failed to send delayed SPS/PPS: {e}")
+
+
 def is_running() -> bool:
     """Check if the RTSP server is running.
     
@@ -262,12 +291,22 @@ def _configure_single_camera(
                 logging.debug(f"Video frames for {stream_id}: {frame_counter[0]}")
             
             # Update SPS/PPS in stream config if available from transcoder
+            # Also send to any playing sessions that haven't received it yet
+            sps_updated = False
+            pps_updated = False
+            
             if transcoder.sps_with_start_code and stream_config.sps_raw is None:
                 stream_config.sps_raw = transcoder.sps_with_start_code
                 logging.info(f"Updated SPS in stream config for {stream_id}")
+                sps_updated = True
             if transcoder.pps_with_start_code and stream_config.pps_raw is None:
                 stream_config.pps_raw = transcoder.pps_with_start_code
                 logging.info(f"Updated PPS in stream config for {stream_id}")
+                pps_updated = True
+            
+            # If we just got SPS/PPS, send to any waiting clients
+            if (sps_updated or pps_updated) and stream_config.sps_raw and stream_config.pps_raw:
+                _send_sps_pps_to_waiting_clients(stream_id, stream_config)
             
             _server.broadcast_frame(stream_id, video_data=data)
             

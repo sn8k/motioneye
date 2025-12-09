@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b35]
+
+### Corrigé
+
+- **Envoi différé du SPS/PPS** (`rtspserver/integration.py`) :
+  - Si un client se connecte avant que FFmpeg ait produit les paramètres H.264 (SPS/PPS),
+    ils sont maintenant envoyés dès qu'ils sont disponibles
+  - Résout le problème d'image figée quand le client se connecte très rapidement après
+    le démarrage du serveur
+
 ## [0.43.1b34]
 
 ### Amélioré

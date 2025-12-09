@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b34** - Add frame/packet counters and timestamp progression logging
+**0.43.1b35** - Send delayed SPS/PPS to clients that connect before FFmpeg ready
 
 ## MUST DO : 
 - keep this file up-to-date
