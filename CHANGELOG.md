@@ -5,6 +5,26 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b30]
+
+### Corrigé
+
+- **FFmpeg transcoder amélioré** (`rtspserver/source.py`) :
+  - `probesize` augmenté de 32 à 32768 bytes pour meilleure analyse du stream MJPEG
+  - `analyzeduration` augmenté de 0 à 500000 µs (0.5s)
+  - Framerate de sortie minimum forcé à 10 fps (évite les problèmes avec caméras configurées en 2 fps)
+  - Résout le problème de très peu de frames produites (2 frames au lieu de 125)
+
+## [0.43.1b29]
+
+### Amélioré
+
+- **Logs FFmpeg visibles** (`rtspserver/source.py`) :
+  - Les logs stderr de FFmpeg sont maintenant en INFO (étaient en DEBUG)
+  - Les erreurs/warnings FFmpeg sont en WARNING pour être plus visibles
+  - Log du nombre de NAL units traités avec leur taille
+  - Permet de diagnostiquer pourquoi FFmpeg ne produit pas de frames
+
 ## [0.43.1b28]
 
 ### Amélioré

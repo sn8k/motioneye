@@ -146,9 +146,15 @@ class FFmpegTranscoder:
             try:
                 line = self._process.stderr.readline()
                 if line:
-                    logging.debug(f"FFmpeg: {line.decode('utf-8', errors='replace').strip()}")
+                    line_text = line.decode('utf-8', errors='replace').strip()
+                    # Log errors and warnings as INFO for visibility
+                    if any(x in line_text.lower() for x in ['error', 'warning', 'failed', 'invalid']):
+                        logging.warning(f"FFmpeg: {line_text}")
+                    else:
+                        logging.info(f"FFmpeg: {line_text}")
             except Exception:
                 break
+        logging.info(f"FFmpeg stderr reader stopped for camera {self.config.camera_id}")
             
     def stop(self):
         """Stop the transcoder."""
@@ -191,8 +197,8 @@ class FFmpegTranscoder:
             # Input options for MJPEG stream
             '-fflags', '+genpts+nobuffer',
             '-flags', 'low_delay',
-            '-probesize', '32',
-            '-analyzeduration', '0',
+            '-probesize', '32768',  # Increased from 32 for better stream analysis
+            '-analyzeduration', '500000',  # 0.5 seconds
             '-f', 'mjpeg',  # Explicit format for MJPEG input
             '-i', self.source_url,
         ]
@@ -205,6 +211,9 @@ class FFmpegTranscoder:
             ])
             
         # Video encoding options
+        # Ensure minimum output framerate for smooth streaming
+        output_fps = max(self.config.framerate, 10)
+        
         cmd.extend([
             '-c:v', 'libx264',
             '-preset', self.config.preset,
@@ -214,10 +223,10 @@ class FFmpegTranscoder:
             '-b:v', f'{self.config.bitrate}k',
             '-maxrate', f'{self.config.bitrate}k',
             '-bufsize', f'{self.config.bitrate * 2}k',
-            '-g', str(self.config.framerate * 2),  # GOP size
-            '-keyint_min', str(self.config.framerate),
+            '-g', str(output_fps * 2),  # GOP size
+            '-keyint_min', str(output_fps),
             '-sc_threshold', '0',
-            '-r', str(self.config.framerate),
+            '-r', str(output_fps),
             '-pix_fmt', 'yuv420p',
         ])
         
@@ -294,8 +303,8 @@ class FFmpegTranscoder:
                     self._process_nal_unit(nal_data)
                     frame_count += 1
                     
-                    if frame_count % 100 == 0:
-                        logging.debug(f"Camera {self.config.camera_id}: processed {frame_count} NAL units")
+                    if frame_count <= 10 or frame_count % 100 == 0:
+                        logging.info(f"Camera {self.config.camera_id}: processed {frame_count} NAL units, last size={len(nal_data)} bytes")
                     
             except Exception as e:
                 if self._running:

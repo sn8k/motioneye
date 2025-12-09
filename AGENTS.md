@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b28** - Deep RTSP session debugging
+**0.43.1b30** - FFmpeg probesize fix and minimum 10fps output
 
 ## MUST DO : 
 - keep this file up-to-date
