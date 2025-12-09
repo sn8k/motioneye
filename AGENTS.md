@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b32** - Reduce RTSP log spam, add transport mode logging (TCP/UDP)
+**0.43.1b33** - Add TCP/UDP packet send diagnostics per session
 
 ## MUST DO : 
 - keep this file up-to-date

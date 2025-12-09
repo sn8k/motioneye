@@ -561,8 +561,12 @@ class RTSPClientHandler:
         if self.writer and not self.writer.is_closing():
             try:
                 self.writer.write(data)
+                # Log first write per connection
+                if not hasattr(self, '_interleaved_write_logged'):
+                    self._interleaved_write_logged = True
+                    logging.info(f"First interleaved write: {len(data)} bytes to {self.client_address}")
             except Exception as e:
-                logging.debug(f"Failed to write interleaved data: {e}")
+                logging.warning(f"Failed to write interleaved data: {e}")
                 
     def _check_auth(self, request: RTSPRequest) -> bool:
         """Check authentication header.

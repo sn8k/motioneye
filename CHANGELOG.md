@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b33]
+
+### Amélioré
+
+- **Diagnostics TCP/UDP par session** (`rtspserver/session.py`, `server.py`) :
+  - Log "First video packets sent" pour chaque nouvelle session (pas uniquement la première)
+  - Log du premier paquet TCP envoyé par session (channel, taille, seq, timestamp)
+  - Warning si tcp_writer manquant en mode TCP
+  - Log du premier write interleaved par connexion
+
 ## [0.43.1b32]
 
 ### Amélioré

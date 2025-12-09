@@ -331,8 +331,21 @@ class RTSPSession:
                     self.tcp_writer(interleaved)
                     channel.packets_sent += 1
                     channel.bytes_sent += len(packet_data)
+                    # Log first TCP packet per session
+                    if not hasattr(self, '_tcp_packet_logged'):
+                        self._tcp_packet_logged = True
+                        logging.info(
+                            f"Session {self.session_id}: First TCP packet sent, "
+                            f"channel={channel.rtp_channel}, size={len(interleaved)}, "
+                            f"seq={packet.sequence_number}, ts={packet.timestamp}"
+                        )
                 except Exception as e:
-                    logging.debug(f"Failed to send interleaved RTP: {e}")
+                    logging.warning(f"Failed to send interleaved RTP: {e}")
+            else:
+                # Log missing tcp_writer
+                if not hasattr(self, '_no_tcp_writer_logged'):
+                    self._no_tcp_writer_logged = True
+                    logging.warning(f"Session {self.session_id}: TCP mode but no tcp_writer!")
         else:
             # UDP mode
             if channel.rtp_socket and channel.client_rtp_port:
@@ -521,9 +534,9 @@ class SessionManager:
                     packets = session.send_video_frame(frame_data)
                     if packets > 0:
                         sent_count += 1
-                        # Log first successful send
-                        if not hasattr(self, '_first_send_logged'):
-                            self._first_send_logged = True
+                        # Log first successful send per session
+                        if not hasattr(session, '_packets_logged'):
+                            session._packets_logged = True
                             logging.info(f"First video packets sent: {packets} packets to session {session.session_id}")
                 except Exception as e:
                     logging.warning(f"Error sending video to session {session.session_id}: {e}")
