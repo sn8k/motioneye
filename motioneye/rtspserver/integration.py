@@ -280,76 +280,100 @@ def _configure_single_camera(
     _server.add_stream(stream_id, stream_config)
     
     # Connect source to server for broadcasting
-    # Use counter to log periodically
     frame_counter = [0]  # Use list to allow modification in closure
-    state = {'pending_sps_pps': False}  # Track if we need to attach SPS/PPS to next frame
-    
-    def on_video_frame(data: bytes):
-        if _server:
-            # Get NAL type from data (skip start code)
-            nal_type = 0
-            if len(data) > 4:
-                if data.startswith(b'\x00\x00\x00\x01'):
-                    nal_type = data[4] & 0x1F
-                elif data.startswith(b'\x00\x00\x01'):
-                    nal_type = data[3] & 0x1F
-            
-            # Handle SPS (7) and PPS (8)
-            if nal_type == 7 or nal_type == 8:
-                # Update SPS/PPS in stream config if available from transcoder
-                sps_updated = False
-                pps_updated = False
-                
-                if nal_type == 7 and transcoder.sps_with_start_code:
-                    # Always update if changed, or if None
-                    if stream_config.sps_raw != transcoder.sps_with_start_code:
-                        stream_config.sps_raw = transcoder.sps_with_start_code
-                        if transcoder.sps:
-                            stream_config.sps_base64 = base64.b64encode(transcoder.sps).decode('ascii')
-                            logging.info(f"Updated SPS in stream config for {stream_id} (base64: {len(stream_config.sps_base64)} chars)")
-                        sps_updated = True
-                        
-                if nal_type == 8 and transcoder.pps_with_start_code:
-                    # Always update if changed, or if None
-                    if stream_config.pps_raw != transcoder.pps_with_start_code:
-                        stream_config.pps_raw = transcoder.pps_with_start_code
-                        if transcoder.pps:
-                            stream_config.pps_base64 = base64.b64encode(transcoder.pps).decode('ascii')
-                            logging.info(f"Updated PPS in stream config for {stream_id} (base64: {len(stream_config.pps_base64)} chars)")
-                        pps_updated = True
-                
-                # If we just got initial SPS/PPS, send to any waiting clients
-                if (sps_updated or pps_updated) and stream_config.sps_raw and stream_config.pps_raw:
-                    _send_sps_pps_to_waiting_clients(stream_id, stream_config)
-                
-                # Mark that we have pending SPS/PPS to attach to next video frame
-                # Do NOT broadcast SPS/PPS as separate frames to avoid timestamp issues
-                state['pending_sps_pps'] = True
-                return
+    state = {
+        'pending_sps_pps': False,
+        'access_unit': [],  # List of NAL byte strings composing current frame
+        'has_vcl': False,   # Whether current AU already contains a slice
+    }
 
-            # For video frames (Type 1, 5, etc.)
-            frame_counter[0] += 1
-            if frame_counter[0] == 1:
-                logging.info(f"First video frame received for {stream_id} ({len(data)} bytes, type={nal_type})")
-            elif frame_counter[0] % 500 == 0:
-                logging.debug(f"Video frames for {stream_id}: {frame_counter[0]}")
-            
-            # Check if we should prefix with SPS+PPS
-            # We prefix if:
-            # 1. It's an IDR frame (type 5) - standard requirement
-            # 2. We have pending SPS/PPS (e.g. they just arrived before this frame)
-            frame_to_send = data
+    def _flush_access_unit(reason: str):
+        if not _server or not state['access_unit']:
+            state['access_unit'].clear()
+            state['has_vcl'] = False
+            return
+        frame_data = b''.join(state['access_unit'])
+        state['access_unit'].clear()
+        state['has_vcl'] = False
+        frame_counter[0] += 1
+        if frame_counter[0] == 1:
+            logging.info(f"First complete frame sent for {stream_id} ({len(frame_data)} bytes, reason={reason})")
+        elif frame_counter[0] % 100 == 0:
+            logging.debug(f"Frames sent for {stream_id}: {frame_counter[0]} (last reason={reason}, size={len(frame_data)} bytes)")
+        _server.broadcast_frame(stream_id, video_data=frame_data)
+
+    def on_video_frame(data: bytes):
+        if not _server:
+            return
+
+        nal_type = 0
+        if len(data) > 4:
+            if data.startswith(b'\x00\x00\x00\x01'):
+                nal_type = data[4] & 0x1F
+            elif data.startswith(b'\x00\x00\x01'):
+                nal_type = data[3] & 0x1F
+
+        # Handle SPS (7) / PPS (8)
+        if nal_type in (7, 8):
+            sps_updated = False
+            pps_updated = False
+
+            if nal_type == 7 and transcoder.sps_with_start_code:
+                if stream_config.sps_raw != transcoder.sps_with_start_code:
+                    stream_config.sps_raw = transcoder.sps_with_start_code
+                    if transcoder.sps:
+                        stream_config.sps_base64 = base64.b64encode(transcoder.sps).decode('ascii')
+                        logging.info(f"Updated SPS in stream config for {stream_id} (base64: {len(stream_config.sps_base64)} chars)")
+                    sps_updated = True
+
+            if nal_type == 8 and transcoder.pps_with_start_code:
+                if stream_config.pps_raw != transcoder.pps_with_start_code:
+                    stream_config.pps_raw = transcoder.pps_with_start_code
+                    if transcoder.pps:
+                        stream_config.pps_base64 = base64.b64encode(transcoder.pps).decode('ascii')
+                        logging.info(f"Updated PPS in stream config for {stream_id} (base64: {len(stream_config.pps_base64)} chars)")
+                    pps_updated = True
+
+            if (sps_updated or pps_updated) and stream_config.sps_raw and stream_config.pps_raw:
+                state['pending_sps_pps'] = True
+                _send_sps_pps_to_waiting_clients(stream_id, stream_config)
+            return
+
+        # Access Unit Delimiter (AUD) marks start of a new frame
+        if nal_type == 9:
+            _flush_access_unit('AUD delimiter')
+            state['access_unit'].append(data)
+            return
+
+        # Supplemental Enhancement Information or other non-VCL NALs – keep with current AU
+        if nal_type in (6, 12):  # SEI / Filler
+            state['access_unit'].append(data)
+            return
+
+        # Video Coding Layer slices (types 1-5)
+        if nal_type in (1, 2, 3, 4, 5):
+            if state['has_vcl']:
+                _flush_access_unit('new VCL slice')
+
+            prefix_added = False
             if stream_config.sps_raw and stream_config.pps_raw:
-                if nal_type == 5 or state['pending_sps_pps']:
-                    # Prefix with SPS + PPS for complete access unit
-                    frame_to_send = stream_config.sps_raw + stream_config.pps_raw + data
-                    if frame_counter[0] <= 5 or state['pending_sps_pps']:
-                        logging.info(f"Prefixed frame (type={nal_type}) with SPS+PPS for {stream_id}")
-                    
-                    # Reset pending flag
-                    state['pending_sps_pps'] = False
-            
-            _server.broadcast_frame(stream_id, video_data=frame_to_send)
+                if state['pending_sps_pps'] or nal_type == 5:
+                    state['access_unit'].append(stream_config.sps_raw)
+                    state['access_unit'].append(stream_config.pps_raw)
+                    prefix_added = True
+                    if state['pending_sps_pps']:
+                        state['pending_sps_pps'] = False
+
+            state['access_unit'].append(data)
+            state['has_vcl'] = True
+
+            if prefix_added:
+                logging.info(f"Prefixed frame (type={nal_type}) with SPS+PPS for {stream_id}")
+
+            return
+
+        # Any other NAL types are appended as-is
+        state['access_unit'].append(data)
             
     def on_audio_samples(data: bytes):
         if _server:

@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b37** - Fix SDP sprop-parameter-sets: encode SPS/PPS in base64
+**0.43.1b38** - Assemble full H.264 access units before RTP packetization
 
 ## MUST DO : 
 - keep this file up-to-date

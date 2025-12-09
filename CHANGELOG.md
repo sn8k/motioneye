@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b38]
+
+### Corrigé
+
+- **RTP envoyait des NALs isolées** (`rtspserver/integration.py`, `rtspserver/source.py`) :
+  - Regroupe maintenant les NALs (AUD, SEI, slices) en unités d'accès complètes avant envoi RTP
+  - Ajoute `-x264-params aud=1:repeat-headers=1` pour que FFmpeg insère des AUD et répète SPS/PPS
+  - Les timestamps RTP correspondent enfin à des frames complètes, évitant les artefacts "concealing" côté client
+
 ## [0.43.1b37]
 
 ### Corrigé

@@ -231,6 +231,7 @@ class FFmpegTranscoder:
             '-flags', '+cgop',  # Force closed GOP
             '-r', str(output_fps),
             '-pix_fmt', 'yuv420p',
+            '-x264-params', 'aud=1:repeat-headers=1',  # Emit AUD + repeat SPS/PPS
         ])
         
         # Output format - raw H.264 Annex B format
