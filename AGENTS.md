@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b23** - Native RTSP server with audio support (legacy audio removed)
+**0.43.1b24** - Native RTSP server with audio support (legacy audio removed)
 
 ## MUST DO : 
 - keep this file up-to-date

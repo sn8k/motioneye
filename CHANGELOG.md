@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b24]
+
+### Corrigé
+
+- **Détection audio ALSA** (`audioctl.py`) :
+  - Parsing simplifié et plus robuste avec `re.search()` au lieu de `re.match()`
+  - Logs au niveau INFO pour faciliter le debug
+  - Gestion des caractères spéciaux (ex: ® dans "Microsoft® LifeCam")
+  - Extraction du nom depuis les premiers crochets `[description]`
+
 ## [0.43.1b23]
 
 ### Supprimé
