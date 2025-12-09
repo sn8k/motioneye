@@ -41,17 +41,22 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
         )
         
         logging.info(f"arecord -l returncode: {result.returncode}")
-        if result.stdout:
-            logging.info(f"arecord -l stdout:\n{result.stdout}")
+        logging.info(f"arecord -l stdout length: {len(result.stdout) if result.stdout else 0}")
+        logging.info(f"arecord -l stdout: {repr(result.stdout[:200]) if result.stdout else 'EMPTY'}")
         if result.stderr:
-            logging.debug(f"arecord -l stderr: {result.stderr}")
+            logging.info(f"arecord -l stderr: {result.stderr}")
         
-        if result.returncode == 0 and result.stdout.strip():
+        if result.returncode == 0 and result.stdout and result.stdout.strip():
+            lines = result.stdout.split('\n')
+            logging.info(f"Processing {len(lines)} lines from arecord output")
+            
             # Parse output like:
             # card 1: HD5000 [Microsoft® LifeCam HD-5000], device 0: USB Audio [USB Audio]
-            for line in result.stdout.split('\n'):
+            for i, line in enumerate(lines):
                 original_line = line
                 line = line.strip()
+                
+                logging.info(f"Line {i}: '{line[:50]}...' startswith card: {line.lower().startswith('card')}")
                 
                 # Skip non-card lines
                 if not line.lower().startswith('card'):

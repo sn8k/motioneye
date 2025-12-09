@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # All-in-one installer/updater for motionEye on Debian Trixie (Raspberry Pi 3B+ x64 Lite).
-# Version: 2025.12.08.5
+# Version: 2025.12.09.1
 set -euo pipefail
 
 REPO_URL="https://github.com/sn8k/motioneye.git"
@@ -58,6 +58,33 @@ install_packages() {
         git ca-certificates curl python3 python3-venv python3-dev gcc \
         libjpeg62-turbo-dev libcurl4-openssl-dev libssl-dev ffmpeg \
         alsa-utils motion pkg-config zlib1g-dev libfreetype6-dev
+}
+
+setup_motion_user() {
+    log "Setting up motion user with required permissions..."
+    
+    # Create motion user if it doesn't exist (motion package usually creates it)
+    if ! id -u motion >/dev/null 2>&1; then
+        log "Creating motion user..."
+        useradd -r -s /usr/sbin/nologin -d /var/lib/motioneye motion
+    fi
+    
+    # Add motion user to required groups for hardware access
+    # - video: access to camera devices (/dev/video*)
+    # - audio: access to audio devices (ALSA/arecord)
+    # - gpio: access to GPIO pins (optional, for Raspberry Pi)
+    for group in video audio gpio; do
+        if getent group "$group" >/dev/null 2>&1; then
+            if ! groups motion | grep -q "\b$group\b"; then
+                log "Adding motion user to $group group..."
+                usermod -a -G "$group" motion
+            else
+                log "motion user already in $group group"
+            fi
+        fi
+    done
+    
+    log "motion user groups: $(groups motion)"
 }
 
 ensure_repo() {
@@ -333,6 +360,7 @@ main() {
     case "$ACTION" in
         install)
             install_packages
+            setup_motion_user
             ensure_repo
             update_repo
             setup_venv
@@ -345,6 +373,7 @@ main() {
                 echo "Installation directory $INSTALL_DIR not found. Run with 'install' first." >&2
                 exit 1
             fi
+            setup_motion_user
             ensure_repo
             update_repo
             setup_venv

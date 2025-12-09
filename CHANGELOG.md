@@ -5,7 +5,7 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [0.43.1b24]
+## [0.43.1b25]\n\n### Ajouté\n\n- **Script d'installation** (`setup_script_from_source.sh`) :\n  - Nouvelle fonction `setup_motion_user()` qui ajoute l'utilisateur `motion` aux groupes requis\n  - Groupes ajoutés : `video` (caméras), `audio` (microphones ALSA), `gpio` (Raspberry Pi)\n  - Appelée automatiquement lors de `install` et `update`\n  - Résout le problème \"no soundcards found\" quand motionEye tourne sous l'utilisateur `motion`\n\n### Amélioré\n\n- **Détection audio** (`audioctl.py`) :\n  - Logs plus détaillés pour diagnostiquer les problèmes de permissions\n\n## [0.43.1b24]
 
 ### Corrigé
 
