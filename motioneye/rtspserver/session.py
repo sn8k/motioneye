@@ -247,11 +247,11 @@ class RTSPSession:
             Number of packets sent
         """
         if not self.video_packetizer:
-            logging.debug(f"Session {self.session_id}: no video_packetizer")
+            logging.info(f"Session {self.session_id}: no video_packetizer")
             return 0
             
         if self.state != SessionState.PLAYING:
-            logging.debug(f"Session {self.session_id}: state is {self.state}, not PLAYING")
+            logging.info(f"Session {self.session_id}: state is {self.state}, not PLAYING")
             return 0
             
         # Find video channel
@@ -262,7 +262,7 @@ class RTSPSession:
                 break
                 
         if not video_channel:
-            logging.debug(f"Session {self.session_id}: no video channel configured")
+            logging.info(f"Session {self.session_id}: no video channel configured")
             return 0
             
         packets_sent = 0
@@ -502,6 +502,14 @@ class SessionManager:
         if not sessions:
             # No logging here - this is normal when no clients connected
             return
+        
+        # Log first time we have playing sessions
+        if not hasattr(self, '_first_broadcast_logged'):
+            self._first_broadcast_logged = True
+            logging.info(
+                f"First broadcast attempt: {len(sessions)} playing session(s), "
+                f"stream_id='{stream_id}', frame_size={len(frame_data)} bytes"
+            )
             
         sent_count = 0
         for session in sessions:
@@ -513,10 +521,11 @@ class SessionManager:
             if not hasattr(self, '_match_logged'):
                 self._match_logged = 0
             if self._match_logged < 5:
-                logging.debug(
+                logging.info(
                     f"Broadcast matching: stream_id='{stream_id}', "
                     f"session.stream_url='{session.stream_url}', "
-                    f"session_stream='{session_stream}'"
+                    f"session_stream='{session_stream}', "
+                    f"session.state={session.state}"
                 )
                 self._match_logged += 1
             
@@ -525,8 +534,12 @@ class SessionManager:
                     packets = session.send_video_frame(frame_data)
                     if packets > 0:
                         sent_count += 1
+                        # Log first successful send
+                        if not hasattr(self, '_first_send_logged'):
+                            self._first_send_logged = True
+                            logging.info(f"First video packets sent: {packets} packets to session {session.session_id}")
                 except Exception as e:
-                    logging.debug(f"Error sending video to session {session.session_id}: {e}")
+                    logging.warning(f"Error sending video to session {session.session_id}: {e}")
                     
         if sent_count > 0 and hasattr(self, '_video_frame_count'):
             self._video_frame_count = getattr(self, '_video_frame_count', 0) + 1

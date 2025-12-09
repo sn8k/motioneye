@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b27]
+
+### Amélioré
+
+- **Logs RTSP étendus pour diagnostic** :
+  - `rtspserver/server.py` : Log INFO du mapping stream_path → stream_id dans handle_setup()
+  - `rtspserver/session.py` : Logs INFO dans broadcast_video_frame() et send_video_frame()
+  - Permet de voir exactement ce qui se passe pendant le broadcast aux clients
+
 ## [0.43.1b26]
 
 ### Corrigé

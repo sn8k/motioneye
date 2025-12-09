@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b26** - Fix RTSP stream URL matching (sessions now receive video)
+**0.43.1b27** - Extended RTSP logging for diagnosis
 
 ## MUST DO : 
 - keep this file up-to-date

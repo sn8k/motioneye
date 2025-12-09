@@ -409,7 +409,7 @@ class RTSPClientHandler:
                     actual_stream_id = sid
                     break
             self.session.stream_url = actual_stream_id if actual_stream_id else stream_path
-            logging.debug(f"RTSP SETUP: mapped '{stream_path}' -> stream_id '{self.session.stream_url}'")
+            logging.info(f"RTSP SETUP: mapped '{stream_path}' -> stream_id '{self.session.stream_url}'")
         else:
             self.session.stream_url = stream_path
             logging.warning(f"RTSP SETUP: no stream config found for '{stream_path}'")
