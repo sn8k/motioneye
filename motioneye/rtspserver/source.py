@@ -228,6 +228,7 @@ class FFmpegTranscoder:
             '-g', str(output_fps * 2),  # GOP size
             '-keyint_min', str(output_fps),
             '-sc_threshold', '0',
+            '-flags', '+cgop',  # Force closed GOP
             '-r', str(output_fps),
             '-pix_fmt', 'yuv420p',
         ])
