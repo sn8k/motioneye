@@ -5,6 +5,37 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b22] - 2025-12-09
+
+### Corrigé
+
+#### Détection audio - Regex et périphérique par défaut (2025-12-09)
+
+Correction de la détection des périphériques audio ALSA.
+
+**Problème :** Les périphériques avec des noms alphanumériques (ex: "HD5000" pour Microsoft® LifeCam HD-5000) n'étaient pas détectés correctement, affichant "Périphérique par défaut" au lieu du vrai nom.
+
+**Corrections apportées :**
+
+- `motioneye/audioctl.py` :
+  - Regex améliorée : `(\w+)` → `(\S+)` pour capturer les noms de device ALSA non-standards
+  - Format device changé de `plug:hw:` à `plughw:` (format ALSA standard)
+  - Nettoyage des descriptions avec suffixes `[subdesc]`
+  - `get_default_audio_device()` retourne maintenant le premier périphérique matériel réel au lieu de "plug:default"
+
+#### Persistance des settings RTSP (2025-12-09)
+
+**Problème :** Les paramètres RTSP n'étaient pas persistants car `RTSP_AUDIO_DEVICE` n'était pas déclaré dans `settings.py`.
+
+**Correction :**
+
+- `motioneye/settings.py` :
+  - Ajout de `RTSP_AUDIO_DEVICE = None` pour permettre le chargement depuis le fichier de config
+
+### Modifié
+
+- `motioneye/__init__.py` : Version 0.43.1b22+20251209
+
 ## [0.43.1b21] - 2025-12-09
 
 ### Corrigé

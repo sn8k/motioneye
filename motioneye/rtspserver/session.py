@@ -246,7 +246,12 @@ class RTSPSession:
         Returns:
             Number of packets sent
         """
-        if not self.video_packetizer or self.state != SessionState.PLAYING:
+        if not self.video_packetizer:
+            logging.debug(f"Session {self.session_id}: no video_packetizer")
+            return 0
+            
+        if self.state != SessionState.PLAYING:
+            logging.debug(f"Session {self.session_id}: state is {self.state}, not PLAYING")
             return 0
             
         # Find video channel
@@ -257,6 +262,7 @@ class RTSPSession:
                 break
                 
         if not video_channel:
+            logging.debug(f"Session {self.session_id}: no video channel configured")
             return 0
             
         packets_sent = 0
@@ -493,14 +499,28 @@ class SessionManager:
             frame_data: H.264 frame data
         """
         sessions = self.get_playing_sessions()
+        if not sessions:
+            # No logging here - this is normal when no clients connected
+            return
+            
+        sent_count = 0
         for session in sessions:
             # Match stream_url (may contain full path) with stream_id
             session_stream = session.stream_url.strip('/').split('/')[0] if session.stream_url else ''
             if session_stream == stream_id or stream_id in session.stream_url or not stream_id:
                 try:
-                    session.send_video_frame(frame_data)
+                    packets = session.send_video_frame(frame_data)
+                    if packets > 0:
+                        sent_count += 1
                 except Exception as e:
                     logging.debug(f"Error sending video to session {session.session_id}: {e}")
+                    
+        if sent_count > 0 and hasattr(self, '_video_frame_count'):
+            self._video_frame_count = getattr(self, '_video_frame_count', 0) + 1
+            if self._video_frame_count % 100 == 0:
+                logging.debug(f"Broadcast {self._video_frame_count} video frames to {sent_count} sessions")
+        elif not hasattr(self, '_video_frame_count'):
+            self._video_frame_count = 1
                 
     def broadcast_audio_samples(
         self,

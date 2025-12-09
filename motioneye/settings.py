@@ -91,6 +91,9 @@ RTSP_PASSWORD = None
 # enable audio in RTSP streams (requires ALSA device)
 RTSP_AUDIO_ENABLED = False
 
+# audio device for RTSP streams (ALSA device, e.g. plughw:1,0)
+RTSP_AUDIO_DEVICE = None
+
 # H.264 encoding bitrate in kbps
 RTSP_VIDEO_BITRATE = 2000
 

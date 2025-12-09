@@ -250,8 +250,16 @@ def _configure_single_camera(
     _server.add_stream(stream_id, stream_config)
     
     # Connect source to server for broadcasting
+    # Use counter to log periodically
+    frame_counter = [0]  # Use list to allow modification in closure
+    
     def on_video_frame(data: bytes):
         if _server:
+            frame_counter[0] += 1
+            if frame_counter[0] == 1:
+                logging.info(f"First video frame received for {stream_id} ({len(data)} bytes)")
+            elif frame_counter[0] % 500 == 0:
+                logging.debug(f"Video frames for {stream_id}: {frame_counter[0]}")
             _server.broadcast_frame(stream_id, video_data=data)
             
     def on_audio_samples(data: bytes):
@@ -263,7 +271,10 @@ def _configure_single_camera(
         _source_manager.add_audio_callback(camera_id, on_audio_samples)
         
     # Start the source
-    _source_manager.start_source(camera_id)
+    if _source_manager.start_source(camera_id):
+        logging.info(f"Started RTSP source for camera {camera_id}")
+    else:
+        logging.error(f"Failed to start RTSP source for camera {camera_id}")
     
     logging.info(
         f"Configured RTSP stream for camera {camera_id} ({camera_name}) at /{stream_id}"

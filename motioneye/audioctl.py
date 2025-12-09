@@ -50,10 +50,12 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
         
         if result.returncode == 0:
             # Parse output like:
-            # card 0: Device [USB Audio Device], device 0: USB Audio [USB Audio]
+            # card 1: HD5000 [Microsoft® LifeCam HD-5000], device 0: USB Audio [USB Audio]
+            # Format: card N: NAME [DESCRIPTION], device M: SUBNAME [SUBDESC]
             for line in result.stdout.split('\n'):
+                # More flexible regex to handle various formats and special chars
                 match = re.match(
-                    r'card\s+(\d+):\s+(\w+)\s+\[([^\]]+)\],\s+device\s+(\d+):\s+(.+)',
+                    r'card\s+(\d+):\s+(\S+)\s+\[([^\]]+)\],\s+device\s+(\d+):\s+(.+)',
                     line
                 )
                 if match:
@@ -62,17 +64,21 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
                     card_name = match.group(3).strip()
                     device_desc = match.group(5).strip()
                     
+                    # Clean up device description (may have [subdesc] at end)
+                    if '[' in device_desc:
+                        device_desc = device_desc.split('[')[0].strip()
+                    
                     # Create ALSA device identifier
                     device_id = f"hw:{card_num},{device_num}"
-                    plug_device_id = f"plug:hw:{card_num},{device_num}"
+                    plug_device_id = f"plughw:{card_num},{device_num}"
                     
                     # Create friendly name
-                    friendly_name = f"{card_name}"
+                    friendly_name = card_name
                     if device_desc and device_desc != card_name:
                         friendly_name = f"{card_name} - {device_desc}"
                     
-                    # Add plug: version for better compatibility
-                    devices.append((plug_device_id, f"{friendly_name} (plug)"))
+                    # Add plughw: version for better compatibility (handles format conversion)
+                    devices.append((plug_device_id, f"{friendly_name} (plughw)"))
                     devices.append((device_id, f"{friendly_name} (direct)"))
         
         # Method 2: Also try to get PulseAudio sources if available
@@ -117,11 +123,14 @@ def detect_audio_devices() -> List[Tuple[str, str]]:
 def get_default_audio_device() -> str:
     """Get the default audio device.
     
-    Returns the first detected device or 'plug:default' if none found.
+    Returns the first real detected device (not plug:default) or 'plughw:0,0' if none found.
     """
     devices = detect_audio_devices()
-    if devices:
-        return devices[0][0]
+    # Skip the "Default Audio Device" entry and get first real device
+    for device_id, _ in devices:
+        if device_id != "plug:default" and device_id.startswith(("plughw:", "hw:")):
+            return device_id
+    # Fallback to plug:default
     return "plug:default"
 
 
