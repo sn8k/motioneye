@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b32]
+
+### Amélioré
+
+- **Réduction du spam dans les logs RTSP** (`rtspserver/session.py`) :
+  - Suppression des logs de matching répétitifs dans broadcast_video_frame()
+  - Logs de get_playing_sessions() limités aux 3 premiers appels puis tous les 1000
+
+- **Logging du mode transport RTSP** (`rtspserver/server.py`) :
+  - Affiche si le client utilise TCP interleaved ou UDP
+  - Aide au diagnostic quand la vidéo ne s'affiche pas
+
 ## [0.43.1b31]
 
 ### Corrigé

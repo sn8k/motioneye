@@ -428,6 +428,7 @@ class RTSPClientHandler:
         if 'TCP' in protocol or 'interleaved' in transport_params:
             # TCP interleaved mode
             transport_mode = TransportMode.TCP
+            logging.info(f"RTSP SETUP: using TCP interleaved transport")
             
             # Parse interleaved channels
             interleaved = transport_params.get('interleaved', '0-1')
@@ -460,6 +461,7 @@ class RTSPClientHandler:
         else:
             # UDP mode
             transport_mode = TransportMode.UDP
+            logging.info(f"RTSP SETUP: using UDP transport")
             
             # Parse client ports
             client_port = transport_params.get('client_port', '0-0')
