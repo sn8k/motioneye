@@ -776,6 +776,15 @@ class RTSPServer:
             is_aac_audio: True if audio is AAC format
         """
         if video_data:
+            # Log to see if we reach this point
+            sessions = self.session_manager.get_playing_sessions()
+            if sessions:
+                if not hasattr(self, '_broadcast_logged'):
+                    self._broadcast_logged = True
+                    logging.info(
+                        f"broadcast_frame called: {len(sessions)} playing sessions, "
+                        f"stream_id='{stream_id}', video_size={len(video_data)}"
+                    )
             self.session_manager.broadcast_video_frame(stream_id, video_data)
         if audio_data:
             self.session_manager.broadcast_audio_samples(

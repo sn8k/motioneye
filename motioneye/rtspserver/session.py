@@ -486,10 +486,18 @@ class SessionManager:
         Returns:
             List of playing sessions
         """
-        return [
-            session for session in self.sessions.values()
-            if session.state == SessionState.PLAYING
-        ]
+        all_sessions = list(self.sessions.values())
+        playing = [s for s in all_sessions if s.state == SessionState.PLAYING]
+        
+        # Log occasionally for debugging
+        if not hasattr(self, '_get_playing_logged'):
+            self._get_playing_logged = 0
+        self._get_playing_logged += 1
+        if self._get_playing_logged <= 10 or self._get_playing_logged % 100 == 0:
+            states = {s.session_id: s.state.name for s in all_sessions}
+            logging.info(f"get_playing_sessions: total={len(all_sessions)}, playing={len(playing)}, states={states}")
+        
+        return playing
     
     def broadcast_video_frame(self, stream_id: str, frame_data: bytes):
         """Broadcast a video frame to all playing sessions on a stream.

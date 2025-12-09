@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b28]
+
+### Amélioré
+
+- **Logs RTSP profonds pour diagnostic sessions** :
+  - `rtspserver/server.py` : Log dans broadcast_frame() du nombre de sessions PLAYING
+  - `rtspserver/session.py` : Log dans get_playing_sessions() du nombre total de sessions et leurs états
+  - Permet de diagnostiquer pourquoi les sessions ne reçoivent pas les frames
+
 ## [0.43.1b27]
 
 ### Amélioré
