@@ -151,6 +151,10 @@ class StreamConfig:
     pps_base64: Optional[str] = None
     profile_level_id: str = "42001f"
     
+    # Raw SPS/PPS for sending to newly connected clients
+    sps_raw: Optional[bytes] = None
+    pps_raw: Optional[bytes] = None
+    
     # Data source callbacks
     video_source: Optional[Callable[[], bytes]] = None
     audio_source: Optional[Callable[[], bytes]] = None
@@ -191,6 +195,10 @@ class RTSPClientHandler:
                 except asyncio.TimeoutError:
                     # Check for interleaved RTP data from client (RTCP)
                     continue
+                except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                    # Client disconnected abruptly - this is normal
+                    logging.debug(f"Client {self.client_address} disconnected abruptly")
+                    break
                     
                 if not data:
                     break
@@ -756,9 +764,25 @@ class RTSPServer:
                 logging.error(f"Error in cleanup loop: {e}")
                 
     def _register_playing_session(self, session: RTSPSession):
-        """Register a session that has started playing."""
-        # This is called when PLAY is received
-        pass
+        """Register a session that has started playing.
+        
+        Sends SPS/PPS to the client so it can decode video immediately.
+        """
+        # Find the stream config for this session
+        stream_id = session.stream_url
+        stream_config = self.streams.get(stream_id)
+        
+        if stream_config and stream_config.sps_raw and stream_config.pps_raw:
+            # Send SPS and PPS to the new client
+            logging.info(f"Sending SPS/PPS to new session {session.session_id}")
+            try:
+                # Send SPS first, then PPS
+                session.send_video_frame(stream_config.sps_raw)
+                session.send_video_frame(stream_config.pps_raw)
+            except Exception as e:
+                logging.warning(f"Failed to send SPS/PPS to session {session.session_id}: {e}")
+        else:
+            logging.debug(f"No SPS/PPS available yet for stream {stream_id}")
         
     def broadcast_frame(
         self,

@@ -260,6 +260,15 @@ def _configure_single_camera(
                 logging.info(f"First video frame received for {stream_id} ({len(data)} bytes)")
             elif frame_counter[0] % 500 == 0:
                 logging.debug(f"Video frames for {stream_id}: {frame_counter[0]}")
+            
+            # Update SPS/PPS in stream config if available from transcoder
+            if transcoder.sps_with_start_code and stream_config.sps_raw is None:
+                stream_config.sps_raw = transcoder.sps_with_start_code
+                logging.info(f"Updated SPS in stream config for {stream_id}")
+            if transcoder.pps_with_start_code and stream_config.pps_raw is None:
+                stream_config.pps_raw = transcoder.pps_with_start_code
+                logging.info(f"Updated PPS in stream config for {stream_id}")
+            
             _server.broadcast_frame(stream_id, video_data=data)
             
     def on_audio_samples(data: bytes):

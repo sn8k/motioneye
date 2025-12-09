@@ -5,6 +5,19 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b31]
+
+### Corrigé
+
+- **Image figée dans VLC** (`rtspserver/server.py`, `integration.py`, `source.py`) :
+  - Envoi des SPS/PPS au client dès qu'il commence à jouer (PLAY)
+  - Permet au décodeur H.264 de décoder immédiatement les P-frames
+  - Stockage des SPS/PPS dans StreamConfig pour les envoyer aux nouveaux clients
+
+- **Traceback "Connection reset by peer"** (`rtspserver/server.py`) :
+  - Gestion propre des déconnexions brutales (ConnectionResetError, BrokenPipeError)
+  - Plus de traceback dans les logs quand un client se déconnecte brusquement
+
 ## [0.43.1b30]
 
 ### Corrigé

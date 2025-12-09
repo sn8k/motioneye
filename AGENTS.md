@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b30** - FFmpeg probesize fix and minimum 10fps output
+**0.43.1b31** - Send SPS/PPS on client connect, handle connection reset gracefully
 
 ## MUST DO : 
 - keep this file up-to-date

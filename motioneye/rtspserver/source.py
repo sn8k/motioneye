@@ -87,6 +87,8 @@ class FFmpegTranscoder:
         # Stored SPS/PPS for client configuration
         self.sps: Optional[bytes] = None
         self.pps: Optional[bytes] = None
+        self.sps_with_start_code: Optional[bytes] = None
+        self.pps_with_start_code: Optional[bytes] = None
         
     def start(self) -> bool:
         """Start the FFmpeg transcoder.
@@ -344,13 +346,15 @@ class FFmpegTranscoder:
             
         nal_type = nal_header & 0x1F
         
-        # Store SPS (type 7) and PPS (type 8)
+        # Store SPS (type 7) and PPS (type 8) - both raw content and with start code
         if nal_type == 7:
             self.sps = nal_content
-            logging.debug(f"Captured SPS: {len(self.sps)} bytes")
+            self.sps_with_start_code = nal_data
+            logging.info(f"Captured SPS: {len(self.sps)} bytes")
         elif nal_type == 8:
             self.pps = nal_content
-            logging.debug(f"Captured PPS: {len(self.pps)} bytes")
+            self.pps_with_start_code = nal_data
+            logging.info(f"Captured PPS: {len(self.pps)} bytes")
             
         # Send to callback
         if self.on_video_frame:
