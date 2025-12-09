@@ -505,8 +505,21 @@ class SessionManager:
             
         sent_count = 0
         for session in sessions:
-            # Match stream_url (may contain full path) with stream_id
+            # Match stream_url with stream_id 
+            # After fix: session.stream_url should contain actual stream_id (e.g. "cam2")
             session_stream = session.stream_url.strip('/').split('/')[0] if session.stream_url else ''
+            
+            # Log first few matching attempts for debugging
+            if not hasattr(self, '_match_logged'):
+                self._match_logged = 0
+            if self._match_logged < 5:
+                logging.debug(
+                    f"Broadcast matching: stream_id='{stream_id}', "
+                    f"session.stream_url='{session.stream_url}', "
+                    f"session_stream='{session_stream}'"
+                )
+                self._match_logged += 1
+            
             if session_stream == stream_id or stream_id in session.stream_url or not stream_id:
                 try:
                     packets = session.send_video_frame(frame_data)

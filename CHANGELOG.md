@@ -5,7 +5,37 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [0.43.1b25]\n\n### Ajouté\n\n- **Script d'installation** (`setup_script_from_source.sh`) :\n  - Nouvelle fonction `setup_motion_user()` qui ajoute l'utilisateur `motion` aux groupes requis\n  - Groupes ajoutés : `video` (caméras), `audio` (microphones ALSA), `gpio` (Raspberry Pi)\n  - Appelée automatiquement lors de `install` et `update`\n  - Résout le problème \"no soundcards found\" quand motionEye tourne sous l'utilisateur `motion`\n\n### Amélioré\n\n- **Détection audio** (`audioctl.py`) :\n  - Logs plus détaillés pour diagnostiquer les problèmes de permissions\n\n## [0.43.1b24]
+## [0.43.1b26]
+
+### Corrigé
+
+- **Bug critique RTSP : aucune vidéo reçue par les clients** (`rtspserver/server.py`) :
+  - **Cause** : Le session stockait l'URL demandée par le client (ex: `/stream`) au lieu de l'ID réel du stream (ex: `cam2`)
+  - **Conséquence** : Le broadcast de frames ne matchait pas les sessions (session.stream_url="stream" ≠ stream_id="cam2")
+  - **Solution** : Dans `handle_setup()`, résolution de l'URL demandée vers l'ID réel via `get_stream_config()`
+  - Ajout de logs de debug pour tracer le mapping URL → stream_id
+
+### Amélioré
+
+- **Debug RTSP** (`rtspserver/session.py`) :
+  - Ajout de logs dans `broadcast_video_frame()` pour tracer le matching session/stream
+
+## [0.43.1b25]
+
+### Ajouté
+
+- **Script d'installation** (`setup_script_from_source.sh`) :
+  - Nouvelle fonction `setup_motion_user()` qui ajoute l'utilisateur `motion` aux groupes requis
+  - Groupes ajoutés : `video` (caméras), `audio` (microphones ALSA), `gpio` (Raspberry Pi)
+  - Appelée automatiquement lors de `install` et `update`
+  - Résout le problème "no soundcards found" quand motionEye tourne sous l'utilisateur `motion`
+
+### Amélioré
+
+- **Détection audio** (`audioctl.py`) :
+  - Logs plus détaillés pour diagnostiquer les problèmes de permissions
+
+## [0.43.1b24]
 
 ### Corrigé
 

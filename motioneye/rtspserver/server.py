@@ -396,9 +396,23 @@ class RTSPClientHandler:
         if not self.session:
             self.session = self.server.session_manager.create_session(self.client_address)
             
-        # Determine stream URL
+        # Determine stream URL and resolve to actual stream_id
         stream_path = path.split('/trackID=')[0].strip('/') if '/trackID=' in path else path.strip('/')
-        self.session.stream_url = stream_path
+        
+        # Get the actual stream config to find the real stream_id
+        stream_config = self.server.get_stream_config(stream_path)
+        if stream_config:
+            # Use the actual stream_id for matching during broadcast
+            actual_stream_id = None
+            for sid, cfg in self.server.streams.items():
+                if cfg == stream_config:
+                    actual_stream_id = sid
+                    break
+            self.session.stream_url = actual_stream_id if actual_stream_id else stream_path
+            logging.debug(f"RTSP SETUP: mapped '{stream_path}' -> stream_id '{self.session.stream_url}'")
+        else:
+            self.session.stream_url = stream_path
+            logging.warning(f"RTSP SETUP: no stream config found for '{stream_path}'")
         
         # Determine transport mode
         protocol = transport_params.get('protocol', 'RTP/AVP')
