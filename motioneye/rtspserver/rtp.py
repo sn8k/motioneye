@@ -20,6 +20,7 @@ Implements RTP packetization according to RFC 3550 (RTP),
 RFC 6184 (H.264/RTP), and RFC 3640 (AAC/RTP).
 """
 
+import logging
 import struct
 import time
 import random
@@ -312,6 +313,14 @@ class H264Packetizer(RTPPacketizer):
             timestamp = self.get_timestamp()
             
         nal_units = self._extract_nal_units(frame_data)
+        
+        # Log NAL types for debugging (only first few calls)
+        if not hasattr(self, '_packetize_log_count'):
+            self._packetize_log_count = 0
+        if self._packetize_log_count < 5:
+            nal_types = [(nal[0] & 0x1F) if nal else 0 for nal in nal_units]
+            logging.info(f"Packetizing frame: {len(nal_units)} NAL units, types={nal_types}, sizes={[len(n) for n in nal_units]}")
+            self._packetize_log_count += 1
         
         for i, nal in enumerate(nal_units):
             is_last = (i == len(nal_units) - 1)

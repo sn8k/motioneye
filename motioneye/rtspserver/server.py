@@ -337,6 +337,13 @@ class RTSPClientHandler:
                 response.headers['WWW-Authenticate'] = f'Basic realm="motionEye RTSP"'
                 return response
                 
+        # Log SPS/PPS availability for debugging
+        logging.info(f"DESCRIBE for {stream_path}: SPS_base64={stream_config.sps_base64 is not None}, PPS_base64={stream_config.pps_base64 is not None}")
+        if stream_config.sps_base64:
+            logging.info(f"  SPS base64: {stream_config.sps_base64[:50]}...")
+        if stream_config.pps_base64:
+            logging.info(f"  PPS base64: {stream_config.pps_base64}")
+                
         # Generate SDP
         server_ip = self.server.listen_address
         if server_ip == '0.0.0.0':
@@ -363,6 +370,9 @@ class RTSPClientHandler:
             profile_level_id=stream_config.profile_level_id,
             stream_url=request.uri,
         )
+        
+        # Log generated SDP for debugging
+        logging.info(f"Generated SDP for {stream_path}:\n{sdp}")
         
         response = RTSPResponse(status_code=RTSPStatusCode.OK)
         response.headers['Content-Type'] = 'application/sdp'

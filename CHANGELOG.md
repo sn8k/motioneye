@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b37]
+
+### Corrigé
+
+- **SDP sprop-parameter-sets manquant** (`rtspserver/integration.py`, `rtp.py`) :
+  - Les SPS/PPS sont maintenant encodés en base64 pour le SDP
+  - Le champ `sprop-parameter-sets` dans le SDP permet au décodeur d'initialiser le codec H.264 avant de recevoir les frames
+  - Ajout de logs des types NAL dans le packetizer RTP pour diagnostic
+
 ## [0.43.1b36]
 
 ### Corrigé

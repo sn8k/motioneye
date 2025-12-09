@@ -298,11 +298,21 @@ def _configure_single_camera(
             
             if transcoder.sps_with_start_code and stream_config.sps_raw is None:
                 stream_config.sps_raw = transcoder.sps_with_start_code
-                logging.info(f"Updated SPS in stream config for {stream_id}")
+                # Also set base64 version for SDP (without start code)
+                if transcoder.sps:
+                    stream_config.sps_base64 = base64.b64encode(transcoder.sps).decode('ascii')
+                    logging.info(f"Updated SPS in stream config for {stream_id} (base64: {len(stream_config.sps_base64)} chars)")
+                else:
+                    logging.info(f"Updated SPS in stream config for {stream_id}")
                 sps_updated = True
             if transcoder.pps_with_start_code and stream_config.pps_raw is None:
                 stream_config.pps_raw = transcoder.pps_with_start_code
-                logging.info(f"Updated PPS in stream config for {stream_id}")
+                # Also set base64 version for SDP (without start code)
+                if transcoder.pps:
+                    stream_config.pps_base64 = base64.b64encode(transcoder.pps).decode('ascii')
+                    logging.info(f"Updated PPS in stream config for {stream_id} (base64: {len(stream_config.pps_base64)} chars)")
+                else:
+                    logging.info(f"Updated PPS in stream config for {stream_id}")
                 pps_updated = True
             
             # If we just got SPS/PPS, send to any waiting clients

@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b36** - Fix H.264 decoding: prefix IDR frames with SPS+PPS
+**0.43.1b37** - Fix SDP sprop-parameter-sets: encode SPS/PPS in base64
 
 ## MUST DO : 
 - keep this file up-to-date
