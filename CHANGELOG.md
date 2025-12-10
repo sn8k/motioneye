@@ -5,6 +5,25 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b40]
+
+### Amélioré
+
+- **Détection d’update UI via version du repo** (`update.py`) :
+  - En installation git, on fetch le dépôt et on lit `motioneye/__init__.py` distant pour comparer la VERSION locale et distante
+  - Si la VERSION distante est supérieure, l’UI voit une mise à jour disponible même sans comparer les commits
+
+## [0.43.1b39]
+
+### Amélioré
+
+- **RTSP alimente depuis le passthrough caméra** (`rtspserver/integration.py`) :
+  - Utilise le flux netcam/passthrough quand il est disponible au lieu du MJPEG local
+  - Journalise la source utilisée et l’encodeur choisi pour chaque caméra
+- **Encodeur matériel activé pour le RTSP** (`rtspserver/source.py`) :
+  - Sélectionne automatiquement l’encodeur H.264 matériel disponible (v4l2m2m, NVENC, QSV, NVMPI) sinon libx264
+  - Ajuste la ligne FFmpeg pour accepter des entrées auto-détectées (RTSP/HTTP) en plus du MJPEG
+
 ## [0.43.1b38]
 
 ### Corrigé

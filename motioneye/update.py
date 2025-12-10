@@ -124,6 +124,41 @@ def _git(*args):
     return utils.call_subprocess(['git', '-C', str(REPO_ROOT), *args])
 
 
+def _read_remote_version(repo_url=None, branch=None):
+    """Fetch remote and read VERSION from motioneye/__init__.py.
+
+    Returns the version string or None if unavailable.
+    """
+    if not _is_git_repo():
+        return None
+
+    remote = repo_url or _get_remote_url()
+    try:
+        current_branch = branch or _git('rev-parse', '--abbrev-ref', 'HEAD')
+    except Exception as exc:
+        logging.warning('failed to detect current branch for version read: %s', exc)
+        return None
+
+    try:
+        if remote:
+            _git('fetch', remote, current_branch)
+            ref = 'FETCH_HEAD'
+        else:
+            _git('fetch', '--all')
+            ref = f'origin/{current_branch}'
+    except Exception as exc:
+        logging.warning('failed to fetch remote for version read: %s', exc)
+        return None
+
+    try:
+        file_content = _git('show', f'{ref}:motioneye/__init__.py')
+        match = re.search(r'VERSION\s*=\s*"([^"]+)"', file_content)
+        return match.group(1) if match else None
+    except Exception as exc:
+        logging.warning('failed to read remote version from %s: %s', ref, exc)
+        return None
+
+
 def _restart_service_if_exists():
     service_name = 'motioneye.service'
 
@@ -288,11 +323,23 @@ def perform_update(version, repo_url=None, branch=None):
 
 def get_update_status(repo_url=None, branch=None):
     source_status = get_source_update_status(repo_url=repo_url, branch=branch)
+    current_version = motioneye.VERSION
+
+    # If running from git, prefer version comparison using remote __init__.py
     if source_status:
+        remote_version = _read_remote_version(repo_url=repo_url, branch=branch)
+        if remote_version and compare_versions(remote_version, current_version) > 0:
+            return {
+                'update_version': remote_version,
+                'current_version': current_version,
+                'branch': source_status.get('branch') or branch,
+                'repo_url': source_status.get('repo_url') or repo_url,
+            }
+        # fall back to commit comparison if no version diff
         return source_status
 
+    # Non-git installs: use platformupdate versions list
     versions = get_all_versions()
-    current_version = motioneye.VERSION
     recent_versions = [v for v in versions if compare_versions(v, current_version) > 0]
     recent_versions.sort(key=cmp_to_key(compare_versions))
     update_version = recent_versions[-1] if recent_versions else None

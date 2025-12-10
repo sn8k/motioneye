@@ -28,18 +28,21 @@ import time
 from typing import Optional, Callable, Dict, Any, Tuple
 from dataclasses import dataclass
 
-from motioneye import config, mediafiles, settings
+from motioneye import config, mediafiles, settings, motionctl
 
 
 @dataclass
 class VideoSourceConfig:
     """Configuration for a video source."""
     camera_id: int
-    source_url: str  # Motion MJPEG stream URL
+    source_url: str  # Source URL (mjpeg stream or passthrough)
     width: int = 1920
     height: int = 1080
     framerate: int = 25
     bitrate: int = 2000  # kbps
+    input_format: Optional[str] = "mjpeg"  # None lets FFmpeg auto-detect
+    video_codec: str = "libx264"
+    force_annexb_bsf: bool = True
     
     # H.264 encoding settings
     preset: str = "ultrafast"
@@ -53,6 +56,22 @@ class VideoSourceConfig:
     audio_codec: str = "pcm_mulaw"  # G.711 μ-law for compatibility
     audio_sample_rate: int = 8000
     audio_channels: int = 1
+
+
+def select_h264_encoder(fallback: str = "libx264") -> str:
+    """Return the best available H.264 encoder (hardware preferred)."""
+    try:
+        if motionctl.has_h264_v4l2m2m_support():
+            return "h264_v4l2m2m"
+        if motionctl.has_h264_nvenc_support():
+            return "h264_nvenc"
+        if motionctl.has_h264_qsv_support():
+            return "h264_qsv"
+        if motionctl.has_h264_nvmpi_support():
+            return "h264_nvmpi"
+    except Exception:
+        pass
+    return fallback
 
 
 class FFmpegTranscoder:
@@ -196,14 +215,18 @@ class FFmpegTranscoder:
             binary,
             '-hide_banner',
             '-loglevel', 'info',  # More verbose for debugging
-            # Input options for MJPEG stream
+            # Input options
             '-fflags', '+genpts+nobuffer',
             '-flags', 'low_delay',
             '-probesize', '32768',  # Increased from 32 for better stream analysis
             '-analyzeduration', '500000',  # 0.5 seconds
-            '-f', 'mjpeg',  # Explicit format for MJPEG input
-            '-i', self.source_url,
         ]
+
+        # Input format (None -> auto-detect)
+        if self.config.input_format:
+            cmd.extend(['-f', self.config.input_format])
+
+        cmd.extend(['-i', self.source_url])
         
         # Add audio input if enabled
         if self.config.audio_enabled and self.on_audio_samples:
@@ -215,24 +238,36 @@ class FFmpegTranscoder:
         # Video encoding options
         # Ensure minimum output framerate for smooth streaming
         output_fps = max(self.config.framerate, 10)
-        
-        cmd.extend([
-            '-c:v', 'libx264',
-            '-preset', self.config.preset,
-            '-tune', self.config.tune,
-            '-profile:v', self.config.profile,
-            '-level', self.config.level,
-            '-b:v', f'{self.config.bitrate}k',
-            '-maxrate', f'{self.config.bitrate}k',
-            '-bufsize', f'{self.config.bitrate * 2}k',
-            '-g', str(output_fps * 2),  # GOP size
-            '-keyint_min', str(output_fps),
-            '-sc_threshold', '0',
-            '-flags', '+cgop',  # Force closed GOP
-            '-r', str(output_fps),
-            '-pix_fmt', 'yuv420p',
-            '-x264-params', 'aud=1:repeat-headers=1',  # Emit AUD + repeat SPS/PPS
-        ])
+        encoder = self.config.video_codec or 'libx264'
+        if encoder == 'copy':
+            cmd.extend([
+                '-c:v', 'copy',
+            ])
+        else:
+            video_opts = [
+                '-c:v', encoder,
+                '-b:v', f'{self.config.bitrate}k',
+                '-maxrate', f'{self.config.bitrate}k',
+                '-bufsize', f'{self.config.bitrate * 2}k',
+                '-g', str(output_fps * 2),  # GOP size
+                '-keyint_min', str(output_fps),
+                '-sc_threshold', '0',
+                '-flags', '+cgop',  # Force closed GOP
+                '-r', str(output_fps),
+                '-pix_fmt', 'yuv420p',
+            ]
+
+            # x264-specific tuning
+            if encoder == 'libx264':
+                video_opts.extend([
+                    '-preset', self.config.preset,
+                    '-tune', self.config.tune,
+                    '-profile:v', self.config.profile,
+                    '-level', self.config.level,
+                    '-x264-params', 'aud=1:repeat-headers=1',  # Emit AUD + repeat SPS/PPS
+                ])
+
+            cmd.extend(video_opts)
         
         # Output format - raw H.264 Annex B format
         cmd.extend([

@@ -54,7 +54,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b38** - Assemble full H.264 access units before RTP packetization
+**0.43.1b40** - UI update checker reads repo __init__.py version
 
 ## MUST DO : 
 - keep this file up-to-date

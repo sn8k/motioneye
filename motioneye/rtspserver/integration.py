@@ -30,7 +30,11 @@ from typing import Optional, Dict, Any, List
 
 from motioneye import config, settings
 from motioneye.rtspserver.server import RTSPServer, StreamConfig
-from motioneye.rtspserver.source import VideoSourceManager, VideoSourceConfig
+from motioneye.rtspserver.source import (
+    VideoSourceManager,
+    VideoSourceConfig,
+    select_h264_encoder,
+)
 
 
 # Global server instance
@@ -230,13 +234,25 @@ def _configure_single_camera(
         camera_config: Camera configuration
         rtsp_settings: RTSP settings
     """
-    # Get Motion stream URL
+    # Pick source URL: prefer passthrough/netcam when available
     stream_port = camera_config.get('stream_port')
-    if not stream_port:
-        logging.warning(f"Camera {camera_id} has no stream_port, skipping RTSP")
+    netcam_url = camera_config.get('netcam_highres') or camera_config.get('netcam_url')
+
+    source_url = None
+    input_format = 'mjpeg'
+
+    if camera_config.get('movie_passthrough') and netcam_url:
+        source_url = netcam_url
+        input_format = None  # Let FFmpeg detect (RTSP/HTTP)
+        logging.info(f"Camera {camera_id}: using passthrough source {netcam_url}")
+    elif stream_port:
+        source_url = f"http://127.0.0.1:{stream_port}"
+        input_format = 'mjpeg'
+        logging.info(f"Camera {camera_id}: using Motion MJPEG stream on port {stream_port}")
+
+    if not source_url:
+        logging.warning(f"Camera {camera_id} has no usable source, skipping RTSP")
         return
-        
-    source_url = f"http://127.0.0.1:{stream_port}"
     
     # Get video settings
     width = camera_config.get('width', 1920)
@@ -258,8 +274,15 @@ def _configure_single_camera(
         framerate=framerate,
         bitrate=rtsp_settings['video_bitrate'],
         preset=rtsp_settings['video_preset'],
+        input_format=input_format,
+        video_codec=select_h264_encoder(),
         audio_enabled=rtsp_settings['audio_enabled'],
         audio_device=rtsp_settings['audio_device'],
+    )
+
+    logging.info(
+        f"Camera {camera_id}: RTSP source={source_url} (input_format={input_format or 'auto'}), "
+        f"encoder={source_config.video_codec}"
     )
     
     # Add to source manager
