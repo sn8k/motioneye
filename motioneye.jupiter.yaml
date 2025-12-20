@@ -1,0 +1,16 @@
+backends: []
+ci:
+  fail_on: {}
+performance:
+  excluded_dirs:
+  - node_modules
+  - venv
+  - .venv
+  - dist
+  - build
+  graph_simplification: false
+  large_file_threshold: 1048576
+  max_graph_nodes: 1000
+  max_workers: null
+  parallel_scan: true
+  scan_timeout: 300
