@@ -5,6 +5,13 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b48]
+
+### Corrigé
+
+- **Sections Network/Hardware toujours visibles** (`__init__.py`) :
+  - Import forcé de `controls.wifictl` et `controls.ledctl` au chargement du package pour enregistrer les sections UI dès le démarrage
+
 ## [0.43.1b47]
 
 ### Corrigé
