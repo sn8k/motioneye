@@ -1517,8 +1517,9 @@ function updateConfigUI() {
         $('#generalSectionDiv').each(markHideLogic);
         $('#generalSectionDiv').next().each(markHideLogic);
 
-        $('div.settings-section-title.additional-section').each(markHideLogic);
-        $('div.settings-section-title.additional-section').next().each(markHideLogic);
+        /* hide camera additional sections for non-admin, but keep main additional sections visible */
+        $('div.settings-section-title.additional-section').not('.additional-section-main').each(markHideLogic);
+        $('div.settings-section-title.additional-section').not('.additional-section-main').next().each(markHideLogic);
     }
 
     var query = splitUrl().params;

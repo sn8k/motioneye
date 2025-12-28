@@ -55,7 +55,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b44** - Network and LED settings now accessible without cameras configured
+**0.43.1b45** - Network and LED settings now accessible without cameras configured
 
 ## MUST DO : 
 - keep this file up-to-date

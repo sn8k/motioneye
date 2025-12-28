@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b45]
+
+### Corrigé
+
+- **Sections additionnelles main visibles sans caméra** (`templates/main.html`, `static/js/main.js`) :
+  - Ajout de la classe `additional-section-main` pour distinguer les sections principales des sections caméra
+  - Le JavaScript ne masque plus les sections principales (Network, Hardware) quand aucune caméra n'est configurée
+  - Les sections principales restent visibles pour les utilisateurs non-admin (seules les sections caméra sont masquées)
+
 ## [0.43.1b44]
 
 ### Amélioré
