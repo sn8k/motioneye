@@ -50,30 +50,8 @@ def _is_wifi_configurable():
     OR if WPA_SUPPLICANT_CONF is configured in settings,
     OR if FORCE_NETWORK_SETTINGS is enabled.
     """
-    # Check for force flag (development/testing)
-    if getattr(settings, 'FORCE_NETWORK_SETTINGS', False):
-        return True
-    
-    # Check settings for wpa_supplicant.conf path
-    if WPA_SUPPLICANT_CONF:
-        return True
-    
-    # Check for NetworkManager or dhcpcd
-    nm_type = _detect_network_manager()
-    if nm_type:
-        return True
-    
-    # Fallback: check if nmcli binary exists (NetworkManager might not be running yet)
-    if shutil.which('nmcli'):
-        logging.debug('nmcli found, enabling WiFi config even if NM not running')
-        return True
-    
-    # Fallback: check if dhcpcd.conf exists
-    if os.path.exists('/etc/dhcpcd.conf'):
-        logging.debug('dhcpcd.conf found, enabling WiFi config')
-        return True
-    
-    return False
+    # Always expose WiFi settings in the UI (backend logic still guards writes)
+    return True
 
 
 # ============================================================================

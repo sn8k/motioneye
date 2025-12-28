@@ -5,6 +5,15 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b47]
+
+### Corrigé
+
+- **Sections Network et Hardware toujours visibles** (`controls/wifictl.py`, `controls/ledctl.py`) :
+  - `_is_wifi_configurable()` retourne désormais toujours `True` pour exposer la section Network par défaut
+  - Suppression des gardes `_is_raspberry_pi()` sur la section Hardware/LED pour l'afficher par défaut
+  - Le backend continue de protéger l'application des changements si le support système est absent
+
 ## [0.43.1b46]
 
 ### Amélioré

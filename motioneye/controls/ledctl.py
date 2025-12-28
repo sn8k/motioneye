@@ -148,9 +148,6 @@ def _set_led_settings(s):
 
 @additional_section
 def hardware():
-    if not _is_raspberry_pi():
-        return None
-    
     return {
         'label': 'Hardware',
         'description': 'configure Raspberry Pi hardware settings',
@@ -159,9 +156,6 @@ def hardware():
 
 @additional_config
 def led_power_enabled():
-    if not _is_raspberry_pi():
-        return None
-    
     return {
         'label': 'Power LED',
         'description': 'enable or disable the power LED (red LED on most Pi models) [PLACEHOLDER]',
@@ -176,9 +170,6 @@ def led_power_enabled():
 
 @additional_config
 def led_power_mode():
-    if not _is_raspberry_pi():
-        return None
-    
     return {
         'label': 'Power LED Mode',
         'description': 'behavior of the power LED [PLACEHOLDER]',
@@ -199,9 +190,6 @@ def led_power_mode():
 
 @additional_config
 def led_separator():
-    if not _is_raspberry_pi():
-        return None
-    
     return {
         'type': 'separator',
         'section': 'hardware',
