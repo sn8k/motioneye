@@ -25,11 +25,19 @@
 
     {% block inline_context %}
         <script>
-            window.motionEyeContext = {
-                staticPath: '{{static_path}}',
-                version: '{{version}}',
-                locale: '{{ settings.lingvo if settings is defined else 'en' }}'
-            };
+            (function () {
+                var staticPath = '{{static_path}}';
+                var locale = "{{ settings.lingvo if settings is defined else 'en' }}";
+
+                window.staticPath = staticPath;
+                window.motionEyeVersion = '{{version}}';
+                window.motionEyeLocale = locale;
+                window.motionEyeContext = {
+                    staticPath: staticPath,
+                    version: '{{version}}',
+                    locale: locale
+                };
+            })();
         </script>
     {% endblock %}
 

@@ -62,36 +62,100 @@
     {{ super() }}
     <script src="{{static_path}}js/gettext.min.js?v={{version}}"></script>
     <script>
-        window.motionEyeBootstrap = {
-            adminUsername: '{{admin_username}}',
-            frame: {% if frame %}true{% else %}false{% endif %},
-            hasLocalCamSupport: {% if has_motion %}true{% else %}false{% endif %},
-            hasNetCamSupport: {% if has_motion %}true{% else %}false{% endif %},
-            maskWidth: {{ mask_width or 0 }},
-            enableUpdate: {% if enable_update %}true{% else %}false{% endif %},
-            enableReboot: {% if enable_reboot %}true{% else %}false{% endif %},
-            addRemoveCameras: {% if add_remove_cameras %}true{% else %}false{% endif %},
-            hostname: '{{ hostname }}',
-            motionVersion: '{{ motion_version }}',
-            osVersion: '{{ os_version }}',
-            hasMotion: {% if has_motion %}true{% else %}false{% endif %},
-            hasH264: {
-                omx: {% if has_h264_omx_support %}true{% else %}false{% endif %},
-                v4l2m2m: {% if has_h264_v4l2m2m_support %}true{% else %}false{% endif %},
-                nvenc: {% if has_h264_nvenc_support %}true{% else %}false{% endif %},
-                nvmpi: {% if has_h264_nvmpi_support %}true{% else %}false{% endif %},
-                qsv: {% if has_h264_qsv_support %}true{% else %}false{% endif %}
-            },
-            hasHevc: {
-                nvenc: {% if has_hevc_nvenc_support %}true{% else %}false{% endif %},
-                nvmpi: {% if has_hevc_nvmpi_support %}true{% else %}false{% endif %},
-                qsv: {% if has_hevc_qsv_support %}true{% else %}false{% endif %}
-            },
-            mainSections: {{ main_sections|tojson|safe }},
-            cameraSections: {{ camera_sections|tojson|safe }},
-            languages: {{ settings.langlist|tojson|safe }},
-            lingvo: '{{ settings.lingvo }}'
-        };
+        (function () {
+            var bootstrap = {
+                adminUsername: '{{admin_username}}',
+                frame: {% if frame %}true{% else %}false{% endif %},
+                hasLocalCamSupport: {% if has_motion %}true{% else %}false{% endif %},
+                hasNetCamSupport: {% if has_motion %}true{% else %}false{% endif %},
+                maskWidth: {{ mask_width or 0 }},
+                enableUpdate: {% if enable_update %}true{% else %}false{% endif %},
+                enableReboot: {% if enable_reboot %}true{% else %}false{% endif %},
+                addRemoveCameras: {% if add_remove_cameras %}true{% else %}false{% endif %},
+                hostname: '{{ hostname }}',
+                motionVersion: '{{ motion_version }}',
+                osVersion: '{{ os_version }}',
+                hasMotion: {% if has_motion %}true{% else %}false{% endif %},
+                hasH264: {
+                    omx: {% if has_h264_omx_support %}true{% else %}false{% endif %},
+                    v4l2m2m: {% if has_h264_v4l2m2m_support %}true{% else %}false{% endif %},
+                    nvenc: {% if has_h264_nvenc_support %}true{% else %}false{% endif %},
+                    nvmpi: {% if has_h264_nvmpi_support %}true{% else %}false{% endif %},
+                    qsv: {% if has_h264_qsv_support %}true{% else %}false{% endif %}
+                },
+                hasHevc: {
+                    nvenc: {% if has_hevc_nvenc_support %}true{% else %}false{% endif %},
+                    nvmpi: {% if has_hevc_nvmpi_support %}true{% else %}false{% endif %},
+                    qsv: {% if has_hevc_qsv_support %}true{% else %}false{% endif %}
+                },
+                mainSections: {{ main_sections|tojson|safe }},
+                cameraSections: {{ camera_sections|tojson|safe }},
+                languages: {{ settings.langlist|tojson|safe }},
+                lingvo: '{{ settings.lingvo }}'
+            };
+
+            window.motionEyeBootstrap = bootstrap;
+            window.adminUsername = bootstrap.adminUsername;
+            window.frame = bootstrap.frame;
+            window.hasLocalCamSupport = bootstrap.hasLocalCamSupport;
+            window.hasNetCamSupport = bootstrap.hasNetCamSupport;
+            window.maskWidth = bootstrap.maskWidth;
+            window.motionEyeLanguages = bootstrap.languages;
+
+            var locale = bootstrap.lingvo || 'en';
+            var domain = 'motioneye';
+            var staticRoot = window.staticPath || '{{static_path}}';
+            var cacheBuster = '{{version}}';
+
+            function fetchLocale(lang) {
+                if (!lang) {
+                    return null;
+                }
+
+                try {
+                    var request = new XMLHttpRequest();
+                    request.open('GET', staticRoot + 'js/motioneye.' + lang + '.json?v=' + cacheBuster, false);
+                    request.send(null);
+
+                    if (request.status >= 200 && request.status < 400 && request.responseText) {
+                        return request.responseText;
+                    }
+                }
+                catch (error) {
+                    if (window.console && console.warn) {
+                        console.warn('motionEye failed to fetch locale', lang, error);
+                    }
+                }
+
+                return null;
+            }
+
+            function resolveLocalePayload(lang) {
+                var payload = fetchLocale(lang);
+                if (!payload && lang) {
+                    var normalized = lang.replace('-', '_');
+                    var separatorIndex = normalized.indexOf('_');
+                    if (separatorIndex > 0) {
+                        payload = fetchLocale(normalized.substring(0, separatorIndex));
+                    }
+                }
+                return payload;
+            }
+
+            var localePayload = resolveLocalePayload(locale) || fetchLocale('en');
+            if (localePayload && window.i18n && typeof window.i18n.loadJSON === 'function') {
+                try {
+                    i18n.textdomain(domain);
+                    i18n.loadJSON(localePayload, domain);
+                    i18n.setLocale(locale);
+                }
+                catch (error) {
+                    if (window.console && console.error) {
+                        console.error('motionEye failed to initialize translations', error);
+                    }
+                }
+            }
+        })();
     </script>
 {% endblock %}
 
