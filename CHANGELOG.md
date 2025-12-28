@@ -5,6 +5,69 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b44]
+
+### Amélioré
+
+- **Sections Network et Hardware accessibles sans caméra** (`server.py`) :
+  - Import des modules `wifictl` et `ledctl` au démarrage du serveur
+  - Les sections "Network" (WiFi) et "Hardware" (LED) sont maintenant visibles dans les paramètres même si aucune caméra n'est configurée
+
+## [0.43.1b43]
+
+### Ajouté
+
+- **Placeholder LED Control Raspberry Pi** (`controls/ledctl.py`) :
+  - Section "Hardware" dans l'interface de configuration
+  - Contrôle de la LED power (on/off, mode: default-on, heartbeat, none)
+  - Contrôle de la LED activité (on/off, mode: mmc0, heartbeat, none)
+  - Détection automatique du Raspberry Pi
+  - Fonctionnalité placeholder - implémentation à compléter
+
+- **Placeholder Network Storage** (`controls/netstoragectl.py`) :
+  - Section "Network Storage" dans l'interface de configuration
+  - Support protocoles : Local, SMB/CIFS, NFS, SSHFS
+  - Configuration serveur, partage, credentials
+  - Option failover vers stockage local
+  - Test de connexion
+  - Fonctionnalité placeholder - implémentation à compléter
+
+- **Placeholder Media Gallery** (`handlers/gallery.py`) :
+  - Handler pour la galerie de médias
+  - Routes pour images, vidéos, timeline
+  - API de listing avec filtres et pagination
+  - Page placeholder avec liste des fonctionnalités prévues
+  - Fonctionnalité placeholder - implémentation à compléter
+
+- **TODO.md** : Liste complète des tâches pour rendre les fonctionnalités opérationnelles
+
+## [0.43.1b42]
+
+### Amélioré
+
+- **Support NetworkManager pour Raspberry Pi OS Bookworm+** (`controls/wifictl.py`) :
+  - Auto-détection du gestionnaire réseau (NetworkManager vs dhcpcd)
+  - Support complet de `nmcli` pour les versions récentes de Raspberry Pi OS (Bookworm/Debian 12+)
+  - Conservation du support `dhcpcd.conf` pour les anciennes versions (Bullseye et antérieures)
+  - Création/suppression automatique des connexions NetworkManager avec préfixe `motioneye-wifi-`
+  - Lecture des configurations IP existantes depuis NetworkManager
+  - Fallback intelligent : détection via `/sys/class/net`, `iw dev`, ou `nmcli device`
+
+## [0.43.1b41]
+
+### Ajouté
+
+- **Gestion avancée du WiFi dans le frontend** (`controls/wifictl.py`) :
+  - Auto-détection des interfaces WiFi disponibles avec driver et état
+  - Sélection manuelle de l'interface WiFi avec option "Auto"
+  - Interface WiFi de secours (fallback) en cas d'indisponibilité
+  - Réseau WiFi principal avec SSID et clé PSK
+  - Réseau WiFi de secours avec priorité inférieure (failover automatique)
+  - Configuration IP statique ou DHCP
+  - Paramètres réseau complets : adresse IP, masque, passerelle, DNS primaire/secondaire
+  - Validation des adresses IP dans le frontend
+  - Persistance des configurations dans wpa_supplicant.conf et dhcpcd.conf
+
 ## [0.43.1b40]
 
 ### Amélioré

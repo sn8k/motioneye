@@ -41,6 +41,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - **`config.py`**: Handles parsing and saving configuration files.
 - **`audioctl.py`**: Audio device detection (ALSA) for RTSP streaming.
 - **`settings.py`**: Global settings definitions (must declare all config options for persistence).
+- **`controls/wifictl.py`**: WiFi network management with auto-detection, failover, and IP configuration.
 
 ## Development
 - **Entry Point**: The application is typically started via `meyectl startserver`.
@@ -54,7 +55,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b40** - UI update checker reads repo __init__.py version
+**0.43.1b44** - Network and LED settings now accessible without cameras configured
 
 ## MUST DO : 
 - keep this file up-to-date

@@ -29,6 +29,8 @@ from tornado.web import Application
 
 from motioneye import audioctl, meeting, settings, template
 from motioneye.controls import smbctl, v4l2ctl
+from motioneye.controls import wifictl  # Register WiFi/Network UI config
+from motioneye.controls import ledctl  # Register LED/Hardware UI config
 from motioneye.rtspserver import config as rtsp_config  # Register RTSP UI config
 from motioneye.handlers.action import ActionHandler
 from motioneye.handlers.base import ManifestHandler, NotFoundHandler
