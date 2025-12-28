@@ -51,49 +51,55 @@
 
 {% block title %}{% if title %}{{title}}{% else %}{{hostname}}{% endif %}{% endblock %}
 
-{% block style %}
-    {{super()}}
-    <link rel="stylesheet" type="text/css" href="{{static_path}}css/ui.css?v={{version}}">
-    <link rel="stylesheet" type="text/css" href="{{static_path}}css/main.css?v={{version}}">
+{% block extra_style %}
+    {{ super() }}
     {% if frame %}
-        <link rel="stylesheet" type="text/css" href="{{static_path}}css/frame.css?v={{version}}">
+        <link rel="stylesheet" href="{{static_path}}css/frame.css?v={{version}}">
     {% endif %}
 {% endblock %}
 
-{% block script %}
-    {{super()}}
-    <script defer src="{{static_path}}js/ui.js?v={{version}}"></script>
-    <script defer src="{{static_path}}js/main.js?v={{version}}"></script>
-    {% if frame %}
-        <script defer src="{{static_path}}js/frame.js?v={{version}}"></script>
-    {% endif %}
-{% endblock %}
-
-{% block inline %}
-    {{super()}}
-    <!-- gettext.js required for setting language -->
-    <script src="{{static_path}}js/gettext.min.js"></script>
+{% block inline_context %}
+    {{ super() }}
+    <script src="{{static_path}}js/gettext.min.js?v={{version}}"></script>
     <script>
-        var i18n = window.i18n();
-      {% if settings.lingvo != 'eo' %}
-        // Set language for JavaScript
-        function Get(yourUrl){
-            var Httpreq = new XMLHttpRequest(); // a new request
-            Httpreq.open("GET",yourUrl,false);
-            Httpreq.send(null);
-            return Httpreq.responseText;
-        }
-        var i18njson=Get("{{static_path}}js/motioneye.{{settings.lingvo}}.json");
-        i18n.loadJSON(i18njson, 'messages');
-      {% endif %}
-        i18n.setLocale('{{settings.lingvo}}');
-        // Pass variables to JavaScript
-        var adminUsername = '{{admin_username}}';
-        var frame = {% if frame %}true{% else %}false{% endif %};
-        var hasLocalCamSupport = {% if has_motion %}true{% else %}false{% endif %};
-        var hasNetCamSupport = {% if has_motion %}true{% else %}false{% endif %};
-        {% if mask_width %}var maskWidth = {{mask_width}};{% endif %}
+        window.motionEyeBootstrap = {
+            adminUsername: '{{admin_username}}',
+            frame: {% if frame %}true{% else %}false{% endif %},
+            hasLocalCamSupport: {% if has_motion %}true{% else %}false{% endif %},
+            hasNetCamSupport: {% if has_motion %}true{% else %}false{% endif %},
+            maskWidth: {{ mask_width or 0 }},
+            enableUpdate: {% if enable_update %}true{% else %}false{% endif %},
+            enableReboot: {% if enable_reboot %}true{% else %}false{% endif %},
+            addRemoveCameras: {% if add_remove_cameras %}true{% else %}false{% endif %},
+            hostname: '{{ hostname }}',
+            motionVersion: '{{ motion_version }}',
+            osVersion: '{{ os_version }}',
+            hasMotion: {% if has_motion %}true{% else %}false{% endif %},
+            hasH264: {
+                omx: {% if has_h264_omx_support %}true{% else %}false{% endif %},
+                v4l2m2m: {% if has_h264_v4l2m2m_support %}true{% else %}false{% endif %},
+                nvenc: {% if has_h264_nvenc_support %}true{% else %}false{% endif %},
+                nvmpi: {% if has_h264_nvmpi_support %}true{% else %}false{% endif %},
+                qsv: {% if has_h264_qsv_support %}true{% else %}false{% endif %}
+            },
+            hasHevc: {
+                nvenc: {% if has_hevc_nvenc_support %}true{% else %}false{% endif %},
+                nvmpi: {% if has_hevc_nvmpi_support %}true{% else %}false{% endif %},
+                qsv: {% if has_hevc_qsv_support %}true{% else %}false{% endif %}
+            },
+            mainSections: {{ main_sections|tojson|safe }},
+            cameraSections: {{ camera_sections|tojson|safe }},
+            languages: {{ settings.langlist|tojson|safe }},
+            lingvo: '{{ settings.lingvo }}'
+        };
     </script>
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{{static_path}}js/main.js?v={{version}}" defer></script>
+    {% if frame %}
+        <script src="{{static_path}}js/frame.js?v={{version}}" defer></script>
+    {% endif %}
 {% endblock %}
 
 {% block body %}
