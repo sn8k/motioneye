@@ -5,6 +5,13 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b49]
+
+### Corrigé
+
+- **Sections Network/Hardware reconstruites à chaque démarrage** (`__init__.py`) :
+  - Import forcé de `controls.wifictl` et `controls.ledctl` + `config.invalidate()` pour régénérer la structure des sections au lancement
+
 ## [0.43.1b48]
 
 ### Corrigé

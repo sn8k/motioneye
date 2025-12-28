@@ -55,7 +55,7 @@ The project is built using **Python** and the **Tornado** web framework. It acts
 - Systemd integration is provided in `extra/`.
 
 ## Current Version
-**0.43.1b48** - Network and LED settings registered at package import
+**0.43.1b49** - Network and LED settings rebuilt at startup
 
 ## MUST DO : 
 - keep this file up-to-date
