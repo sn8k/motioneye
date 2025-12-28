@@ -133,6 +133,14 @@ SMB_MOUNT_ROOT = '/media'
 # (enable this to configure wifi settings from the UI)
 WPA_SUPPLICANT_CONF = None
 
+# force Network settings visibility even without NetworkManager/dhcpcd detection
+# (useful for development/testing)
+FORCE_NETWORK_SETTINGS = False
+
+# force Hardware settings visibility even on non-Raspberry Pi systems
+# (useful for development/testing)
+FORCE_HARDWARE_SETTINGS = False
+
 # path to the localtime file
 # (enable this to configure the system time zone from the UI)
 LOCAL_TIME_FILE = None

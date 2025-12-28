@@ -51,13 +51,28 @@ BOOT_CONFIG = '/boot/config.txt'
 def _is_raspberry_pi():
     """
     Check if running on a Raspberry Pi.
+    Also returns True if FORCE_HARDWARE_SETTINGS is enabled in settings.
     """
+    # Check for force flag in settings (useful for development/testing)
+    if getattr(settings, 'FORCE_HARDWARE_SETTINGS', False):
+        return True
+    
     try:
         with open('/proc/device-tree/model', 'r') as f:
             model = f.read()
             return 'Raspberry Pi' in model
     except Exception:
-        return False
+        pass
+    
+    # Alternative check via /sys/firmware/devicetree/base/model
+    try:
+        with open('/sys/firmware/devicetree/base/model', 'r') as f:
+            model = f.read()
+            return 'Raspberry Pi' in model
+    except Exception:
+        pass
+    
+    return False
 
 
 def _get_led_path(led_type):

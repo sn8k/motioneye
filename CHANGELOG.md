@@ -5,6 +5,24 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [0.43.1b46]
+
+### Amélioré
+
+- **Détection automatique du gestionnaire réseau** (`controls/wifictl.py`) :
+  - Nouvelle fonction `_is_wifi_configurable()` qui détecte NetworkManager ou dhcpcd automatiquement
+  - Plus besoin de configurer `WPA_SUPPLICANT_CONF` dans settings pour voir la section Network
+  - Fallback sur la présence de `nmcli` ou `/etc/dhcpcd.conf` si le service n'est pas actif
+  - Ajout de `FORCE_NETWORK_SETTINGS` dans settings.py pour forcer l'affichage
+
+- **Détection Raspberry Pi améliorée** (`controls/ledctl.py`) :
+  - Vérification de `/sys/firmware/devicetree/base/model` en plus de `/proc/device-tree/model`
+  - Ajout de `FORCE_HARDWARE_SETTINGS` dans settings.py pour forcer l'affichage sur non-Pi
+
+- **Nouveaux paramètres settings.py** :
+  - `FORCE_NETWORK_SETTINGS = False` - Force l'affichage de la section Network
+  - `FORCE_HARDWARE_SETTINGS = False` - Force l'affichage de la section Hardware
+
 ## [0.43.1b45]
 
 ### Corrigé

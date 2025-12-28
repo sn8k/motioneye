@@ -43,6 +43,39 @@ _network_manager_type = None  # 'networkmanager', 'dhcpcd', or None
 NM_CONNECTION_PREFIX = 'motioneye-wifi'
 
 
+def _is_wifi_configurable():
+    """
+    Check if WiFi configuration is available.
+    Returns True if NetworkManager or dhcpcd is available,
+    OR if WPA_SUPPLICANT_CONF is configured in settings,
+    OR if FORCE_NETWORK_SETTINGS is enabled.
+    """
+    # Check for force flag (development/testing)
+    if getattr(settings, 'FORCE_NETWORK_SETTINGS', False):
+        return True
+    
+    # Check settings for wpa_supplicant.conf path
+    if WPA_SUPPLICANT_CONF:
+        return True
+    
+    # Check for NetworkManager or dhcpcd
+    nm_type = _detect_network_manager()
+    if nm_type:
+        return True
+    
+    # Fallback: check if nmcli binary exists (NetworkManager might not be running yet)
+    if shutil.which('nmcli'):
+        logging.debug('nmcli found, enabling WiFi config even if NM not running')
+        return True
+    
+    # Fallback: check if dhcpcd.conf exists
+    if os.path.exists('/etc/dhcpcd.conf'):
+        logging.debug('dhcpcd.conf found, enabling WiFi config')
+        return True
+    
+    return False
+
+
 # ============================================================================
 # Network Manager Detection
 # ============================================================================
@@ -690,7 +723,7 @@ def _wpa_write_config(settings_dict):
     """
     Write WiFi configuration to wpa_supplicant.conf.
     """
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return
 
     try:
@@ -824,7 +857,7 @@ def _get_wifi_settings():
         'wifiDns2': '',
     }
 
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return settings_dict
 
     nm_type = _detect_network_manager()
@@ -911,7 +944,7 @@ def _set_wifi_settings(s):
     s.setdefault('wifiDns1', '')
     s.setdefault('wifiDns2', '')
 
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return
 
     nm_type = _detect_network_manager()
@@ -973,7 +1006,7 @@ def network():
 
 @additional_config
 def wifi_enabled():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -990,7 +1023,7 @@ def wifi_enabled():
 
 @additional_config
 def wifi_interface():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1009,7 +1042,7 @@ def wifi_interface():
 
 @additional_config
 def wifi_interface_fallback():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     choices = get_wifi_interface_choices()
@@ -1032,7 +1065,7 @@ def wifi_interface_fallback():
 
 @additional_config
 def wifi_network_name():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1051,7 +1084,7 @@ def wifi_network_name():
 
 @additional_config
 def wifi_network_key():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1070,7 +1103,7 @@ def wifi_network_key():
 
 @additional_config
 def wifi_separator_fallback():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1082,7 +1115,7 @@ def wifi_separator_fallback():
 
 @additional_config
 def wifi_network_fallback():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1101,7 +1134,7 @@ def wifi_network_fallback():
 
 @additional_config
 def wifi_network_key_fallback():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1120,7 +1153,7 @@ def wifi_network_key_fallback():
 
 @additional_config
 def wifi_separator_ip():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1132,7 +1165,7 @@ def wifi_separator_ip():
 
 @additional_config
 def wifi_use_dhcp():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1150,7 +1183,7 @@ def wifi_use_dhcp():
 
 @additional_config
 def wifi_ip_address():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1170,7 +1203,7 @@ def wifi_ip_address():
 
 @additional_config
 def wifi_netmask():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1190,7 +1223,7 @@ def wifi_netmask():
 
 @additional_config
 def wifi_gateway():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1210,7 +1243,7 @@ def wifi_gateway():
 
 @additional_config
 def wifi_dns1():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
@@ -1230,7 +1263,7 @@ def wifi_dns1():
 
 @additional_config
 def wifi_dns2():
-    if not WPA_SUPPLICANT_CONF:
+    if not _is_wifi_configurable():
         return None
 
     return {
